@@ -1,0 +1,30 @@
+﻿<Page x:Class="WpfStartup.Pages.DataGridDemo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="DataGridDemo">
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="97*"/>
+			<RowDefinition Height="203*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="28*"/>
+			<ColumnDefinition Width="47*"/>
+		</Grid.ColumnDefinitions>
+		<ScrollViewer>
+			<DataGrid x:Name="dgDemo" Margin="0" Loaded="DataGrid_Loaded" SelectionChanged="dgDemo_SelectionChanged" />
+		</ScrollViewer>
+		<TextBox x:Name="txtFName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="58,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
+		<TextBox x:Name="txtLName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="58,64,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+		<TextBox x:Name="txtPhone" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="58,104,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+		<Label Content="First" HorizontalAlignment="Left" Margin="0,28,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1"/>
+		<Label Content="Last" Grid.Column="1" HorizontalAlignment="Left" Margin="0,71,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+		<Label Content="Phone" Grid.Column="1" HorizontalAlignment="Left" Margin="0,111,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+		<Button Content="Save" Grid.Column="1" HorizontalAlignment="Left" Margin="103,155,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+	</Grid>
+</Page>

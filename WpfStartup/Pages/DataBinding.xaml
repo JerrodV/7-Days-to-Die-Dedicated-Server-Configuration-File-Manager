@@ -1,0 +1,56 @@
+﻿<Page x:Class="WpfStartup.Pages.DataBinding"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="400"
+	Title="DataBinding" Loaded="Page_Loaded">
+    <Grid x:Name="grdMain">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="22"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="124"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="59"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="39"/>
+            <ColumnDefinition Width="111"/>
+            <ColumnDefinition Width="112"/>
+            <ColumnDefinition Width="123"/>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <!--
+			One of the interesting points of the layout is tab order. There is no property to set, instead the order is defined
+			by thier order in the markup. To my knowledge, there is no way to remove the functionality, however you can forward
+			the focus onto another control. 
+
+			Another issue is that the draw order is also controlled by the the order the elements fall in the markup. This paired 
+			with its effect on tab order can lead to complexity. 
+		-->
+
+        <Label Content="First Name" HorizontalAlignment="Center" Margin="1,19,10,0" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3"/>
+        <TextBox x:Name="txtBOID" Height="23" Margin="6,10,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" HorizontalAlignment="Left" Width="29"/>
+        <TextBox x:Name="txtBOFN" HorizontalAlignment="Left" Height="23" Margin="5,10,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" Grid.Column="3"/>
+        <TextBox x:Name="txtBOLN" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" Grid.Column="4"/>
+        <TextBox x:Name="txtBOPN" HorizontalAlignment="Left" Height="23" Margin="0,10,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="5"/>
+        <Label Content="Last Name" HorizontalAlignment="Center" Margin="109,19,14,0" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Grid.Column="3"/>
+        <Label Content="Phone Number" HorizontalAlignment="Center" Margin="10,19,13,0" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5"/>
+
+        <Label Content="First Name" HorizontalAlignment="Center" Margin="1,10,10,4" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3"/>
+        <TextBox x:Name="txtVOID" Height="23" Margin="6,10,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" HorizontalAlignment="Left" Width="23" />
+        <TextBox x:Name="txtVOFN" HorizontalAlignment="Left" Height="23" Margin="5,10,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" Grid.Column="3"/>
+        <TextBox x:Name="txtVOLN" HorizontalAlignment="Left" Height="23" Margin="8,10,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="99" Grid.Column="4"/>
+        <TextBox x:Name="txtVOPN" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" Grid.Column="5"/>
+        <Label Content="Last Name" HorizontalAlignment="Center" Margin="109,10,14,4" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Grid.Column="3"/>
+        <Label Content="Phone Number" Margin="10,10,13,4" Grid.Row="4" VerticalAlignment="Center" Height="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5"/>
+        <Button x:Name="btnViewO" Content="View Object Data" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" Width="110" Grid.Column="5" Height="22" Grid.Row="3" Click="btnViewO_Click"/>
+        <Button x:Name="btnBindO" Content="Bind Object" HorizontalAlignment="Left" Margin="10,0,0,0" Width="75" Grid.Column="5" Click="Button_Click" Grid.Row="1"/>
+    </Grid>
+</Page>
