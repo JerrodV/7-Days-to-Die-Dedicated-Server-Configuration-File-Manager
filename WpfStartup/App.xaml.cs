@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WpfStartup
+namespace SevenDaysConfigUI
 {
     /// <summary>
     /// Interaction logic for App.xaml

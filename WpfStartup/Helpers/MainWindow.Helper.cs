@@ -5,13 +5,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace WpfStartup.Helpers
+namespace SevenDaysConfigUI.Helpers
 {
 	public class MainWindow
 	{
 		public static void ShowModal(Page modalView, String title = "", Window owner = null)
 		{
-			WpfStartup.MainWindow w = App.AppMainWindow;
+			SevenDaysConfigUI.MainWindow w = App.AppMainWindow;
 			/*Capture the existing effect in the content window*/
 			System.Windows.Media.Effects.Effect tempEffect = w.MainContent.Effect;
 			/*Blur the current content*/
@@ -67,7 +67,7 @@ namespace WpfStartup.Helpers
 		///
 		public static void ModalWindow_Loaded(object sender, RoutedEventArgs e)
 		{
-			WpfStartup.MainWindow.RemoveIcon((Window)sender);
+			SevenDaysConfigUI.MainWindow.RemoveIcon((Window)sender);
 		}
 
 		private static String LastWindow

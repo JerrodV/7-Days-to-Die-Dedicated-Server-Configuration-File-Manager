@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WpfStartup.Helpers.Validation
+namespace SevenDaysConfigUI.Helpers.Validation
 {
 	/// <summary>
 	/// Interaction logic for ValidationError.xaml

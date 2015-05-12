@@ -7,9 +7,9 @@
     <ProjectGuid>{D37B35CF-29EB-437B-96CE-6ACE90847D9F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WpfStartup</RootNamespace>
-    <AssemblyName>WpfStartup</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>SevenDaysConfigUI</RootNamespace>
+    <AssemblyName>SevenDaysConfigUI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -17,7 +17,8 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -28,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,6 +39,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,6 +52,7 @@
     <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -92,10 +96,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Helpers\GetConnectionString.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Helpers\Validation\ValidationError.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,12 +110,8 @@
     </Compile>
     <Compile Include="Helpers\Animation.Helper.cs" />
     <Compile Include="Helpers\Binding.Helper.cs" />
-    <Compile Include="Helpers\Database.Helper.cs" />
     <Compile Include="Helpers\DefaultErrorMessage.xaml.cs">
       <DependentUpon>DefaultErrorMessage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Helpers\GetConnectionString.xaml.cs">
-      <DependentUpon>GetConnectionString.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MainWindow.Helper.cs" />
     <Compile Include="Helpers\Validation\ValidationRules\ValidationRules.cs" />
@@ -129,23 +125,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\DataBinding.xaml">
+    <Page Include="Pages\Configuration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DataGridDemo.xaml">
+    <Page Include="Pages\ErrorItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DragAndDrop.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Test.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Welcome_Modal.xaml">
+    <Page Include="Pages\ErrorViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,21 +167,15 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="Pages\DataBinding.xaml.cs">
-      <DependentUpon>DataBinding.xaml</DependentUpon>
+    <Compile Include="Models\ServerConfig.cs" />
+    <Compile Include="Pages\Configuration.xaml.cs">
+      <DependentUpon>Configuration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DataGridDemo.xaml.cs">
-      <DependentUpon>DataGridDemo.xaml</DependentUpon>
+    <Compile Include="Pages\ErrorItem.xaml.cs">
+      <DependentUpon>ErrorItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DragAndDrop.xaml.cs">
-      <DependentUpon>DragAndDrop.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Test.xaml.cs">
-      <DependentUpon>Test.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Welcome_Modal.xaml.cs">
-      <DependentUpon>Welcome_Modal.xaml</DependentUpon>
+    <Compile Include="Pages\ErrorViewer.xaml.cs">
+      <DependentUpon>ErrorViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

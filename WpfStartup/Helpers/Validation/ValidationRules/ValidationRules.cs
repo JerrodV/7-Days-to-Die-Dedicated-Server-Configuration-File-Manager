@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 
-namespace WpfStartup.Helpers.Validation.ValidationRules
+namespace SevenDaysConfigUI.Helpers.Validation.ValidationRules
 {
 	/// <summary>
 	/// This is used for easy access to the availible Validation Types 

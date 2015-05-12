@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfStartup.Helpers
+namespace SevenDaysConfigUI.Helpers
 {
 	/// <summary>
 	/// Interaction logic for DefaultErrorMessage.xaml

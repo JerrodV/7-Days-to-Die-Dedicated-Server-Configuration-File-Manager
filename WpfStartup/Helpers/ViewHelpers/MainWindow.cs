@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 /*EDIT WITH CAUTION - THIS POWERS ALL OF THE NOTIFICATION FUNCTIONS*/
 
-namespace WpfStartup
+namespace SevenDaysConfigUI
 {
 
 	/// <summary>

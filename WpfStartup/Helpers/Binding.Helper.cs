@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using WpfStartup.Helpers.Validation.ValidationRules;
+using Xceed.Wpf.Toolkit;
+using SevenDaysConfigUI.Helpers.Validation.ValidationRules;
 
-namespace WpfStartup.Helpers
+namespace SevenDaysConfigUI.Helpers
 {		
 	public class Bindings
 	{
@@ -20,22 +21,22 @@ namespace WpfStartup.Helpers
 			public Boolean UseNotifiction;
 		}
 
-        public static void BindInputPropertyToObject(Control control, String propertyName, Object dataObject)
-        {
-            if (control is IInputElement && propertyName != "" && dataObject != null)
-            {
-                Binding b = new Binding(propertyName);
-                b.NotifyOnValidationError = true;
-                b.Source = dataObject;
-                //Watch... In theory, any control we will bind to will have this, otherwise it posesses a datasource property
-                control.SetBinding(TextBox.TextProperty, b);
-            }
-        }
+		public static void BindTexbox(Control control, String propertyName, Object dataObject)
+		{
+			if (control is IInputElement && propertyName != "" && dataObject != null)
+			{
+				Binding b = new Binding(propertyName);
+				b.NotifyOnValidationError = true;
+				b.Source = dataObject;
+				//Watch... In theory, any control we will bind to will have this, otherwise it posesses a datasource property
+				control.SetBinding(TextBox.TextProperty, b);
+			}
+		}
 
 		//TODO:Need Summary
-		public static void BindInputPropertyToObject(ValidationByRulesListSettings settings)
+		public static void BindTexbox(ValidationByRulesListSettings settings)
 		{
-			BindInputPropertyToObject(settings.Control, settings.PropertyName, settings.DataObject, settings.ValidationRules, settings.UseNotifiction);
+			BindTexbox(settings.Control, settings.PropertyName, settings.DataObject, settings.ValidationRules, settings.UseNotifiction);
 		}
 		/// <summary>
 		/// Takes a control and binds it to the property name of the the object passed in. 
@@ -46,7 +47,7 @@ namespace WpfStartup.Helpers
 		/// <param name="dataObject">The object contining the property name to bind to.</param>
 		/// <param name="validationRules">A List<Windows.System.Controls.ValidationRule>to apply to this bindings error event</param>
 		/// <param name="useNotification">true/false Use Main Window notification</param>
-		public static void BindInputPropertyToObject(Control control, String propertyName, Object dataObject, List<ValidationRule> validationRules = null, Boolean useNotification = false)
+		public static void BindTexbox(Control control, String propertyName, Object dataObject, List<ValidationRule> validationRules = null, Boolean useNotification = false)
 		{
 			if (control is IInputElement && propertyName != "" && dataObject != null)
 			{
@@ -80,7 +81,7 @@ namespace WpfStartup.Helpers
 		/// <param name="control">The System.Windows.Controls.Control to bind to.</param>
 		/// <param name="propertyName">The name of the property on the object passed it that yuo wish to bind to.</param>
 		/// <param name="dataObject">The object contining the property name to bind to.</param>
-		/// <param name="validationRules">A List<WpfStartup.Helpers.Validation.ValidationType>to apply to this bindings error event</param>
+		/// <param name="validationRules">A List<SevenDaysConfigUI.Helpers.Validation.ValidationType>to apply to this bindings error event</param>
 		/// <param name="useNotification">true/false Use Main Window notification</param>
 		public struct ValidationByTypesListSettings
 		{
@@ -91,9 +92,9 @@ namespace WpfStartup.Helpers
 			public Boolean UseNotifiction;
 		}
 		//TODO:Need Summary
-		public static void BindInputPropertyToObject(ValidationByTypesListSettings settings)
+		public static void BindTexbox(ValidationByTypesListSettings settings)
 		{
-			BindInputPropertyToObject(settings.Control, settings.PropertyName, settings.DataObject, settings.ValidationTypes, settings.UseNotifiction);
+			BindTexbox(settings.Control, settings.PropertyName, settings.DataObject, settings.ValidationTypes, settings.UseNotifiction);
 		}
 		/// <summary>
 		/// Takes a control and binds it to the property name of the the object passed in. 
@@ -104,7 +105,7 @@ namespace WpfStartup.Helpers
 		/// <param name="dataObject">The object contining the property name to bind to.</param>
 		/// <param name="validationRules">A Windows.System.Controls.ValidationRule to apply to this bindings error event</param>
 		/// <param name="useNotification">true/false Use Main Window notification</param>
-		public static void BindInputPropertyToObject(Control control, String propertyName, Object dataObject, List<ValidationType> types, Boolean useNotification = false)
+		public static void BindTexbox(Control control, String propertyName, Object dataObject, List<ValidationType> types, Boolean useNotification = false)
 		{
 			if (control is IInputElement && propertyName != "" && dataObject != null)
 			{
@@ -134,11 +135,11 @@ namespace WpfStartup.Helpers
 			public ValidationRule ValidationRule;
 			public Boolean UseNotifiction;
 		}
-		public static void BindInputPropertyToObject(ValidationByRuleSettings settings)
+		public static void BindTexbox(ValidationByRuleSettings settings)
 		{
-			BindInputPropertyToObject(settings.Control, settings.PropertyName, settings.DataObject, settings.ValidationRule, settings.UseNotifiction);
+			BindTexbox(settings.Control, settings.PropertyName, settings.DataObject, settings.ValidationRule, settings.UseNotifiction);
 		}
-		public static void BindInputPropertyToObject(Control control, String propertyName, Object dataObject, ValidationRule validationRule = null, Boolean useNotification = false)
+		public static void BindTexbox(Control control, String propertyName, Object dataObject, ValidationRule validationRule = null, Boolean useNotification = false)
 		{
 			if (control is IInputElement && propertyName != "" && dataObject != null)
 			{
@@ -171,9 +172,9 @@ namespace WpfStartup.Helpers
 			public Boolean UseNotifiction;
 		}
 		//TODO:Need Summary
-		public static void BindInputPropertyToObject(ValidationByTypeSettings settings)
+		public static void BindTexbox(ValidationByTypeSettings settings)
 		{
-			BindInputPropertyToObject(settings.Control, settings.PropertyName, settings.DataObject, settings.ValidationType, settings.UseNotifiction);
+			BindTexbox(settings.Control, settings.PropertyName, settings.DataObject, settings.ValidationType, settings.UseNotifiction);
 		}
 		/// <summary>
 		/// Takes a control and binds it to the property name of the the object passed in. 
@@ -182,9 +183,9 @@ namespace WpfStartup.Helpers
 		/// <param name="control">The System.Windows.Controls.Control to bind to.</param>
 		/// <param name="propertyName">The name of the property on the object passed it that yuo wish to bind to.</param>
 		/// <param name="dataObject">The object contining the property name to bind to.</param>
-		/// <param name="validationRules">A WpfStartup.Helpers.Validation.ValidationType to apply to this bindings error event</param>
+		/// <param name="validationRules">A SevenDaysConfigUI.Helpers.Validation.ValidationType to apply to this bindings error event</param>
 		/// <param name="useNotification">true/false Use Main Window notification</param>
-		public static void BindInputPropertyToObject(Control control, String propertyName, Object dataObject, ValidationType type, Boolean useNotification = false)
+		public static void BindTexbox(Control control, String propertyName, Object dataObject, ValidationType type, Boolean useNotification = false)
 		{
 			if (control is IInputElement && propertyName != "" && dataObject != null)
 			{				
@@ -216,13 +217,28 @@ namespace WpfStartup.Helpers
 		public static void BindCheckbox(Control control, String propertyName, Object dataObject, Boolean useNotification = false)
 		{            
 			Binding b = new Binding(propertyName);
-			b.NotifyOnValidationError = true;
+			b.NotifyOnValidationError = useNotification;
 			b.Source = dataObject;
 			if (useNotification)
 			{
 				System.Windows.Controls.Validation.AddErrorHandler(control, HandleValidationError);
 			}
 			control.SetBinding(CheckBox.IsCheckedProperty, b);
+		}
+
+		public static void BindIntegerUpDown(Control control, String propertyName, Object dataObject)
+		{
+			Binding b = new Binding(propertyName);
+			b.Source = dataObject;
+			control.SetBinding(IntegerUpDown.ValueProperty, b);
+		}
+
+		public static void BindComboBox(Control control, String propertyName, Object dataObject)
+		{
+			Binding b = new Binding(propertyName);
+			b.Source = dataObject;
+			b.Mode = BindingMode.TwoWay;
+			control.SetBinding(ComboBox.SelectedValueProperty, b);
 		}
 
 		//TODO:Need Summary			

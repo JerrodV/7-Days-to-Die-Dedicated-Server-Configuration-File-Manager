@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfStartup.Helpers.ViewHelpers
+namespace SevenDaysConfigUI.Helpers.ViewHelpers
 {
     class ListElementHelper
     {

@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
-namespace WpfStartup.Helpers
+namespace SevenDaysConfigUI.Helpers
 {
 	public static class Animation
 	{

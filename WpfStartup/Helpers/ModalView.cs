@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace WpfStartup.Helpers
+namespace SevenDaysConfigUI.Helpers
 {
 	public class WindowView
 	{
@@ -91,7 +91,7 @@ namespace WpfStartup.Helpers
 		/// <param name="e"></param>
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			WpfStartup.MainWindow.RemoveIcon((Window)sender);
+			SevenDaysConfigUI.MainWindow.RemoveIcon((Window)sender);
 			if (WindowLoaded != null)
 			{
 				WindowLoaded(sender, e);

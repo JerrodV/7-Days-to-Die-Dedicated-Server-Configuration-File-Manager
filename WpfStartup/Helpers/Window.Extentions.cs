@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace WpfStartup
+namespace SevenDaysConfigUI
 {
 	public partial class MainWindow
 	{

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows;
-using WpfStartup.Pages;
+using SevenDaysConfigUI.Pages;
 using System.Windows.Controls;
-using WpfStartup.Helpers;
+using SevenDaysConfigUI.Helpers;
 using System.Data.SqlClient;
 using System.Threading;
 using System.ComponentModel;
+using System.Collections.Generic;
 
-namespace WpfStartup
+namespace SevenDaysConfigUI
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -21,6 +22,8 @@ namespace WpfStartup
 
 		private void Window_Loaded_1(object sender, RoutedEventArgs e)
 		{
+			#region Demos
+
 
 			#region Dialog Example
 			//Dialog Example                        
@@ -39,14 +42,14 @@ namespace WpfStartup
 			 //MenuItem(s) nest within each other to produce the tree structure
 			//I wrote a little function (MakeMenuItem) to throw together these menu items. I get easily confused and
 			//placing that kind of code elsewhere helps.
-			 MenuItem demos = MakeMenuItem("Demos", "Demos");
+			 //MenuItem demos = MakeMenuItem("Demos", "Demos");
 			 
-			 MenuItem userNotifications = MakeMenuItem("User Notifications", "Demo_UserNotifications_Items");
-			 MenuItem dialog = MakeMenuItem("Dialog", "Demo_Dialog");
-			 MenuItem notification = MakeMenuItem("Notification(Normal)", "Demo_Notification");
-			 MenuItem notificationPersist = MakeMenuItem("Notification(Persist)", "Demo_Notification_Persist");
-			 MenuItem statusTimed = MakeMenuItem("Status Text(5 sec)", "Demo_Status_Timed");
-			 MenuItem statusPersist = MakeMenuItem("Status Text (Persist)", "Demo_Status_Persist");
+			 //MenuItem userNotifications = MakeMenuItem("User Notifications", "Demo_UserNotifications_Items");
+			 //MenuItem dialog = MakeMenuItem("Dialog", "Demo_Dialog");
+			 //MenuItem notification = MakeMenuItem("Notification(Normal)", "Demo_Notification");
+			 //MenuItem notificationPersist = MakeMenuItem("Notification(Persist)", "Demo_Notification_Persist");
+			 //MenuItem statusTimed = MakeMenuItem("Status Text(5 sec)", "Demo_Status_Timed");
+			 //MenuItem statusPersist = MakeMenuItem("Status Text (Persist)", "Demo_Status_Persist");
 			 //This represents the first tree of the menu
 			 /*
 				 Demos
@@ -57,33 +60,33 @@ namespace WpfStartup
 			  *			-Status Text(Persist)
 			  */
 			 //So, we add the lowest items first
-			 userNotifications.Items.Add(dialog);
-			 userNotifications.Items.Add(notification);
-			 userNotifications.Items.Add(notificationPersist);
-			 userNotifications.Items.Add(statusTimed);
-			 userNotifications.Items.Add(statusPersist);
+			 //userNotifications.Items.Add(dialog);
+			 //userNotifications.Items.Add(notification);
+			 //userNotifications.Items.Add(notificationPersist);
+			 //userNotifications.Items.Add(statusTimed);
+			 //userNotifications.Items.Add(statusPersist);
 			
-			 MenuItem reset = MakeMenuItem("Reset", "Demo_Reset_Items");
-			 MenuItem resetNotification = MakeMenuItem("Reset Notification", "Demo_Reset_Notification");
-			 MenuItem resetStatus = MakeMenuItem("Reset Status", "Demo_Reset_Status");
-			 reset.Items.Add(resetNotification);
-			 reset.Items.Add(resetStatus);
-			 userNotifications.Items.Add(reset);
+			 //MenuItem reset = MakeMenuItem("Reset", "Demo_Reset_Items");
+			 //MenuItem resetNotification = MakeMenuItem("Reset Notification", "Demo_Reset_Notification");
+			 //MenuItem resetStatus = MakeMenuItem("Reset Status", "Demo_Reset_Status");
+			 //reset.Items.Add(resetNotification);
+			 //reset.Items.Add(resetStatus);
+			 //userNotifications.Items.Add(reset);
 
 
 			 //Now we can do one for the data binding demo
 			 //There is only one so we will not have to nest as much.
-			 MenuItem dataBinding= MakeMenuItem("Data Binding", "Demo_DataBinding");
-			 MenuItem dragAndDrop = MakeMenuItem("Drag Drop", "Demo_DragDrop");
-			 MenuItem clearContent = MakeMenuItem("CLEAR CONTENT", "Demo_ClearConent");
+			 //MenuItem dataBinding= MakeMenuItem("Data Binding", "Demo_DataBinding");
+			 //MenuItem dragAndDrop = MakeMenuItem("Drag Drop", "Demo_DragDrop");
+			 //MenuItem clearContent = MakeMenuItem("CLEAR CONTENT", "Demo_ClearConent");
 			 //Then add the category to the parent			 
-			 demos.Items.Add(userNotifications);
-			 demos.Items.Add(dataBinding);
-			 demos.Items.Add(dragAndDrop);
-			 demos.Items.Add(clearContent);
+			 //demos.Items.Add(userNotifications);
+			 //demos.Items.Add(dataBinding);
+			 //demos.Items.Add(dragAndDrop);
+			 //demos.Items.Add(clearContent);
 			 
 			 //Then add our collection of menu items to the Main Menu
-			 MainMenu.Items.Add(demos);
+			 //MainMenu.Items.Add(demos);
 		#endregion
 			 
 			#region Database rescue modal			
@@ -221,6 +224,10 @@ namespace WpfStartup
 			//Helpers.MainWindow.ShowContent(new DragAndDrop());
 			#endregion
 
+			#endregion
+			this.Height = 900;
+			this.Width = 1440;
+            Helpers.MainWindow.ShowContent(new Pages.Configuration());
 		}
 
 		private void bgw_DoWork(object sender, DoWorkEventArgs e)
@@ -240,60 +247,5 @@ namespace WpfStartup
 		}
 
 
-
-		private MenuItem MakeMenuItem(String display, String name)
-		{
-			MenuItem mi = new MenuItem();
-			mi.Header = display;
-			mi.Name = name;			
-			mi.Click += HandleMenuClick;			
-			return mi;
-		}
-
-		private void HandleMenuClick(object sender, RoutedEventArgs e)
-		{
-			MenuItem mi = (MenuItem)sender;
-			switch(mi.Name)
-			{
-				case "Demo_Dialog":
-					Helpers.MainWindow.ShowModal(new Welcome_Modal());
-				break;
-
-				case "Demo_Notification":
-					Helpers.MainWindow.ShowNotification("Welcome To The Show");
-				break;
-
-				case "Demo_Notification_Persist":
-					Helpers.MainWindow.ShowNotification("Welcome To The Show Welcome To The Show", true, null);
-				break;
-
-				case "Demo_Status_Timed":
-					Helpers.MainWindow.SetStatus("Hi", 5000);
-				break;
-
-				case "Demo_Status_Persist":
-					Helpers.MainWindow.SetStatus("Hello");
-				break;
-
-				case "Demo_DataBinding":
-					Helpers.MainWindow.ShowContent(new DataBinding());
-				break;
-
-				case "Demo_Reset_Notification":
-					Helpers.MainWindow.HideNotification();
-				break;
-
-				case "Demo_Reset_Status":
-					Helpers.MainWindow.SetStatus("",0);
-				break;
-				case "Demo_DragDrop":
-					Helpers.MainWindow.ShowContent(new DragAndDrop());
-				break;
-				case "Demo_ClearConent":
-				Helpers.MainWindow.ShowContent(new Page());
-				break;
-			}
-			e.Handled = true;
-		}
 	}
 }
