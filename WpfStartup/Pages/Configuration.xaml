@@ -112,7 +112,7 @@
 
         						<TextBox x:Name="txtAdminFileName" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180"/>
         						<Button x:Name="btnBrowseConfigAdminFile" Content="Browse" Grid.Column="2" HorizontalAlignment="Left" Margin="195,0,0,0" VerticalAlignment="Center" Width="75" Height="18" Click="btnBrowseConfigAdminFile_Click"/>
-        						<Button x:Name="btnConfigCopyAdminFromPath" Content="Copy From Admin Path" Grid.Column="2" HorizontalAlignment="Left" Margin="275,22.449,0,21.449" VerticalAlignment="Center" Width="144.968" Height="18" Click="btnConfigCopyAdminFromPath_Click" Grid.ColumnSpan="3"/>
+        						<Button x:Name="btnConfigCopyAdminFromPath" Content="Copy From Admin Path" Grid.Column="2" HorizontalAlignment="Left" Margin="275,0,0,0" VerticalAlignment="Center" Width="144.968" Height="18" Click="btnConfigCopyAdminFromPath_Click" Grid.ColumnSpan="3"/>
         						<xctk:IntegerUpDown x:Name="iudServerPort" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" Width="176" Height="23.598" VerticalAlignment="Center"/>
         						<CheckBox x:Name="cbServerIsPublic" Content="CheckBox" Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="18"/>
         						<TextBox x:Name="txtServerName" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="3"/>
