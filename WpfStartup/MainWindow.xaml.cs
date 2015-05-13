@@ -226,8 +226,8 @@ namespace SevenDaysConfigUI
 			#endregion
 
 			#endregion
-			this.Height = 900;
-			this.Width = 1440;
+            //this.Height = 900;
+            //this.Width = 1440;
             Helpers.MainWindow.ShowContent(new Pages.Configuration());
 		}
 	}
