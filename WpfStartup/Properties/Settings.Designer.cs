@@ -46,17 +46,5 @@ namespace SevenDaysConfigUI.Properties {
                 this["AdminPath"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=JERROD-PC\\VOLZKA_DATA;Initial Catalog=Test;Integrated Security=True")]
-        public string Base_ConnectionString {
-            get {
-                return ((string)(this["Base_ConnectionString"]));
-            }
-            set {
-                this["Base_ConnectionString"] = value;
-            }
-        }
     }
 }

@@ -8,8 +8,5 @@
     <Setting Name="AdminPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Base_ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=JERROD-PC\VOLZKA_DATA;Initial Catalog=Test;Integrated Security=True</Value>
-    </Setting>
   </Settings>
 </SettingsFile>
