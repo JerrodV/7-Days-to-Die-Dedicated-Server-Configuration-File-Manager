@@ -151,6 +151,7 @@ namespace SevenDaysConfigUI.Models
             set
             {
                 _GameWorld = (GameWorldOption)value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -179,6 +180,7 @@ namespace SevenDaysConfigUI.Models
             set 
             {
                 _GameMode = (GameModeOption)value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -204,6 +206,7 @@ namespace SevenDaysConfigUI.Models
             set
             {
                 _ZombiesRun = (ZombiesRunOption)value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -245,6 +248,7 @@ namespace SevenDaysConfigUI.Models
             set
             {
                 _DropOnDeath = (DropOnDeathOption)value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -271,6 +275,7 @@ namespace SevenDaysConfigUI.Models
             set
             {
                 _DropOnQuit = (DropOnQuitOption)value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -296,6 +301,7 @@ namespace SevenDaysConfigUI.Models
             set
             {
                 _CraftTimer = (TimerOption)value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -321,6 +327,7 @@ namespace SevenDaysConfigUI.Models
             set
             {
                 _LootTimer = (TimerOption)value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -348,6 +355,7 @@ namespace SevenDaysConfigUI.Models
             set
             {
                 _EnemySpawnMode = (SpawnModeOption)value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -373,6 +381,7 @@ namespace SevenDaysConfigUI.Models
             set
             {
                 _EnemyDifficulty = (EnemyDifficultyOption)value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -406,6 +415,7 @@ namespace SevenDaysConfigUI.Models
             set
             {
                 _LandClaimDecayMode = (LandClaimDecayModeOption)value;
+                NotifyPropertyChanged();
             }
         }
 

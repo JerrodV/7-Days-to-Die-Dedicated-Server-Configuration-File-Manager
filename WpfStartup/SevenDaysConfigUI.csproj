@@ -43,7 +43,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>c8f826b116770525b68e7b4e37ad83ca044ae760.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -201,7 +202,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Release\SevenDaysConfigUI.exe" />
-    <Resource Include="c8f826b116770525b68e7b4e37ad83ca044ae760.ico" />
     <Resource Include="Resources\c8f826b116770525b68e7b4e37ad83ca044ae760.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
