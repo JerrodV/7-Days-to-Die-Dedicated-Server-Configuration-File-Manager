@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -223,9 +224,16 @@ namespace SevenDaysConfigUI.Pages
         /// <param name="e">Event arguments</param>
         private void bw_DoLoadWork(object sender, DoWorkEventArgs e)
         {
+            DateTime sT = DateTime.Now;
             //This out value is pur private list of errors so needs no assignment after the function call.
             configuration = Models.ServerConfig.Get(ConfigPath, out errors);
             this.errors.Clear();
+            TimeSpan ts = DateTime.Now - sT;
+            int timeout = (1000 - ((int)ts.TotalMilliseconds));
+            if (timeout > 0)
+            {
+                Thread.Sleep(timeout);
+            }
         }
         
         /// <summary>
@@ -356,7 +364,14 @@ namespace SevenDaysConfigUI.Pages
 
         void saveConfigBW_DoWork(object sender, DoWorkEventArgs e)
         {
+            DateTime sT = DateTime.Now;
             configuration.Save(this.ConfigPath, out errors);
+            TimeSpan ts = DateTime.Now - sT;
+            int timeout = (1000 - ((int)ts.TotalMilliseconds));
+            if (timeout > 0)
+            {
+                Thread.Sleep(timeout);
+            }
         }
 
         void saveConfigBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
