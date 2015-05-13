@@ -3,16 +3,7 @@
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="Themes\ShinyBlue.xaml" />
-				
-				<!--<ResourceDictionary Source="Themes\ShinyBlue.xaml" />                
-				<ResourceDictionary Source="Themes\BureauBlue.xaml" />
-				<ResourceDictionary Source="Themes\ExpressionDark.xaml" />
-				<ResourceDictionary Source="Themes\ExpressionLight.xaml" />
-				<ResourceDictionary Source="Themes\ShinyBlue.xaml" />
-				<ResourceDictionary Source="Themes\ShinyRed.xaml" />
-				<ResourceDictionary Source="Themes\WhistlerBlue.xaml" />
-				-->          
+                <ResourceDictionary Source="Themes\ShinyBlue.xaml" />
 				</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>

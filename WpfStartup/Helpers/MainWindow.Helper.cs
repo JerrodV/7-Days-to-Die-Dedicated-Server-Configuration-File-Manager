@@ -101,8 +101,8 @@ namespace SevenDaysConfigUI.Helpers
 		public static void ShowContent(FrameworkElement element)
 		{
 			App.AppMainWindow.MainContent.Content = element;
-			App.AppMainWindow.MainContent.HorizontalContentAlignment = HorizontalAlignment.Center;
-			App.AppMainWindow.MainContent.VerticalContentAlignment = VerticalAlignment.Center;
+			App.AppMainWindow.MainContent.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+			App.AppMainWindow.MainContent.VerticalContentAlignment = VerticalAlignment.Stretch;
 		}
 
 		public static void ShowContent(FrameworkElement element, ContentControl target)

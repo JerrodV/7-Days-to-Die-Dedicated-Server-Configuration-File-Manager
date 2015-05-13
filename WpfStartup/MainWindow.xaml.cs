@@ -18,6 +18,7 @@ namespace SevenDaysConfigUI
 		public MainWindow()
 		{
 			InitializeComponent();
+            ((Label)this.Status.Items[0]).Content = "";
 		}
 
 		private void Window_Loaded_1(object sender, RoutedEventArgs e)
@@ -229,23 +230,5 @@ namespace SevenDaysConfigUI
 			this.Width = 1440;
             Helpers.MainWindow.ShowContent(new Pages.Configuration());
 		}
-
-		private void bgw_DoWork(object sender, DoWorkEventArgs e)
-		{
-			//We can just use this handler recursivly. Our messae collection is a static property exposed through our helper,
-			//So we can use that to key the cound and let the event finish.
-			//This can also be used to do things like running or monitor long running pocesses and reporting back thier progress.
-			if (Helpers.MainWindow.NotifictionMessageCollection.Count < 4)
-			{
-				App.AppMainWindow.Dispatcher.Invoke((Action)delegate()
-				{
-					Helpers.MainWindow.ShowNotification("Welcome To The Show Welcome To The Show\r\n" + DateTime.Now.ToString(), false, null);					
-				});
-				Thread.Sleep(1000);
-				bgw_DoWork(sender, e);
-			}
-		}
-
-
 	}
 }

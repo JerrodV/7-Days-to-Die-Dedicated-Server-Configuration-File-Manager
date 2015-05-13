@@ -49,7 +49,7 @@ namespace SevenDaysConfigUI.Models
         Everything = 0,
         [Description("ToolBelt Only")]
         ToolBeltOnly = 1,
-        [Description("BackPack Only")]
+        [Description("Backpack Only")]
         BackPackOnly = 2,
     }
     public enum DropOnQuitOption

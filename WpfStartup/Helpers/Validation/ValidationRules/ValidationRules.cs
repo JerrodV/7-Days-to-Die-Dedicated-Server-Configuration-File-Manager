@@ -27,7 +27,7 @@ namespace SevenDaysConfigUI.Helpers.Validation.ValidationRules
 		public static List<ValidationRule> RulesList
 		{
 			get
-			{
+			{                
 				List<ValidationRule> vrList = new List<ValidationRule>();
 				vrList.Add(new EmptyString());
 				vrList.Add(new DateTime());

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SevenDaysConfigUI.Helpers.Validation.ValidationRules;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using Xceed.Wpf.Toolkit;
-using SevenDaysConfigUI.Helpers.Validation.ValidationRules;
 
 namespace SevenDaysConfigUI.Helpers
 {		
@@ -224,6 +225,7 @@ namespace SevenDaysConfigUI.Helpers
 				System.Windows.Controls.Validation.AddErrorHandler(control, HandleValidationError);
 			}
 			control.SetBinding(CheckBox.IsCheckedProperty, b);
+            
 		}
 
 		public static void BindIntegerUpDown(Control control, String propertyName, Object dataObject)
