@@ -42,6 +42,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>c8f826b116770525b68e7b4e37ad83ca044ae760.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -189,17 +192,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="c8f826b116770525b68e7b4e37ad83ca044ae760.jpg" />
+    <Resource Include="Resources\c8f826b116770525b68e7b4e37ad83ca044ae760.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="sevendaysuitext.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Release\SevenDaysConfigUI.exe" />
+    <Resource Include="c8f826b116770525b68e7b4e37ad83ca044ae760.ico" />
+    <Resource Include="Resources\c8f826b116770525b68e7b4e37ad83ca044ae760.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,7 +10,7 @@
     WindowStartupLocation="CenterScreen" 
     HorizontalContentAlignment="Stretch" 
     VerticalContentAlignment="Stretch"
-    Title="7 Days To Die Configuration Manager" Foreground="Black" BorderThickness="0" Visibility="Visible" Icon="c8f826b116770525b68e7b4e37ad83ca044ae760.jpg"
+    Title="7 Days To Die Configuration Manager" Foreground="Black" BorderThickness="0" Visibility="Visible" Icon="Resources/c8f826b116770525b68e7b4e37ad83ca044ae760.ico"
     >
 
 	<Window.Resources>

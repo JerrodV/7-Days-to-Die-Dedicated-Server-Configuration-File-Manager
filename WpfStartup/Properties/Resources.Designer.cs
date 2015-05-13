@@ -59,5 +59,25 @@ namespace SevenDaysConfigUI.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon c8f826b116770525b68e7b4e37ad83ca044ae760 {
+            get {
+                object obj = ResourceManager.GetObject("c8f826b116770525b68e7b4e37ad83ca044ae760", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap c8f826b116770525b68e7b4e37ad83ca044ae7601 {
+            get {
+                object obj = ResourceManager.GetObject("c8f826b116770525b68e7b4e37ad83ca044ae7601", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
