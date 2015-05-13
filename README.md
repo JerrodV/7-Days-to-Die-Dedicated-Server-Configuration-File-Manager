@@ -1,16 +1,16 @@
 # 7-Days-to-Die-Dedicated-Server-Configuration-File-Manager
 A WPF utility application for managing the XML files associated with the 7 Days to Die dedicated server
 
-*****
-*****DISCLAIMER-
-*****Neither this application or the developer is in any way associated with 7 Days to Die. 
-*****While the application has been designed to deal with your sensitive server files reliably,
-*****it is USE AT YOUR OWN RISK and I cannot be held responsible for any ill effects that come from using it.
-*****This would likely be most notable if the developers were to remove settings that if present cause the server to crash,
-*****or were to alter the allowed values of a setting to where presenting the older value causes the server to crash.
-*****In either case, manually editing the setting should restore the server functionality.
-*****I use the program myself and will update it if I see any oddities as future server versions come out.
-*****
+
+DISCLAIMER-
+Neither this application or the developer is in any way associated with 7 Days to Die. 
+While the application has been designed to deal with your sensitive server files reliably,
+it is USE AT YOUR OWN RISK and I cannot be held responsible for any ill effects that come from using it.
+This would likely be most notable if the developers were to remove settings that if present cause the server to crash,
+or were to alter the allowed values of a setting to where presenting the older value causes the server to crash.
+In either case, manually editing the setting should restore the server functionality.
+I use the program myself and will update it if I see any oddities as future server versions come out.
+
 
 Instructions:
 
