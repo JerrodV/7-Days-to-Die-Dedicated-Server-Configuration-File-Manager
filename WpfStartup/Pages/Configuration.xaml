@@ -60,7 +60,7 @@
             <Button x:Name="btnBrowseAdminPath" Content="Browse Path" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Width="75" Click="btnBrowseConfigurationPath_Click" Height="18" HorizontalContentAlignment="Center" Grid.Row="1" />
             <Button Content="Load Selected Configurations" Grid.Column="2" Margin="68,14,67,6" Grid.Row="3" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Width="600"/>
         </Grid>
-        <TabControl Grid.ColumnSpan="5" Grid.Column="1" HorizontalAlignment="Left" Height="633" Margin="10,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="1276.944">
+        <TabControl Grid.ColumnSpan="5" Grid.Column="1" Margin="0" Grid.Row="4">
         	<TabItem Header="Configuration">
         		<Grid Background="#FFE5E5E5">
         			<Grid.ColumnDefinitions>
