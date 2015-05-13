@@ -9,7 +9,9 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					mc:Ignorable="d" 
-					xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
+					xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+					xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+					>
 
 	<!-- Color Resources -->
 
@@ -1563,10 +1565,12 @@
 		<Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
 		<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
 		<Setter Property="AllowDrop" Value="true"/>
-<Setter Property="Template" Value="{DynamicResource TextBoxTemplate}" />
+		<Setter Property="Template" Value="{DynamicResource TextBoxTemplate}" />
 		<Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
 		<Setter Property="Background" Value="{DynamicResource ShadeBrush}"/>
 	</Style>
+
+	
 	
 	<ControlTemplate x:Key="TextBoxTemplate" TargetType="{x:Type TextBox}">
 					<ControlTemplate.Resources>
@@ -3199,5 +3203,28 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+
+	<Style TargetType="{x:Type xctk:IntegerUpDown}">
+		<Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+		<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+		<Setter Property="AllowDrop" Value="true"/>
+		<Setter Property="Template" Value="{DynamicResource IntegerUpDownControlTemplate}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+		<Setter Property="Background" Value="{DynamicResource ShadeBrush}"/>
+	</Style>
+
+	<ControlTemplate x:Key="IntegerUpDownControlTemplate" TargetType="{x:Type xctk:IntegerUpDown}">
+		<xctk:ButtonSpinner x:Name="PART_Spinner" AllowSpin="{Binding AllowSpin, RelativeSource={RelativeSource TemplatedParent}}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" IsTabStop="False" ShowButtonSpinner="{Binding ShowButtonSpinner, RelativeSource={RelativeSource TemplatedParent}}">
+			<xctk:WatermarkTextBox x:Name="PART_TextBox" AcceptsReturn="False" BorderThickness="0" Background="{TemplateBinding Background}" ContextMenu="{TemplateBinding ContextMenu}" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" MinWidth="20" Padding="{TemplateBinding Padding}" SelectAllOnGotFocus="{Binding SelectAllOnGotFocus, RelativeSource={RelativeSource TemplatedParent}}" TextAlignment="{Binding TextAlignment, RelativeSource={RelativeSource TemplatedParent}}" TextWrapping="NoWrap" TabIndex="{TemplateBinding TabIndex}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" WatermarkTemplate="{Binding WatermarkTemplate, RelativeSource={RelativeSource TemplatedParent}}" Watermark="{Binding Watermark, RelativeSource={RelativeSource TemplatedParent}}"/>
+		</xctk:ButtonSpinner>
+		<ControlTemplate.Triggers>
+			<Trigger Property="IsEnabled" Value="False">
+				<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+			</Trigger>
+			<Trigger Property="IsFocused" Value="True">
+				<Setter Property="FocusManager.FocusedElement" TargetName="PART_TextBox" Value="{Binding ElementName=PART_TextBox}"/>
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
 
 </ResourceDictionary>

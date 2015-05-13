@@ -252,7 +252,7 @@ namespace SevenDaysConfigUI.Pages
             {                
                 bindConfigurationElements();
                 btnSaveConfig.IsEnabled = true;
-                if (App.AppMainWindow.StatusText == "")
+                if (App.AppMainWindow.StatusText == "")//Watch!! This doesn't seem to always work..
                 {
                     Helpers.MainWindow.SetStatus("Configuration Loaded", 5000);
                 }
