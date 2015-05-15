@@ -13,8 +13,23 @@ using System.Xml;
 
 namespace SevenDaysConfigUI.Models
 {
+    //This document is a little complicated...
+
+    //When we get data from Steam, we will call back with this event type.
     public delegate void SteamDataUpdatedEventHandler(object sender, EventArgs e);
 
+    /// <summary>
+    /// <para>The Admin object is comprised of several collections.</para>
+    /// <para>Administration</para>
+    /// <para>Moderators</para>
+    /// <para>WhiteList</para>
+    /// <para>BlackList</para>
+    /// <para>Permissions</para>
+    /// <para>It also contains an instance of the XML document we are working on, when loaded.</para>
+    /// <para>It contains several functions:</para>
+    /// <para>Get, which performs the xml parsing</para>
+    /// <para>and GetSteamData, which iterated the colletions containing Steam users calls GetSteamData on each item.</para>
+    /// </summary>
     public class Admin : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -190,6 +205,10 @@ namespace SevenDaysConfigUI.Models
 
     }
 
+    /// <summary>
+    /// The SteamUser will represent any Admin field where a person is indicated.
+    /// See the inner comments for more information
+    /// </summary>
     public class SteamUser : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -270,17 +289,22 @@ namespace SevenDaysConfigUI.Models
             }
         }
 
-        public SteamUser(String SteamID, Int32 PermissionLevel)
-        {
-            this.SteamID = SteamID; this.PermissionLevel = PermissionLevel;
-        }
+        /// <summary>
+        /// This is used when creating SteamUsers from XMl
+        /// </summary>
+        /// <param name="data">dynamic containing Name/Value with SteamID/PermissionLevel</param>
         public SteamUser(dynamic data)
         {
             this.SteamID = data.Name.ToString();
             this.PermissionLevel = Convert.ToInt32(data.Value);
         }
 
+        //We will call for our Steam info on this.
         private WebClient wc = new WebClient();
+
+        /// <summary>
+        /// Creates an HTTP request to Steam for details on the user
+        /// </summary>
         public void GetSteamData()
         { 
             Uri uri = new Uri(String.Format(Properties.Settings.Default.SteamApiUrl,Properties.Settings.Default.SteamAPIKey, this.SteamID));
@@ -288,16 +312,20 @@ namespace SevenDaysConfigUI.Models
             wc.DownloadStringAsync(uri);
         }
 
+        //This is called from the next function and inturn, firest the deligate.
         public event SteamDataUpdatedEventHandler SteamUpdated;
 
-        // Invoke the Changed event; called whenever list changes
+        // We will call this from Invoke when a steam item updates
         protected virtual void OnSteamUpdated(EventArgs e)
         {
             if (SteamUpdated != null)
+            {
                 SteamUpdated(this, e);
+            }
         }
 
-        
+        //When we recieve a responce to our HTTP request, We will conver thte data to a dynamic and push it back to the main thread.
+        //Then we will call the OnSteamUpdated event so we can refresh the collection on the UI.
         private void wc_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             if (e.Error == null)
@@ -311,6 +339,8 @@ namespace SevenDaysConfigUI.Models
             }
         }
 
+        //We needed to call out of the secondary thread back into the main thread to set our pointers.(or so I descovered)
+        //So, this will finish up navigating to our data and setting the pointers.
         private void UpdateFromWebRequest(dynamic data)
         {
             dynamic player = data.response.players.player[0];

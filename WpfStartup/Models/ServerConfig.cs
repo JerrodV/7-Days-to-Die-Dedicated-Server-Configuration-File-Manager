@@ -119,7 +119,7 @@ namespace SevenDaysConfigUI.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
+                
         public Int32 ServerPort { get; set; }
         public Boolean ServerIsPublic { get; set; }
         public String ServerName { get; set; }
