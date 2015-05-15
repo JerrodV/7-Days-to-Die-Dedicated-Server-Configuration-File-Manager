@@ -390,6 +390,31 @@ namespace SevenDaysConfigUI.Pages
         }
         #endregion
 
+        private Admin test;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            List<Exception> errs = new List<Exception>();
+            test = Admin.Get(@"C:\SteamLibrary\SteamApps\common\7 Days to Die Dedicated Server\serveradmintest.xml", out errs);
+            Helpers.Bindings.BindDataGrid(dgAdmin, "Administration", test);
+            test.Administration.ForEach(x => x.SteamUpdated += Configuration_SteamUpdated);            
+            test.GetSteamData();
+        }
+
+        void Configuration_SteamUpdated(object sender, EventArgs e)
+        {
+            dgAdmin.Items.Refresh();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Admin t2 = new Admin();
+            List<SteamUser> su = test.Administration;
+            String s = su[0].PersonaName;
+            Helpers.Bindings.BindDataGrid(dgAdmin, "Administration", test);
+        }
+
+
+
        
         
 

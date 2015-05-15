@@ -243,6 +243,15 @@ namespace SevenDaysConfigUI.Helpers
 			control.SetBinding(ComboBox.SelectedValueProperty, b);
 		}
 
+        public static void BindDataGrid(Control control, String propertyName, Object dataObject)
+        { 
+            Binding b = new Binding(propertyName);
+			b.Source = dataObject;
+			b.Mode = BindingMode.TwoWay;
+            b.NotifyOnSourceUpdated = true;
+			control.SetBinding(DataGrid.ItemsSourceProperty, b);
+        }
+
 		//TODO:Need Summary			
 		public static void HandleValidationError(object sender, ValidationErrorEventArgs e)
 		{

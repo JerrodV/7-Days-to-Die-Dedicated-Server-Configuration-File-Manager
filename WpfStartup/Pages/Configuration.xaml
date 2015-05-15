@@ -224,7 +224,22 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Administration">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="322*"/>
+                        <ColumnDefinition Width="322*"/>
+                        <ColumnDefinition Width="322*"/>
+                        <ColumnDefinition Width="322*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="185*"/>
+                        <RowDefinition Height="225*"/>
+                        <RowDefinition Height="213*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Button" HorizontalAlignment="Left" Margin="122,82,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click" RenderTransformOrigin="0.48,0.444" Grid.Column="3"/>
+                    <DataGrid x:Name="dgAdmin" HorizontalAlignment="Left" Margin="150,100,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="250" Grid.RowSpan="2" Width="789"/>
+                    <Button Content="Button" Grid.Column="3" HorizontalAlignment="Left" Margin="122,130,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click_1"/>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

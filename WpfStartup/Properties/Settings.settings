@@ -8,5 +8,11 @@
     <Setting Name="AdminPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="SteamAPIKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2CDE5E31D61ABFAF152CB28F7FFF6F6F</Value>
+    </Setting>
+    <Setting Name="SteamApiUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0001/?key={0}&amp;steamids={1}&amp;format=json</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

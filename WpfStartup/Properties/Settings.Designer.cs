@@ -46,5 +46,27 @@ namespace SevenDaysConfigUI.Properties {
                 this["AdminPath"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2CDE5E31D61ABFAF152CB28F7FFF6F6F")]
+        public string SteamAPIKey {
+            get {
+                return ((string)(this["SteamAPIKey"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0001/?key={0}&steamids" +
+            "={1}&format=json")]
+        public string SteamApiUrl {
+            get {
+                return ((string)(this["SteamApiUrl"]));
+            }
+            set {
+                this["SteamApiUrl"] = value;
+            }
+        }
     }
 }
