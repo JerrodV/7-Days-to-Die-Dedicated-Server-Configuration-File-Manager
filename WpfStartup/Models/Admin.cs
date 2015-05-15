@@ -291,7 +291,7 @@ namespace SevenDaysConfigUI.Models
         public event SteamDataUpdatedEventHandler SteamUpdated;
 
         // Invoke the Changed event; called whenever list changes
-        protected virtual void OnChanged(EventArgs e)
+        protected virtual void OnSteamUpdated(EventArgs e)
         {
             if (SteamUpdated != null)
                 SteamUpdated(this, e);
@@ -306,7 +306,7 @@ namespace SevenDaysConfigUI.Models
                 Application.Current.Dispatcher.Invoke((Action)delegate()
                 {
                     UpdateFromWebRequest(data);
-                    OnChanged(EventArgs.Empty);
+                    OnSteamUpdated(EventArgs.Empty);
                 }, null);
             }
         }
