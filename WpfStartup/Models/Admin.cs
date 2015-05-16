@@ -330,10 +330,18 @@ namespace SevenDaysConfigUI.Models
         {
             if (e.Error == null)
             {
+                //Before we pass along our pointer, lets make sure it is there..
                 dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject<ExpandoObject>(e.Result.ToString());
+                try
+                {
+                    dynamic t = data.response.players.player[0];                   
+                }
+                catch (Exception) {
+                    return;
+                }
                 Application.Current.Dispatcher.Invoke((Action)delegate()
                 {
-                    UpdateFromWebRequest(data);
+                    UpdateFromWebRequest(data.response.players.player[0]);
                     OnSteamUpdated(EventArgs.Empty);
                 }, null);
             }
@@ -341,12 +349,11 @@ namespace SevenDaysConfigUI.Models
 
         //We needed to call out of the secondary thread back into the main thread to set our pointers.(or so I descovered)
         //So, this will finish up navigating to our data and setting the pointers.
-        private void UpdateFromWebRequest(dynamic data)
-        {
-            dynamic player = data.response.players.player[0];
+        private void UpdateFromWebRequest(dynamic player)
+        {           
             this.PersonaName = player.personaname.ToString();
             this.ProfileUrl = player.profileurl.ToString();
-            this.AvatarUrl = player.avatar.ToString();
+            this.AvatarUrl = player.avatarfull.ToString();
         }
     }
 

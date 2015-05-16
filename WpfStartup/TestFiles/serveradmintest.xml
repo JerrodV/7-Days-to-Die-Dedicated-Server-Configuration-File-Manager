@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file holds the settings for who is banned, whitelisted,
+admins, moderators, and server command permissions.
+Steam ID can be found using http://steamid.co/
+
+STEAM ID INSTRUCTIONS:
+================================================== =============
+http://steamid.co/ instructions:
+Input the player's name in the search field. example: Kinyajuu
+If the name doesn't work, you can also use the url of their steam page.
+Also you may add/remove admins, mods, whitelist, blacklist using in game commands.
+You will want the STEAM64ID. example: 76561198021925107
+
+PERMISSION LEVEL INSTRUCTIONS:
+================================================== =============
+permission level : 0-1000, a user may run any command equal to or above their permission level.
+
+COMMAND PERMISSIONS INSTRUCTIONS:
+================================================== =============
+cmd : This is the command name, any command not in this list will not be usable by anyone but the server.
+permission level : 0-1000, a user may run any command equal to or above their permission level.
+-->
+
+<adminTools>
+<admins>
+<admin steamID="76561197971242003" permission_level="0" />
+<admin steamID="76561198025636904" permission_level="0" />
+</admins>
+
+<moderators>
+<!-- <moderator steamID="" permission_level="1" /> -->
+</moderators>
+
+<permissions>
+<!-- <permission cmd="dm" permission_level="0" /> -->
+<!-- <permission cmd="kick" permission_level="1" /> -->
+<!-- <permission cmd="ban" permission_level="1" /> -->
+<permission cmd="dm" permission_level="0" />
+<permission cmd="se" permission_level="0" />
+<permission cmd="mem" permission_level="0" />
+<permission cmd="admin" permission_level="0" />
+<permission cmd="mod" permission_level="0" />
+<permission cmd="cp" permission_level="0" />
+<permission cmd="say" permission_level="0" />
+<permission cmd="shutdown" permission_level="0" />
+<permission cmd="st" permission_level="0" />
+<permission cmd="le" permission_level="0" />
+<permission cmd="cc" permission_level="0" />
+<permission cmd="kick" permission_level="1" />
+<permission cmd="ban" permission_level="1" />
+<permission cmd="lp" permission_level="1" />
+</permissions>
+
+<!-- ONLY PUT ITEMS IN WHITELIST IF YOU WANT WHITELIST ONLY ENABLED!!! -->
+<!-- If there are any items in the whitelist, the whitelist only mode is enabled -->
+<!-- Nobody can join that ISN'T in the whitelist once whitelist only mode is enabled -->
+
+<whitelist>
+<!-- <whitelisted steamID="" permission_level="" /> -->
+</whitelist>
+
+<blacklist>
+<!-- <blacklisted steamID="" unbandate="" /> -->
+</blacklist>
+</adminTools>

@@ -41,10 +41,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Resources\c8f826b116770525b68e7b4e37ad83ca044ae760.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -207,7 +208,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Release\SevenDaysConfigUI.exe" />
-    <Resource Include="Resources\c8f826b116770525b68e7b4e37ad83ca044ae760.ico" />
+    <Resource Include="TestFiles\serverconfigtest.xml" />
+    <Resource Include="TestFiles\serveradmintest.xml" />
+    <Resource Include="Resources\c8f826b116770525b68e7b4e37ad83ca044ae760.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

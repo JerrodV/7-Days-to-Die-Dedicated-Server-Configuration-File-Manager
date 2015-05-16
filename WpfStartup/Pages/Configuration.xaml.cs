@@ -20,12 +20,14 @@ namespace SevenDaysConfigUI.Pages
     public partial class Configuration : Page
     {
         #region Local Vars
+
+        List<Exception> errors = new List<Exception>();
+
         #region Configuration
-        BackgroundWorker LoadConfigBW;
-        BackgroundWorker SaveConfigBW;
         String ConfigPath = "";
         ServerConfig configuration;
-        List<Exception> errors = new List<Exception>();
+        BackgroundWorker LoadConfigBW;
+        BackgroundWorker SaveConfigBW;        
 
         List<KeyValuePair<Int32, String>> GameModes;
         List<KeyValuePair<Int32, String>> DropOnDeath;
@@ -50,6 +52,30 @@ namespace SevenDaysConfigUI.Pages
                 _configLoaded = value;
             }
         }
+        
+        #endregion
+
+        #region Admin
+        String AdminPath = "";
+        Admin admin;
+
+        BackgroundWorker LoadAdminBW;
+        BackgroundWorker SaveAdminBW; 
+
+        Boolean _adminLoaded;
+        Boolean adminLoaded
+        {
+            get
+            {
+                return _adminLoaded;
+            }
+
+            set
+            {
+                btnSaveAdmin.IsEnabled = value;
+                _adminLoaded = value;
+            }
+        }
         #endregion
 
         #endregion
@@ -59,13 +85,19 @@ namespace SevenDaysConfigUI.Pages
             InitializeComponent();
             LoadConfigBW = new BackgroundWorker();
             SaveConfigBW = new BackgroundWorker();
+            LoadAdminBW = new BackgroundWorker();
+            SaveAdminBW = new BackgroundWorker();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ConfigPath = Properties.Settings.Default.ConfigPath;
+            AdminPath = Properties.Settings.Default.AdminPath;
             setConfigPathText();
+            setAdminPathText();
             this.configLoaded = false;
+            this.adminLoaded = false;
+
             #region set up configuration enums
             GameModes = Models.EnumHelper.GetAllValuesAndDescriptions<Models.GameModeOption>().ToList<KeyValuePair<Int32, String>>();
             cboGameMode.ItemsSource = GameModes;
@@ -107,8 +139,6 @@ namespace SevenDaysConfigUI.Pages
             cboGameWorld.SelectedValuePath = "Key";
             cboGameWorld.DisplayMemberPath = "Value";
             #endregion
-
-
             
         }
 
@@ -145,7 +175,7 @@ namespace SevenDaysConfigUI.Pages
             }
             else 
             { 
-                lblConfigPath.Content = "could not resolve path"; 
+                lblConfigPath.Content = "n/a"; 
             }
         }
 
@@ -180,7 +210,48 @@ namespace SevenDaysConfigUI.Pages
         #endregion
 
         #region Administration
+        private void btnBrowseAdminPath_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            file.DefaultExt = "xml";
+            file.CheckPathExists = true;
+            file.FileName = "serverconfig.xml";
+            file.AddExtension = true;
+            file.Filter = "(*.xml)|*.xml";
+            file.ShowDialog();
+            if (File.Exists(file.FileName))
+            {
+                AdminPath = file.FileName;
+                saveAdminPath();
+            }
+        }
 
+        private void saveAdminPath()
+        {
+            Properties.Settings.Default.AdminPath = AdminPath;
+            Properties.Settings.Default.Save();
+            Helpers.MainWindow.SetStatus("Admin Path Saved", 5000);
+            setAdminPathText();
+        }
+
+        private void setAdminPathText()
+        {
+            if (AdminPath != "")
+            {
+                if (File.Exists(AdminPath))
+                {
+                    lblAdminPath.Content = AdminPath;
+                }
+                else
+                {
+                    lblConfigPath.Content = "could not resolve path";
+                }
+            }
+            else
+            {
+                lblConfigPath.Content = "n/a";
+            }
+        }
         #endregion
         #endregion
 
@@ -225,9 +296,8 @@ namespace SevenDaysConfigUI.Pages
         private void bw_DoLoadWork(object sender, DoWorkEventArgs e)
         {
             DateTime sT = DateTime.Now;
-            //This out value is pur private list of errors so needs no assignment after the function call.
-            configuration = Models.ServerConfig.Get(ConfigPath, out errors);
             this.errors.Clear();
+            configuration = Models.ServerConfig.Get(ConfigPath, out errors);
             TimeSpan ts = DateTime.Now - sT;
             int timeout = (1000 - ((int)ts.TotalMilliseconds));
             if (timeout > 0)
@@ -251,7 +321,7 @@ namespace SevenDaysConfigUI.Pages
             else
             {                
                 bindConfigurationElements();
-                btnSaveConfig.IsEnabled = true;
+                configLoaded = true;
                 if (App.AppMainWindow.StatusText == "")//Watch!! This doesn't seem to always work..
                 {
                     Helpers.MainWindow.SetStatus("Configuration Loaded", 5000);
@@ -315,25 +385,96 @@ namespace SevenDaysConfigUI.Pages
             cboGameMode.SetBinding(ComboBox.SelectedValueProperty, gmBinding);
             #endregion
         }
-
-        private void manageProgress(Boolean show, String text = "")
-        {
-            if (show)
-            {
-                Progress.Visibility = System.Windows.Visibility.Visible;
-                ProgressText.Text = text;
-                ProgressText.Visibility = System.Windows.Visibility.Visible;
-            }
-            else
-            {
-                Progress.Visibility = System.Windows.Visibility.Hidden;
-                ProgressText.Text = "";
-                ProgressText.Visibility = System.Windows.Visibility.Hidden;
-            }
-        }
         #endregion
 
         #region Administration
+        private void btnLoadAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            LoadAdminAsync();
+        }
+
+        private void LoadAdminAsync()
+        {
+            if (!LoadAdminBW.IsBusy)
+            {
+                if (File.Exists(AdminPath))
+                {
+                    manageProgress(true, "Loading Admin");
+                    LoadAdminBW = new BackgroundWorker();
+                    LoadAdminBW.RunWorkerCompleted += LoadAdminBW_RunWorkerCompleted;
+                    LoadAdminBW.DoWork += LoadAdminBW_DoWork;
+                    LoadAdminBW.RunWorkerAsync();                    
+                }
+            }
+        }
+
+        private void LoadAdminBW_DoWork(object sender, DoWorkEventArgs e)
+        {
+            DateTime sT = DateTime.Now;
+            this.errors.Clear();
+            admin = Admin.Get(AdminPath, out errors);
+
+            TimeSpan ts = DateTime.Now - sT;
+            int timeout = (1000 - ((int)ts.TotalMilliseconds));
+            if (timeout > 0)
+            {
+                Thread.Sleep(timeout);
+            }
+        }
+
+        private void LoadAdminBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            manageProgress(false);
+            if (this.errors.Count > 0)
+            {
+                Helpers.MainWindow.ShowModal(new ErrorViewer(errors));
+            }
+            else                     
+            {
+                adminLoaded = true;
+                bindAdminLists();
+                updateSteam();                
+            }
+        }
+
+        private void bindAdminLists()
+        {
+            lbAdmin.ItemsSource = admin.Administration;
+            lbAdmin.IsSynchronizedWithCurrentItem = true;
+
+        }
+
+        private void updateSteam()
+        {
+            if (admin != null)
+            {
+                if (admin.Administration != null && admin.Administration.Count > 0)
+                {
+                    admin.Administration.ForEach(x => x.SteamUpdated += SteamUpdated);
+                }
+
+                if (admin.Moderators != null && admin.Moderators.Count > 0)
+                {
+                    admin.Moderators.ForEach(x => x.SteamUpdated += SteamUpdated);                
+                }
+
+                if (admin.WhiteList != null && admin.WhiteList.Count > 0)
+                {
+                    admin.WhiteList.ForEach(x => x.SteamUpdated += SteamUpdated);
+                }
+
+                if (admin.BlackList != null && admin.BlackList.Count > 0)
+                {
+                    admin.BlackList.ForEach(x => x.SteamUpdated += SteamUpdated);                    
+                }
+                admin.GetSteamData();
+            }
+        }
+
+        private void SteamUpdated(object sender, EventArgs e)
+        {
+            lbAdmin.Items.Refresh();
+        }
         #endregion
         #endregion
 
@@ -390,37 +531,43 @@ namespace SevenDaysConfigUI.Pages
         }
         #endregion
 
-        private Admin test;
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            List<Exception> errs = new List<Exception>();
-            test = Admin.Get(@"C:\SteamLibrary\SteamApps\common\7 Days to Die Dedicated Server\serveradmintest.xml", out errs);
-            Helpers.Bindings.BindDataGrid(dgAdmin, "Administration", test);
-            test.Administration.ForEach(x => x.SteamUpdated += Configuration_SteamUpdated);            
-            test.GetSteamData();
-        }
-
-        void Configuration_SteamUpdated(object sender, EventArgs e)
-        {
-            dgAdmin.Items.Refresh();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Admin t2 = new Admin();
-            List<SteamUser> su = test.Administration;
-            String s = su[0].PersonaName;
-            Helpers.Bindings.BindDataGrid(dgAdmin, "Administration", test);
-        }
-
-
-
-       
-        
+                
 
         #region Administration
         #endregion
         #endregion
 
+        private void manageProgress(Boolean show, String text = "")
+        {
+            if (show)
+            {
+                Progress.Visibility = System.Windows.Visibility.Visible;
+                ProgressText.Text = text;
+                ProgressText.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                Progress.Visibility = System.Windows.Visibility.Hidden;
+                ProgressText.Text = "";
+                ProgressText.Visibility = System.Windows.Visibility.Hidden;
+            }
+        }
+
+        #region Testing
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //Admin t2 = new Admin();
+            //List<SteamUser> su = test.Administration;
+            //String s = su[0].PersonaName;
+            //Helpers.Bindings.BindDataGrid(dgAdmin, "Administration", test);
+        }
+        #endregion
+
+        private void btnLoadAll_Click(object sender, RoutedEventArgs e)
+        {            
+            loadConfigurationAsync();
+            LoadAdminAsync();
+        }
+        
     }
 }

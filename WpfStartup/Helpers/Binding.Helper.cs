@@ -29,7 +29,8 @@ namespace SevenDaysConfigUI.Helpers
 				Binding b = new Binding(propertyName);
 				b.NotifyOnValidationError = true;
 				b.Source = dataObject;
-				//Watch... In theory, any control we will bind to will have this, otherwise it posesses a datasource property
+                b.Mode = BindingMode.TwoWay;
+                b.NotifyOnSourceUpdated = true;
 				control.SetBinding(TextBox.TextProperty, b);
 			}
 		}
@@ -55,6 +56,8 @@ namespace SevenDaysConfigUI.Helpers
 				Binding b = new Binding(propertyName);
 				b.NotifyOnValidationError = true;
 				b.Source = dataObject;
+                b.Mode = BindingMode.TwoWay;
+                b.NotifyOnSourceUpdated = true;
 				if (validationRules != null)
 				{
 					foreach (ValidationRule vr in validationRules)
@@ -113,6 +116,8 @@ namespace SevenDaysConfigUI.Helpers
 				Binding b = new Binding(propertyName);
 				b.NotifyOnValidationError = true;
 				b.Source = dataObject;
+                b.Mode = BindingMode.TwoWay;
+                b.NotifyOnSourceUpdated = true;
 				foreach (ValidationType t in types)
 				{
 					b.ValidationRules.Add(CustomRules.GetRule(t));
@@ -147,6 +152,8 @@ namespace SevenDaysConfigUI.Helpers
 				Binding b = new Binding(propertyName);
 				b.NotifyOnValidationError = true;
 				b.Source = dataObject;
+                b.Mode = BindingMode.TwoWay;
+                b.NotifyOnSourceUpdated = true;
 				if (validationRule != null)
 				{
 					b.ValidationRules.Add(validationRule);
@@ -194,7 +201,8 @@ namespace SevenDaysConfigUI.Helpers
 				b.NotifyOnValidationError = true;
 				b.NotifyOnSourceUpdated = true;				
 				b.Source = dataObject;
-
+                b.Mode = BindingMode.TwoWay;
+                b.NotifyOnSourceUpdated = true;
 				b.ValidationRules.Add(CustomRules.GetRule(type));
 
 
@@ -220,6 +228,8 @@ namespace SevenDaysConfigUI.Helpers
 			Binding b = new Binding(propertyName);
 			b.NotifyOnValidationError = useNotification;
 			b.Source = dataObject;
+            b.Mode = BindingMode.TwoWay;
+            b.NotifyOnSourceUpdated = true;
 			if (useNotification)
 			{
 				System.Windows.Controls.Validation.AddErrorHandler(control, HandleValidationError);
@@ -239,7 +249,8 @@ namespace SevenDaysConfigUI.Helpers
 		{
 			Binding b = new Binding(propertyName);
 			b.Source = dataObject;
-			b.Mode = BindingMode.TwoWay;
+            b.Mode = BindingMode.TwoWay;
+            b.NotifyOnSourceUpdated = true;
 			control.SetBinding(ComboBox.SelectedValueProperty, b);
 		}
 

@@ -8,9 +8,9 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SevenDaysConfigUI")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A dedicated server file helper for 7 days to die")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Open Source")]
 [assembly: AssemblyProduct("SevenDaysConfigUI")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
