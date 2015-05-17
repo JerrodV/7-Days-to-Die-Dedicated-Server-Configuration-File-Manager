@@ -68,5 +68,16 @@ namespace SevenDaysConfigUI.Properties {
                 this["SteamApiUrl"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Users {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Users"]));
+            }
+            set {
+                this["Users"] = value;
+            }
+        }
     }
 }

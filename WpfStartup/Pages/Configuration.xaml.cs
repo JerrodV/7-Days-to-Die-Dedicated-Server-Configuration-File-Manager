@@ -38,6 +38,30 @@ namespace SevenDaysConfigUI.Pages
         List<KeyValuePair<Int32, String>> LandClaimDecayMode;
         List<KeyValuePair<Int32, String>> GameWorld;
 
+        Boolean _configPathExists;
+        Boolean configPathExits
+        {
+            get
+            {
+                return _configPathExists;
+            }
+
+            set
+            {
+                _configPathExists = value;
+                btnLoadConfig.IsEnabled = value;                
+                btnClearConfigPath.IsEnabled = value;
+                if (!configPathExits && !adminPathExits)
+                {
+                    btnLoadAll.IsEnabled = false;
+                }
+                else
+                {
+                    btnLoadAll.IsEnabled = true;
+                }
+            }
+        }
+
         Boolean _configLoaded;
         Boolean configLoaded
         {
@@ -48,11 +72,19 @@ namespace SevenDaysConfigUI.Pages
 
             set 
             {
-                btnSaveConfig.IsEnabled = value;
                 _configLoaded = value;
+                btnSaveConfig.IsEnabled = value;
+                btnBackupConfig.IsEnabled = value;                
+                if (!configLoaded && !adminLoaded)
+                {
+                    btnSaveAll.IsEnabled = false;
+                }
+                else
+                {
+                    btnSaveAll.IsEnabled = true;
+                }
             }
         }
-        
         #endregion
 
         #region Admin
@@ -60,7 +92,32 @@ namespace SevenDaysConfigUI.Pages
         Admin admin;
 
         BackgroundWorker LoadAdminBW;
-        BackgroundWorker SaveAdminBW; 
+        BackgroundWorker SaveAdminBW;
+
+        Boolean _adminPathExists;
+        Boolean adminPathExits
+        {
+            get
+            {
+                return _adminPathExists;
+            }
+
+            set
+            {
+                _adminPathExists = value;
+                btnLoadAdmin.IsEnabled = value;                
+                btnLoadAdmin.IsEnabled = value;
+                btnClearAdminPath.IsEnabled = value;
+                if (!configPathExits && !adminPathExits)
+                {
+                    btnLoadAll.IsEnabled = false;
+                }
+                else
+                {
+                    btnLoadAll.IsEnabled = true;
+                }
+            }
+        }
 
         Boolean _adminLoaded;
         Boolean adminLoaded
@@ -72,10 +129,21 @@ namespace SevenDaysConfigUI.Pages
 
             set
             {
-                btnSaveAdmin.IsEnabled = value;
                 _adminLoaded = value;
+                btnBackupAdmin.IsEnabled = value;
+                btnSaveAdmin.IsEnabled = value;
+                if (!configLoaded && !adminLoaded)
+                {
+                    btnSaveAll.IsEnabled = false;
+                }
+                else
+                {
+                    btnSaveAll.IsEnabled = true;
+                }
             }
         }
+
+
         #endregion
 
         #endregion
@@ -83,8 +151,10 @@ namespace SevenDaysConfigUI.Pages
         public Configuration()
         {
             InitializeComponent();
+            configuration = new ServerConfig();
             LoadConfigBW = new BackgroundWorker();
             SaveConfigBW = new BackgroundWorker();
+            admin = new Admin();
             LoadAdminBW = new BackgroundWorker();
             SaveAdminBW = new BackgroundWorker();
         }
@@ -93,6 +163,8 @@ namespace SevenDaysConfigUI.Pages
         {
             ConfigPath = Properties.Settings.Default.ConfigPath;
             AdminPath = Properties.Settings.Default.AdminPath;
+            this.configPathExits = false;
+            this.adminPathExits = false;
             setConfigPathText();
             setAdminPathText();
             this.configLoaded = false;
@@ -139,7 +211,14 @@ namespace SevenDaysConfigUI.Pages
             cboGameWorld.SelectedValuePath = "Key";
             cboGameWorld.DisplayMemberPath = "Value";
             #endregion
-            
+
+            #region Setup Admin Users
+
+            List<SteamUser> defaultUsers = SteamUser.FromSteamIDs(GetDefaultUsers());
+
+
+            #endregion
+
         }
 
         #region FilePaths
@@ -160,22 +239,33 @@ namespace SevenDaysConfigUI.Pages
             }
         }
 
+        private void btnClearConfigPath_Click(object sender, RoutedEventArgs e)
+        {
+            ConfigPath = "";
+            configPathExits = false;
+            saveConfigurationPath();
+            setConfigPathText();
+        }
+
         private void setConfigPathText()
         {
             if (ConfigPath != "")
             {
                 if (File.Exists(ConfigPath))
                 {
-                    lblConfigPath.Content = ConfigPath;                   
+                    lblConfigPath.Content = ConfigPath;
+                    configPathExits = true;
                 }
                 else
                 {
                     lblConfigPath.Content = "could not resolve path";
+                    configPathExits = false;
                 }
             }
             else 
             { 
-                lblConfigPath.Content = "n/a"; 
+                lblConfigPath.Content = "n/a";
+                configPathExits = false;
             }
         }
 
@@ -199,13 +289,15 @@ namespace SevenDaysConfigUI.Pages
             if (File.Exists(file.FileName))
             {
                 txtAdminFileName.Text = Path.GetFileName(file.FileName);
+                configuration.AdminFileName = Path.GetFileName(file.FileName);
             }
         }
 
         private void btnConfigCopyAdminFromPath_Click(object sender, RoutedEventArgs e)
         {
             //TODO:Replace with admin server var - I think it just has to be the file name and that it is assumed it exists along side the config file.
-            txtAdminFileName.Text = Path.GetFileName("serveradmin.xml");
+            txtAdminFileName.Text = Path.GetFileName(AdminPath);
+            configuration.AdminFileName = Path.GetFileName(AdminPath);
         }
         #endregion
 
@@ -226,6 +318,14 @@ namespace SevenDaysConfigUI.Pages
             }
         }
 
+        private void btnClearAdminPath_Click(object sender, RoutedEventArgs e)
+        {
+            AdminPath = "";
+            adminPathExits = false;
+            saveAdminPath();
+            setAdminPathText();
+        }
+
         private void saveAdminPath()
         {
             Properties.Settings.Default.AdminPath = AdminPath;
@@ -241,15 +341,18 @@ namespace SevenDaysConfigUI.Pages
                 if (File.Exists(AdminPath))
                 {
                     lblAdminPath.Content = AdminPath;
+                    this.adminPathExits = true;
                 }
                 else
                 {
-                    lblConfigPath.Content = "could not resolve path";
+                    lblAdminPath.Content = "could not resolve path";
+                    this.adminPathExits = false;
                 }
             }
             else
             {
-                lblConfigPath.Content = "n/a";
+                lblAdminPath.Content = "n/a";
+                this.adminPathExits = false;
             }
         }
         #endregion
@@ -444,37 +547,7 @@ namespace SevenDaysConfigUI.Pages
 
         }
 
-        private void updateSteam()
-        {
-            if (admin != null)
-            {
-                if (admin.Administration != null && admin.Administration.Count > 0)
-                {
-                    admin.Administration.ForEach(x => x.SteamUpdated += SteamUpdated);
-                }
-
-                if (admin.Moderators != null && admin.Moderators.Count > 0)
-                {
-                    admin.Moderators.ForEach(x => x.SteamUpdated += SteamUpdated);                
-                }
-
-                if (admin.WhiteList != null && admin.WhiteList.Count > 0)
-                {
-                    admin.WhiteList.ForEach(x => x.SteamUpdated += SteamUpdated);
-                }
-
-                if (admin.BlackList != null && admin.BlackList.Count > 0)
-                {
-                    admin.BlackList.ForEach(x => x.SteamUpdated += SteamUpdated);                    
-                }
-                admin.GetSteamData();
-            }
-        }
-
-        private void SteamUpdated(object sender, EventArgs e)
-        {
-            lbAdmin.Items.Refresh();
-        }
+       
         #endregion
         #endregion
 
@@ -537,6 +610,49 @@ namespace SevenDaysConfigUI.Pages
         #endregion
         #endregion
 
+        #region Steam
+        private void btnRefreshSteam_Click(object sender, RoutedEventArgs e)
+        {
+            updateSteam();
+        }
+
+        private void updateSteam()
+        {
+            if (admin != null)
+            {
+                if (admin.Administration != null && admin.Administration.Count > 0)
+                {
+                    admin.Administration.ForEach(x => x.SteamUpdated += SteamUpdated);
+                }
+
+                if (admin.Moderators != null && admin.Moderators.Count > 0)
+                {
+                    admin.Moderators.ForEach(x => x.SteamUpdated += SteamUpdated);
+                }
+
+                if (admin.WhiteList != null && admin.WhiteList.Count > 0)
+                {
+                    admin.WhiteList.ForEach(x => x.SteamUpdated += SteamUpdated);
+                }
+
+                if (admin.BlackList != null && admin.BlackList.Count > 0)
+                {
+                    admin.BlackList.ForEach(x => x.SteamUpdated += SteamUpdated);
+                }
+                admin.GetSteamData();
+            }
+        }
+
+        private void SteamUpdated(object sender, EventArgs e)
+        {            
+            lbAdmin.Items.Refresh();
+            lbModerators.Items.Refresh();
+            lbWhiteList.Items.Refresh();
+            lbBlackList.Items.Refresh();
+        }
+        #endregion
+
+
         private void manageProgress(Boolean show, String text = "")
         {
             if (show)
@@ -551,22 +667,39 @@ namespace SevenDaysConfigUI.Pages
                 ProgressText.Text = "";
                 ProgressText.Visibility = System.Windows.Visibility.Hidden;
             }
-        }
-
-        #region Testing
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //Admin t2 = new Admin();
-            //List<SteamUser> su = test.Administration;
-            //String s = su[0].PersonaName;
-            //Helpers.Bindings.BindDataGrid(dgAdmin, "Administration", test);
-        }
-        #endregion
+        }        
 
         private void btnLoadAll_Click(object sender, RoutedEventArgs e)
-        {            
-            loadConfigurationAsync();
-            LoadAdminAsync();
+        {
+            if (!configPathExits && !adminPathExits)
+            {
+                Helpers.MainWindow.ShowModal(new Helpers.Validation.ValidationError("No path to load.\nPlease select a configuration and/or server admin file."));
+            }
+            else
+            {
+                if (configPathExits)
+                {
+                    loadConfigurationAsync();
+                }
+
+                if (adminPathExits)
+                {
+                    LoadAdminAsync();
+                }
+            }
+        }
+
+        private List<String> GetDefaultUsers()
+        {
+            List<String> steamIds = new List<String>();
+            if (Properties.Settings.Default.Users != null)
+            {
+                foreach (String s in Properties.Settings.Default.Users)
+                {
+                    steamIds.Add(s);
+                }
+            }
+            return steamIds;
         }
         
     }

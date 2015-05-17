@@ -299,6 +299,18 @@ namespace SevenDaysConfigUI.Models
             this.PermissionLevel = Convert.ToInt32(data.Value);
         }
 
+        public SteamUser(String steamID)
+        {            
+            this.SteamID = steamID;            
+        }
+
+        public static List<SteamUser> FromSteamIDs(List<String> ids)
+        { 
+            List<SteamUser> retList =  new List<SteamUser>();
+            ids.ForEach(x => retList.Add(new SteamUser(x)));
+            return retList;
+        }
+
         //We will call for our Steam info on this.
         private WebClient wc = new WebClient();
 
