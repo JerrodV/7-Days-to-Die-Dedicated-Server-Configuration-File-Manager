@@ -10,6 +10,9 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
+using System.Windows.Media;
+using Xceed.Wpf;
 using b = SevenDaysConfigUI.Helpers.Bindings;
 
 namespace SevenDaysConfigUI.Pages
@@ -143,9 +146,12 @@ namespace SevenDaysConfigUI.Pages
             }
         }
 
-
+        List<SteamUser> defaultUsers;
+        List<SteamUser> visibleDefaultUsers;
         #endregion
 
+
+       
         #endregion
 
         public Configuration()
@@ -157,6 +163,8 @@ namespace SevenDaysConfigUI.Pages
             admin = new Admin();
             LoadAdminBW = new BackgroundWorker();
             SaveAdminBW = new BackgroundWorker();
+            defaultUsers = new List<SteamUser>();
+            visibleDefaultUsers = new List<SteamUser>();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -214,7 +222,7 @@ namespace SevenDaysConfigUI.Pages
 
             #region Setup Admin Users
 
-            List<SteamUser> defaultUsers = SteamUser.FromSteamIDs(GetDefaultUsers());
+            defaultUsers = SteamUser.FromSteamIDs(GetDefaultUsers());
 
 
             #endregion
@@ -535,18 +543,151 @@ namespace SevenDaysConfigUI.Pages
             else                     
             {
                 adminLoaded = true;
-                bindAdminLists();
+                bindAdminElements();
                 updateSteam();                
             }
         }
 
-        private void bindAdminLists()
+        private void bindAdminElements()
         {
-            lbAdmin.ItemsSource = admin.Administration;
-            lbAdmin.IsSynchronizedWithCurrentItem = true;
+            //First, lets go through all the users and make sure they are in our default user list.
+            //The function call checkAddDefaultUser will iterate each of the collections
+            //and return(stop processing) if the steam ID is found. If it is not found, it will add
+            //it to the default collection and save.
+            admin.Administration.ForEach(x => checkAddDefaultUser(x));
+            admin.Moderators.ForEach(x => checkAddDefaultUser(x));
+            admin.WhiteList.ForEach(x => checkAddDefaultUser(x));
+            admin.BlackList.ForEach(x => checkAddDefaultUser(x));
 
+            bindAdminLists();
         }
 
+        private void bindAdminLists()
+        {
+            //Now, bind all of the list boxes to their respective collections.
+            lbUsers.ItemsSource = defaultUsers;
+            lbUsers.IsSynchronizedWithCurrentItem = true;
+
+            lbAdmins.ItemsSource = admin.Administration;
+            lbAdmins.IsSynchronizedWithCurrentItem = true;
+
+            lbModerators.ItemsSource = admin.Moderators;
+            lbModerators.IsSynchronizedWithCurrentItem = true;
+
+            lbWhiteList.ItemsSource = admin.WhiteList;
+            lbWhiteList.IsSynchronizedWithCurrentItem = true;
+
+            lbBlackList.ItemsSource = admin.BlackList;
+            lbBlackList.IsSynchronizedWithCurrentItem = true;
+        }
+
+        private void checkAddDefaultUser(SteamUser user)
+        {                        
+            foreach (SteamUser su in defaultUsers)
+            {
+                if (su.SteamID == user.SteamID)
+                {
+                    return;
+                }
+            }
+
+            defaultUsers.Add(user);
+            SaveDefaultUsers();
+        }
+
+        private void cbHideAssignedUsers_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbHideAssignedUsers.IsChecked.HasValue && cbHideAssignedUsers.IsChecked.Value)
+            {
+                hideDefaultUsersInUse();
+            }
+            else if (cbHideAssignedUsers.IsChecked.HasValue && !cbHideAssignedUsers.IsChecked.Value)
+            {
+                returnFullUserCollection();
+            }
+        }
+
+        /// <summary>
+        /// This should be called after the full collection is bound to the listbox for proper filtering.
+        /// </summary>
+        private void hideDefaultUsersInUse()
+        {
+
+            foreach (SteamUser dsu in defaultUsers)
+            {
+                Boolean found = false;
+                foreach (SteamUser asu in admin.Administration)
+                {
+                    if (asu.SteamID == dsu.SteamID)
+                    {                       
+                        found = true;
+                        break;
+                    }
+                }
+
+                if(!found)
+                foreach (SteamUser msu in admin.Moderators)
+                {
+                    if (msu.SteamID == dsu.SteamID)
+                    {                        
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                foreach (SteamUser wsu in admin.WhiteList)
+                {
+                    if (wsu.SteamID == dsu.SteamID)
+                    {                       
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                foreach (SteamUser bsu in admin.BlackList)
+                {
+                    if (bsu.SteamID == dsu.SteamID)
+                    {                       
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    visibleDefaultUsers.Add(dsu);
+                }
+            }
+            lbUsers.ItemsSource = visibleDefaultUsers;
+            lbUsers.Items.Refresh();
+            
+        }
+
+        private void returnFullUserCollection()
+        {
+            visibleDefaultUsers = defaultUsers;
+            lbUsers.ItemsSource = visibleDefaultUsers;
+            lbUsers.Items.Refresh();
+        }
+
+        private void SaveDefaultUsers()
+        {
+            if (Properties.Settings.Default.Users != null)
+            {
+                Properties.Settings.Default.Users.Clear();
+            }
+            else
+            {
+                Properties.Settings.Default.Users = new System.Collections.Specialized.StringCollection();
+            }
+            foreach (SteamUser su in defaultUsers)
+            {
+                Properties.Settings.Default.Users.Add(su.SteamID);
+            }
+            Properties.Settings.Default.Save();
+        }
        
         #endregion
         #endregion
@@ -620,6 +761,11 @@ namespace SevenDaysConfigUI.Pages
         {
             if (admin != null)
             {
+                if (defaultUsers != null && defaultUsers.Count > 0)
+                {
+                    defaultUsers.ForEach(x => x.SteamUpdated += SteamUpdated);
+                }
+
                 if (admin.Administration != null && admin.Administration.Count > 0)
                 {
                     admin.Administration.ForEach(x => x.SteamUpdated += SteamUpdated);
@@ -640,12 +786,14 @@ namespace SevenDaysConfigUI.Pages
                     admin.BlackList.ForEach(x => x.SteamUpdated += SteamUpdated);
                 }
                 admin.GetSteamData();
+                defaultUsers.ForEach(x => x.GetSteamData());
             }
         }
 
         private void SteamUpdated(object sender, EventArgs e)
-        {            
-            lbAdmin.Items.Refresh();
+        {
+            lbUsers.Items.Refresh();
+            lbAdmins.Items.Refresh();
             lbModerators.Items.Refresh();
             lbWhiteList.Items.Refresh();
             lbBlackList.Items.Refresh();
@@ -701,6 +849,158 @@ namespace SevenDaysConfigUI.Pages
             }
             return steamIds;
         }
+
+        #region DragDrop        
+        private Point lbDragStartPosition;
+       
+        private void lbUsers_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            lbDragStartPosition = e.GetPosition(null);
+        }
+
+        private void lbUsers_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Get the current mouse position
+            Point mousePos = e.GetPosition(null);
+            Vector diff = lbDragStartPosition - mousePos;
+
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                // Get the dragged ListViewItem
+                ListBox listBox = sender as ListBox;
+                ListBoxItem listBoxItem =
+                    Helpers.ViewHelpers.ListElementHelper.FindVisualChild<ListBoxItem>((DependencyObject)e.OriginalSource);
+                if (listBoxItem != null)
+                {
+                    // Find the data behind the ListViewItem
+                    SteamUser user = (SteamUser)listBox.ItemContainerGenerator.
+                        ItemFromContainer(listBoxItem);
+
+                    // Initialize the drag & drop operation
+                    DataObject dragData = new DataObject("SteamUser", user);
+                    DragDrop.DoDragDrop(listBoxItem, dragData, DragDropEffects.Move);
+                }
+            }
+            
+        }
+
+        private void lbAdmin_DragEnter(object sender, DragEventArgs e)
+        {            
+            if (!e.Data.GetDataPresent("SteamUser") || sender == e.Source)            
+            {
+                e.Effects = DragDropEffects.None;
+            }
+            e.Handled = true;
+        }
+
+        private void lbAdmin_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("SteamUser"))
+            {
+                SteamUser user = e.Data.GetData("SteamUser") as SteamUser;
+                ListBox lb = sender as ListBox;
+                admin.Administration.Add(user);
+                lb.Items.Refresh();
+            }
+        }
+
+        private void lbModerators_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("SteamUser"))
+            {
+                SteamUser user = e.Data.GetData("SteamUser") as SteamUser;
+                ListBox lb = sender as ListBox;
+                admin.Moderators.Add(user);
+                lb.Items.Refresh();
+            }
+        }
+        #endregion
+
+        private void tiUsers_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                SteamUser su = null;
+                if (lbUsers.SelectedIndex >= 0)
+                {
+                    su = lbUsers.SelectedItem as SteamUser;
+                    defaultUsers.Remove(su);
+                    SaveDefaultUsers();
+                    lbUsers.Items.Refresh();
+                }
+                else if (lbAdmins.SelectedIndex >= 0)
+                {
+                    su = lbAdmins.SelectedItem as SteamUser;
+                    admin.Administration.Remove(su);
+                    lbAdmins.Items.Refresh();
+                }
+                else if (lbModerators.SelectedIndex >= 0)
+                {
+                    su = lbModerators.SelectedItem as SteamUser;
+                    admin.Moderators.Remove(su);
+                    lbModerators.Items.Refresh();
+                }
+                else if (lbWhiteList.SelectedIndex > 0)
+                {
+                    su = lbWhiteList.SelectedItem as SteamUser;
+                    admin.WhiteList.Remove(su);
+                    lbWhiteList.Items.Refresh();
+                }
+                else if (lbBlackList.SelectedIndex > 0)
+                {
+                    su = lbBlackList.SelectedItem as SteamUser;
+                    admin.BlackList.Remove(su);
+                    lbBlackList.Items.Refresh();
+                }
+            }
+        }
+
         
+
+        //This couple of functions work harder than you might think. 
+        //When I select a box, I disable that handler, then call ClearAll...
+        //Each of the boxes will have their selection changed, in-turn (I believe)
+        //recalling this function in their scope. It does work as expected though.
+        //Keep an eye on them.
+        private void ListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox lb = ((ListBox)sender);
+            lb.SelectionChanged -= ListBoxSelectionChanged;
+            String id = lb.Name;
+            Int32 selectedIndex = lb.SelectedIndex;
+            ClearAllListBoxSelections();
+            switch(id)
+            { 
+                case "lbUsers":
+                    lbUsers.SelectedIndex = selectedIndex;
+                    break;
+                case "lbAdmins":
+                    lbAdmins.SelectedIndex = selectedIndex;
+                    break;
+                case "lbModerators":
+                    lbModerators.SelectedIndex = selectedIndex;
+                    break;
+                case "lbWhiteList":
+                    lbWhiteList.SelectedIndex = selectedIndex;
+                    break;
+                case "lbBlackList":
+                    lbBlackList.SelectedIndex = selectedIndex;
+                    break;
+            }
+            lb.SelectionChanged += ListBoxSelectionChanged;
+        }
+        private void ClearAllListBoxSelections()
+        {
+            lbUsers.SelectedIndex = -1;
+            lbAdmins.SelectedIndex = -1;
+            lbModerators.SelectedIndex = -1;
+            lbWhiteList.SelectedIndex = -1;
+            lbBlackList.SelectedIndex = -1;
+        }
+
+       
     }
+   
 }
