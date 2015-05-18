@@ -148,6 +148,8 @@ namespace SevenDaysConfigUI.Pages
 
         List<SteamUser> defaultUsers;
         List<SteamUser> visibleDefaultUsers;
+
+        Boolean hideAssignedUsers;
         #endregion
 
 
@@ -223,10 +225,14 @@ namespace SevenDaysConfigUI.Pages
             #region Setup Admin Users
 
             defaultUsers = SteamUser.FromSteamIDs(GetDefaultUsers());
-
+            defaultUsers.ForEach(x => x.GetSteamData());
 
             #endregion
 
+            //Set check default on Hide Assigned users
+            Helpers.Bindings.BindCheckbox(cbHideAssignedUsers, "Value", Properties.Settings.Default.HideAssignedUsers);
+            cbHideAssignedUsers.IsChecked = Properties.Settings.Default.HideAssignedUsers;
+            ConfigureListUsers();
         }
 
         #region FilePaths
@@ -567,6 +573,7 @@ namespace SevenDaysConfigUI.Pages
             //Now, bind all of the list boxes to their respective collections.
             lbUsers.ItemsSource = defaultUsers;
             lbUsers.IsSynchronizedWithCurrentItem = true;
+            ConfigureListUsers();
 
             lbAdmins.ItemsSource = admin.Administration;
             lbAdmins.IsSynchronizedWithCurrentItem = true;
@@ -597,6 +604,11 @@ namespace SevenDaysConfigUI.Pages
 
         private void cbHideAssignedUsers_Click(object sender, RoutedEventArgs e)
         {
+            ConfigureListUsers();
+        }
+
+        private void ConfigureListUsers()
+        {
             if (cbHideAssignedUsers.IsChecked.HasValue && cbHideAssignedUsers.IsChecked.Value)
             {
                 hideDefaultUsersInUse();
@@ -612,7 +624,7 @@ namespace SevenDaysConfigUI.Pages
         /// </summary>
         private void hideDefaultUsersInUse()
         {
-
+            visibleDefaultUsers.Clear();
             foreach (SteamUser dsu in defaultUsers)
             {
                 Boolean found = false;
@@ -667,7 +679,9 @@ namespace SevenDaysConfigUI.Pages
 
         private void returnFullUserCollection()
         {
-            visibleDefaultUsers = defaultUsers;
+            SteamUser[] suArr = new SteamUser[defaultUsers.Count];
+            defaultUsers.CopyTo(suArr);
+            visibleDefaultUsers = suArr.ToList<SteamUser>();
             lbUsers.ItemsSource = visibleDefaultUsers;
             lbUsers.Items.Refresh();
         }
@@ -800,7 +814,7 @@ namespace SevenDaysConfigUI.Pages
         }
         #endregion
 
-
+        #region Window, Pre-load, misc...
         private void manageProgress(Boolean show, String text = "")
         {
             if (show)
@@ -850,115 +864,6 @@ namespace SevenDaysConfigUI.Pages
             return steamIds;
         }
 
-        #region DragDrop        
-        private Point lbDragStartPosition;
-       
-        private void lbUsers_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            lbDragStartPosition = e.GetPosition(null);
-        }
-
-        private void lbUsers_MouseMove(object sender, MouseEventArgs e)
-        {
-            // Get the current mouse position
-            Point mousePos = e.GetPosition(null);
-            Vector diff = lbDragStartPosition - mousePos;
-
-            if (e.LeftButton == MouseButtonState.Pressed &&
-                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
-                Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
-            {
-                // Get the dragged ListViewItem
-                ListBox listBox = sender as ListBox;
-                ListBoxItem listBoxItem =
-                    Helpers.ViewHelpers.ListElementHelper.FindVisualChild<ListBoxItem>((DependencyObject)e.OriginalSource);
-                if (listBoxItem != null)
-                {
-                    // Find the data behind the ListViewItem
-                    SteamUser user = (SteamUser)listBox.ItemContainerGenerator.
-                        ItemFromContainer(listBoxItem);
-
-                    // Initialize the drag & drop operation
-                    DataObject dragData = new DataObject("SteamUser", user);
-                    DragDrop.DoDragDrop(listBoxItem, dragData, DragDropEffects.Move);
-                }
-            }
-            
-        }
-
-        private void lbAdmin_DragEnter(object sender, DragEventArgs e)
-        {            
-            if (!e.Data.GetDataPresent("SteamUser") || sender == e.Source)            
-            {
-                e.Effects = DragDropEffects.None;
-            }
-            e.Handled = true;
-        }
-
-        private void lbAdmin_Drop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent("SteamUser"))
-            {
-                SteamUser user = e.Data.GetData("SteamUser") as SteamUser;
-                ListBox lb = sender as ListBox;
-                admin.Administration.Add(user);
-                lb.Items.Refresh();
-            }
-        }
-
-        private void lbModerators_Drop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent("SteamUser"))
-            {
-                SteamUser user = e.Data.GetData("SteamUser") as SteamUser;
-                ListBox lb = sender as ListBox;
-                admin.Moderators.Add(user);
-                lb.Items.Refresh();
-            }
-        }
-        #endregion
-
-        private void tiUsers_PreviewKeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Delete)
-            {
-                SteamUser su = null;
-                if (lbUsers.SelectedIndex >= 0)
-                {
-                    su = lbUsers.SelectedItem as SteamUser;
-                    defaultUsers.Remove(su);
-                    SaveDefaultUsers();
-                    lbUsers.Items.Refresh();
-                }
-                else if (lbAdmins.SelectedIndex >= 0)
-                {
-                    su = lbAdmins.SelectedItem as SteamUser;
-                    admin.Administration.Remove(su);
-                    lbAdmins.Items.Refresh();
-                }
-                else if (lbModerators.SelectedIndex >= 0)
-                {
-                    su = lbModerators.SelectedItem as SteamUser;
-                    admin.Moderators.Remove(su);
-                    lbModerators.Items.Refresh();
-                }
-                else if (lbWhiteList.SelectedIndex > 0)
-                {
-                    su = lbWhiteList.SelectedItem as SteamUser;
-                    admin.WhiteList.Remove(su);
-                    lbWhiteList.Items.Refresh();
-                }
-                else if (lbBlackList.SelectedIndex > 0)
-                {
-                    su = lbBlackList.SelectedItem as SteamUser;
-                    admin.BlackList.Remove(su);
-                    lbBlackList.Items.Refresh();
-                }
-            }
-        }
-
-        
-
         //This couple of functions work harder than you might think. 
         //When I select a box, I disable that handler, then call ClearAll...
         //Each of the boxes will have their selection changed, in-turn (I believe)
@@ -971,8 +876,8 @@ namespace SevenDaysConfigUI.Pages
             String id = lb.Name;
             Int32 selectedIndex = lb.SelectedIndex;
             ClearAllListBoxSelections();
-            switch(id)
-            { 
+            switch (id)
+            {
                 case "lbUsers":
                     lbUsers.SelectedIndex = selectedIndex;
                     break;
@@ -1000,7 +905,166 @@ namespace SevenDaysConfigUI.Pages
             lbBlackList.SelectedIndex = -1;
         }
 
-       
-    }
-   
+        #endregion;
+
+        #region DragDrop
+        private Point lbDragStartPosition;
+        private void lbUsers_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            lbDragStartPosition = e.GetPosition(null);
+        }
+        private static bool IsMouseOverTarget(Visual target, Point point)
+        {
+            var bounds = VisualTreeHelper.GetDescendantBounds(target);
+            return bounds.Contains(point);
+        }
+        private void lbUsers_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Get the current mouse position
+            Point mousePos = e.GetPosition(null);
+            Vector diff = lbDragStartPosition - mousePos;
+
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                // Get the dragged ListViewItem
+                ListBox listBox = sender as ListBox;
+                ListBoxItem listBoxItem = null;
+                for (int i = 0; i < defaultUsers.Count; i++)
+                {
+                    ListBoxItem lbi = listBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem;
+                    if (lbi == null) { continue; }
+                    if (IsMouseOverTarget(lbi, e.GetPosition((IInputElement)lbi)))
+                    {
+                        listBoxItem = lbi;
+                    }
+                }
+                    
+                if (listBoxItem != null)
+                {
+                    // Find the data behind the ListViewItem
+                    SteamUser user = (SteamUser)listBox.ItemContainerGenerator.
+                        ItemFromContainer(listBoxItem);
+
+                    // Initialize the drag & drop operation
+                    DataObject dragData = new DataObject("SteamUser", user);
+                    DragDrop.DoDragDrop(listBoxItem, dragData, DragDropEffects.Move);
+                }
+            }
+            
+        }
+
+        private void lbAdmin_DragEnter(object sender, DragEventArgs e)
+        {            
+            if (!e.Data.GetDataPresent("SteamUser") || sender == e.Source)            
+            {
+                e.Effects = DragDropEffects.None;
+            }
+            e.Handled = true;
+        }
+
+        private void lb_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("SteamUser"))
+            {
+                SteamUser user = e.Data.GetData("SteamUser") as SteamUser;
+                ListBox lb = sender as ListBox;
+                switch (lb.Name)
+                { 
+                    case "lbUsers":
+                        if (defaultUsers.IndexOf(user) > 0)
+                        { return; }
+                        defaultUsers.Add(user);
+                        break;
+                    case "lbAdmins":
+                        if (admin.Administration.IndexOf(user) > 0)
+                        { return; }
+                        admin.Administration.Add(user);                        
+                        break;
+                    case "lbModerators":
+                        if (admin.Moderators.IndexOf(user) > 0)
+                        { return; }
+                        admin.Moderators.Add(user);
+                        break;
+                    case "lbWhiteList":
+                        if (admin.WhiteList.IndexOf(user) > 0)
+                        { return; }
+                        admin.WhiteList.Add(user);
+                        break;
+                    case "lbBlackList":
+                        if (admin.BlackList.IndexOf(user) > 0)
+                        { return; }
+                        admin.BlackList.Add(user);
+                        break;
+                }                
+                lb.Items.Refresh();                
+                ConfigureListUsers();
+            }
+        }
+        #endregion
+
+        #region Delete
+        private void tiUsers_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                SteamUser su = null;
+                if (lbUsers.SelectedIndex >= 0)
+                {
+                    System.Windows.Forms.DialogResult dr = 
+                        System.Windows.Forms.MessageBox.Show("Deleteing from the users list is permenant. Are you sure?", 
+                        "Confirm Delete", 
+                        System.Windows.Forms.MessageBoxButtons.OKCancel);
+
+                    if (dr == System.Windows.Forms.DialogResult.OK)
+                    {
+                        su = lbUsers.SelectedItem as SteamUser;
+                        defaultUsers.Remove(su);
+                        SaveDefaultUsers();
+                        lbUsers.Items.Refresh();
+                    }
+                }
+                else if (lbAdmins.SelectedIndex >= 0)
+                {
+                    su = lbAdmins.SelectedItem as SteamUser;
+                    admin.Administration.Remove(su);
+                    lbAdmins.Items.Refresh();
+                }
+                else if (lbModerators.SelectedIndex >= 0)
+                {
+                    su = lbModerators.SelectedItem as SteamUser;
+                    admin.Moderators.Remove(su);
+                    lbModerators.Items.Refresh();
+                }
+                else if (lbWhiteList.SelectedIndex > 0)
+                {
+                    su = lbWhiteList.SelectedItem as SteamUser;
+                    admin.WhiteList.Remove(su);
+                    lbWhiteList.Items.Refresh();
+                }
+                else if (lbBlackList.SelectedIndex > 0)
+                {
+                    su = lbBlackList.SelectedItem as SteamUser;
+                    admin.BlackList.Remove(su);
+                    lbBlackList.Items.Refresh();
+                }
+            }
+            ConfigureListUsers();
+        }
+        #endregion
+
+        private void btnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            AddUser au = new AddUser();
+            Helpers.MainWindow.ShowModal(au);
+            if (au.SteamUser != null)//If null they did not click save.
+            {
+                defaultUsers.Add(au.SteamUser);
+                SaveDefaultUsers();
+                ConfigureListUsers();
+            }
+        }
+                       
+    }   
 }

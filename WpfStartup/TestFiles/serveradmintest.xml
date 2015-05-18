@@ -24,7 +24,7 @@ permission level : 0-1000, a user may run any command equal to or above their pe
 
 <adminTools>
 <admins>
-<admin steamID="76561197971242003" permission_level="0" />
+<admin steamID="76561197971242003" permission_level="1" />
 <admin steamID="76561198025636904" permission_level="0" />
 </admins>
 

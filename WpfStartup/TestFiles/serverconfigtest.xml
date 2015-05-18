@@ -31,7 +31,7 @@
   <property name="TelnetPassword" value="averystrongpassword" />			<!-- Password to gain entry to telnet interface -->
 
   <property name="DisableNAT" value="true" />				<!-- set this to true if your router doesn't support NAT -->
-  <property name="AdminFileName" value="serveradmin.xml" />	<!-- Server admin file name -->
+  <property name="AdminFileName" value="serveradmintest.xml" />	<!-- Server admin file name -->
   
   <property name="DropOnDeath" value="2" />				<!-- 0 = everything, 1 = toolbelt only, 2 = backpack only, 3 = delete all -->
   <property name="DropOnQuit" value="0" />				<!-- 0 = nothing, 1 = everything, 2 = toolbelt only, 3 = backpack only -->

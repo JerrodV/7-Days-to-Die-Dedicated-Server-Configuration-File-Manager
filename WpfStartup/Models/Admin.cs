@@ -289,6 +289,8 @@ namespace SevenDaysConfigUI.Models
             }
         }
 
+        public SteamUser() { }
+    
         /// <summary>
         /// This is used when creating SteamUsers from XMl
         /// </summary>
@@ -318,10 +320,11 @@ namespace SevenDaysConfigUI.Models
         /// Creates an HTTP request to Steam for details on the user
         /// </summary>
         public void GetSteamData()
-        { 
+        {
+            wc = new WebClient();
             Uri uri = new Uri(String.Format(Properties.Settings.Default.SteamApiUrl,Properties.Settings.Default.SteamAPIKey, this.SteamID));
             wc.DownloadStringCompleted += wc_DownloadStringCompleted;
-            wc.DownloadStringAsync(uri);
+            wc.DownloadStringAsync(uri);            
         }
 
         //This is called from the next function and inturn, firest the deligate.

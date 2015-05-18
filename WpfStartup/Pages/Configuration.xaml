@@ -9,438 +9,438 @@
 	  d:DesignHeight="900" d:DesignWidth="1400"
 	Title="Configuration" Loaded="Page_Loaded">
 
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="16*"/>
-			<RowDefinition Height="64*"/>
-			<RowDefinition Height="145*"/>
-			<RowDefinition Height="653*"/>
-			<RowDefinition Height="22*"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="51*"/>
-			<ColumnDefinition Width="323*"/>
-			<ColumnDefinition Width="597*"/>
-			<ColumnDefinition Width="122*"/>
-			<ColumnDefinition Width="142*"/>
-			<ColumnDefinition Width="113*"/>
-			<ColumnDefinition Width="52*"/>
-		</Grid.ColumnDefinitions>
-		<Grid Grid.ColumnSpan="2" Grid.Column="4" Margin="0,2,10,0">
-			<ProgressBar x:Name="Progress" IsIndeterminate="True" Visibility="Hidden" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0" />
-			<TextBlock x:Name="ProgressText" HorizontalAlignment="Center" Visibility="Hidden" VerticalAlignment="Center" Text="Testing Loading" Foreground="White" FontSize="9"/>
-		</Grid>
-		<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="5">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="139*"/>
-				<ColumnDefinition Width="680*"/>
-				<ColumnDefinition Width="95*"/>
-				<ColumnDefinition Width="95*"/>
-				<ColumnDefinition Width="95*"/>
-				<ColumnDefinition Width="95*"/>
-				<ColumnDefinition Width="95*"/>
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="145*"/>
+            <RowDefinition Height="653*"/>
+            <RowDefinition Height="22*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="323*"/>
+            <ColumnDefinition Width="597*"/>
+            <ColumnDefinition Width="122*"/>
+            <ColumnDefinition Width="142*"/>
+            <ColumnDefinition Width="113*"/>
+            <ColumnDefinition Width="52*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="2" Grid.Column="4" Margin="0,2,10,0">
+            <ProgressBar x:Name="Progress" IsIndeterminate="True" Visibility="Hidden" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0" />
+            <TextBlock x:Name="ProgressText" HorizontalAlignment="Center" Visibility="Hidden" VerticalAlignment="Center" Text="Testing Loading" Foreground="White" FontSize="9"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="138*"/>
+                <ColumnDefinition Width="510*"/>
+                <ColumnDefinition Width="173*"/>
+                <ColumnDefinition Width="95*"/>
+                <ColumnDefinition Width="95*"/>
+                <ColumnDefinition Width="95*"/>
+                <ColumnDefinition Width="96*"/>
+                <ColumnDefinition Width="95*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
 
-				<RowDefinition Height="52*"/>
-				<RowDefinition Height="52*"/>
-				<RowDefinition Height="105*"/>
-			</Grid.RowDefinitions>
-			<Border Grid.Column="0" Grid.Row="0" BorderBrush="Black" BorderThickness="1"  Grid.ColumnSpan="7" Margin="5,5,5,3.25" Background="{DynamicResource ButtonNormalBackground}"/>
-			<Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1"  Grid.ColumnSpan="7" Margin="5,5,5,3.25" Background="{DynamicResource ButtonNormalBackground}"/>
-			<Border Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="1"  Grid.ColumnSpan="7" Margin="5,5,5,10" Background="{DynamicResource ButtonNormalBackground}"/>
-			<Label Content="Config Path:" HorizontalAlignment="Right" VerticalAlignment="Center" Height="44" Width="66" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,4.125,10,4.125" Foreground="Black" FontWeight="Bold"/>
-			<Button x:Name="btnBrowseConfigPath" Content="Browse Path" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Click="btnBrowseConfigurationPath_Click" Height="20" HorizontalContentAlignment="Center" Grid.Column="3" />
-			<Button x:Name="btnLoadConfig" Content="Load Config" Grid.Column="4" HorizontalAlignment="Center" Margin="0" Width="75" Click="btnLoadConfig_Click" Height="20" VerticalAlignment="Center"/>
-			<Button x:Name="btnSaveConfig" Content="Save Config" Grid.Column="6" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" Click="btnSaveConfig_Click"/>
-			<Label Content="Admin Path:" HorizontalAlignment="Right" VerticalAlignment="Center" Height="44" Width="66" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,4.125,10,4.125" Grid.Row="1" Foreground="Black" FontWeight="Bold"/>
-			<Button x:Name="btnBrowseAdminPath" Content="Browse Path" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" HorizontalContentAlignment="Center" Grid.Row="1" Click="btnBrowseAdminPath_Click" Grid.Column="3" />
-			<Button x:Name="btnLoadAll" Content="Load Selected Files" Grid.Column="1" Margin="206.475,0,157.441,0" Grid.Row="2" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Width="317.661" Click="btnLoadAll_Click"/>
-			<Button x:Name="btnLoadAdmin" Content="Load Admin" Grid.Column="4" HorizontalAlignment="Center" Margin="0" Width="75" Height="20" VerticalAlignment="Center" Grid.Row="1" Click="btnLoadAdmin_Click"/>
-			<Button x:Name="btnSaveAdmin" Content="Save Admin" Grid.Column="6" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" Click="btnSaveConfig_Click" Grid.Row="1"/>
-			<Label x:Name="lblAdminPath" Content="n/a" Height="44" VerticalAlignment="Center" VerticalContentAlignment="Center" Foreground="Black" Grid.Column="1" Margin="10,4.125" Grid.Row="1" Grid.ColumnSpan="2"/>
-			<Label x:Name="lblConfigPath" Content="n/a" Height="44" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,4.125" Foreground="Black" Grid.Column="1" Grid.ColumnSpan="2"/>
-			<Button x:Name="btnClearConfigPath" Content="Clear Path" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" HorizontalContentAlignment="Center" Grid.Column="2" Click="btnClearConfigPath_Click" />
-			<Button x:Name="btnClearAdminPath" Content="Clear Path" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="2" Click="btnClearAdminPath_Click" />
-			<Button x:Name="btnBackupConfig" Content="Config Backups" Grid.Column="5" HorizontalAlignment="Center" Margin="0" Width="90" Click="btnLoadConfig_Click" Height="20" VerticalAlignment="Center"/>
-			<Button x:Name="btnBackupAdmin" Content="Admin Backups" Grid.Column="5" HorizontalAlignment="Center" Margin="0" Width="90" Click="btnLoadConfig_Click" Height="20" VerticalAlignment="Center" Grid.Row="1"/>
-			<Button x:Name="btnSaveAll" Content="Save Selected Files" Grid.Column="1" Margin="544.136,0,10.22,0" Grid.Row="2" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Width="317.661" Click="btnLoadAll_Click" Grid.ColumnSpan="3"/>
-		</Grid>
-		<TabControl x:Name="tcFileSelect" Grid.ColumnSpan="5" Grid.Column="1" Margin="0" Grid.Row="3">
-			<TabItem Header="Configuration">
-				<Grid Background="#FFE5E5E5">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="19*"/>
-						<ColumnDefinition Width="15*"/>
-						<ColumnDefinition Width="1233*"/>
-					</Grid.ColumnDefinitions>
-					<TabControl x:Name="Tabs" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="3">
-						<TabItem Header="Server">
-							<Grid Margin="0,20,0,-4">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="11*"/>
-									<ColumnDefinition Width="280*"/>
-									<ColumnDefinition Width="401*"/>
-									<ColumnDefinition Width="27*"/>
-									<ColumnDefinition Width="263*"/>
-									<ColumnDefinition Width="401*"/>
-								</Grid.ColumnDefinitions>
-								<Grid.RowDefinitions>
-									<RowDefinition Height="50*"/>
-									<RowDefinition Height="50*"/>
-									<RowDefinition Height="50*"/>
-									<RowDefinition Height="50*"/>
-									<RowDefinition Height="50*"/>
-									<RowDefinition Height="50*"/>
-									<RowDefinition Height="50*"/>
-									<RowDefinition Height="50*"/>
-									<RowDefinition Height="50*"/>
-								</Grid.RowDefinitions>
+                <RowDefinition Height="52*"/>
+                <RowDefinition Height="52*"/>
+                <RowDefinition Height="105*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="0" Grid.Row="0" BorderBrush="Black" BorderThickness="1"  Grid.ColumnSpan="8" Margin="5,5,5,3" Background="{DynamicResource ButtonNormalBackground}"/>
+            <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1"  Grid.ColumnSpan="8" Margin="5,5,5,3" Background="{DynamicResource ButtonNormalBackground}"/>
+            <Border Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="1"  Grid.ColumnSpan="8" Margin="5,5,5,10" Background="{DynamicResource ButtonNormalBackground}"/>
+            <Label Content="Config Path:" HorizontalAlignment="Right" VerticalAlignment="Center" Height="44" Width="66" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,4,10,4" Foreground="Black" FontWeight="Bold"/>
+            <Button x:Name="btnBrowseConfigPath" Content="Browse Path" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Click="btnBrowseConfigurationPath_Click" Height="20" HorizontalContentAlignment="Center" Grid.Column="4" />
+            <Button x:Name="btnLoadConfig" Content="Load Config" Grid.Column="5" HorizontalAlignment="Center" Margin="0" Width="75" Click="btnLoadConfig_Click" Height="20" VerticalAlignment="Center"/>
+            <Button x:Name="btnSaveConfig" Content="Save Config" Grid.Column="7" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" Click="btnSaveConfig_Click"/>
+            <Label Content="Admin Path:" HorizontalAlignment="Right" VerticalAlignment="Center" Height="44" Width="66" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,4,10,4" Grid.Row="1" Foreground="Black" FontWeight="Bold"/>
+            <Button x:Name="btnBrowseAdminPath" Content="Browse Path" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" HorizontalContentAlignment="Center" Grid.Row="1" Click="btnBrowseAdminPath_Click" Grid.Column="4" />
+            <Button x:Name="btnLoadAll" Content="Load Selected Files" Grid.Column="1" Margin="0,0,10,0" Grid.Row="2" Height="33" HorizontalAlignment="Right" VerticalAlignment="Center" Width="317" Click="btnLoadAll_Click"/>
+            <Button x:Name="btnLoadAdmin" Content="Load Admin" Grid.Column="5" HorizontalAlignment="Center" Margin="0" Width="75" Height="20" VerticalAlignment="Center" Grid.Row="1" Click="btnLoadAdmin_Click"/>
+            <Button x:Name="btnSaveAdmin" Content="Save Admin" Grid.Column="7" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" Click="btnSaveConfig_Click" Grid.Row="1"/>
+            <Label x:Name="lblAdminPath" Content="n/a" Height="44" VerticalAlignment="Center" VerticalContentAlignment="Center" Foreground="Black" Grid.Column="1" Margin="10,0" Grid.Row="1" Grid.ColumnSpan="2"/>
+            <Label x:Name="lblConfigPath" Content="n/a" Height="44" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,0" Foreground="Black" Grid.Column="1" Grid.ColumnSpan="2"/>
+            <Button x:Name="btnClearConfigPath" Content="Clear Path" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" HorizontalContentAlignment="Center" Grid.Column="3" Click="btnClearConfigPath_Click" />
+            <Button x:Name="btnClearAdminPath" Content="Clear Path" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="3" Click="btnClearAdminPath_Click" />
+            <Button x:Name="btnBackupConfig" Content="Config Backups" Grid.Column="6" HorizontalAlignment="Center" Margin="0" Width="90" Click="btnLoadConfig_Click" Height="20" VerticalAlignment="Center"/>
+            <Button x:Name="btnBackupAdmin" Content="Admin Backups" Grid.Column="6" HorizontalAlignment="Center" Margin="0" Width="90" Click="btnLoadConfig_Click" Height="20" VerticalAlignment="Center" Grid.Row="1"/>
+            <Button x:Name="btnSaveAll" Content="Save Selected Files" Grid.Column="2" Margin="10,0,0,0" Grid.Row="2" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Width="318" Click="btnLoadAll_Click" Grid.ColumnSpan="3"/>
+        </Grid>
+        <TabControl x:Name="tcFileSelect" Grid.ColumnSpan="5" Grid.Column="1" Margin="0" Grid.Row="3">
+            <TabItem Header="Configuration">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="19*"/>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="1233*"/>
+                    </Grid.ColumnDefinitions>
+                    <TabControl x:Name="Tabs" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="3">
+                        <TabItem Header="Server">
+                            <Grid Margin="0,20,0,-4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="11*"/>
+                                    <ColumnDefinition Width="280*"/>
+                                    <ColumnDefinition Width="401*"/>
+                                    <ColumnDefinition Width="27*"/>
+                                    <ColumnDefinition Width="263*"/>
+                                    <ColumnDefinition Width="401*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="50*"/>
+                                </Grid.RowDefinitions>
 
-								<Label Content="Admin File Name:" HorizontalAlignment="Right" Height="36.263" Margin="0" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1"/>
-								<Label Content="Server Port:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1"/>
-								<Label Content="Server Is Public:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="2" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1"/>
-								<Label Content="Server Name:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="3" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1" Padding="0,0,5,0"/>
-								<Label Content="Server Password:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="4" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1"/>
-								<Label Content="Server Max Player Count:" HorizontalAlignment="Right" Height="36.263" Grid.Row="5" Margin="0,14.482" VerticalAlignment="Center" Width="149.79" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1"/>
-								<Label Content="Server Description:" HorizontalAlignment="Right" Height="36.263" Margin="0,14.482" Grid.Row="6" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1"/>
-								<Label Content="Server Website URL:" HorizontalAlignment="Right" Height="36.264" Margin="0" Grid.Row="7" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1"/>
-								<Label Content="EAC Enabeld:" HorizontalAlignment="Right" Height="36.263" Margin="0" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4"/>
-								<Label Content="Telnet Enabled:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4"/>
-								<Label Content="Telnet Port:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="2" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4"/>
-								<Label Content="Telnet Password:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="3" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4"/>
-								<Label Content="Control Panel Enabled:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="4" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4"/>
-								<Label Content="Control Panel Port:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="5" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4"/>
-								<Label Content="Control Panel Password:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="6" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4"/>
-								<Label Content="Disable NAT:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="7" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4"/>
-
-
-
-								<TextBox x:Name="txtAdminFileName" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180"/>
-								<Button x:Name="btnBrowseConfigAdminFile" Content="Browse" Grid.Column="2" HorizontalAlignment="Left" Margin="195,0,0,0" VerticalAlignment="Center" Width="75" Height="20" Click="btnBrowseConfigAdminFile_Click"/>
-								<Button x:Name="btnConfigCopyAdminFromPath" Content="Copy From Admin Path" Grid.Column="2" HorizontalAlignment="Left" Margin="275,0,0,0" VerticalAlignment="Center" Width="144.968" Height="20" Click="btnConfigCopyAdminFromPath_Click" Grid.ColumnSpan="3"/>
-								<xctk:IntegerUpDown x:Name="iudServerPort" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" Width="80" Height="24" VerticalAlignment="Center"/>
-								<CheckBox x:Name="cbServerIsPublic" Content="CheckBox" Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="18"/>
-								<TextBox x:Name="txtServerName" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="3"/>
-								<TextBox x:Name="txtServerPassword" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="4"/>
-								<xctk:IntegerUpDown x:Name="iudServerMaxPlayers" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" Width="50.304" Height="24" VerticalAlignment="Center"/>
-								<TextBox x:Name="txtServerDescription" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="6"/>
-								<TextBox x:Name="txtServerWebURL" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="7"/>
-
-								<CheckBox x:Name="cbEACEnabled" Content="CheckBox" Grid.Column="5" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" VerticalAlignment="Center" Width="18"/>
-								<CheckBox x:Name="cbTelnetEnabled" Content="CheckBox" Grid.Column="5" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="18"/>
-								<xctk:IntegerUpDown x:Name="iudTelnetPort" Grid.Column="5" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" Width="80" Height="24" VerticalAlignment="Center"/>
-								<TextBox x:Name="txtTelnetPassword" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="3"/>
-								<CheckBox x:Name="cbControlPanelEnabled" Content="CheckBox" Grid.Column="5" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="18"/>
-								<xctk:IntegerUpDown x:Name="iudControlPanelPort" Grid.Column="5" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" Width="80" Height="24" VerticalAlignment="Center"/>
-								<TextBox x:Name="txtControlPanelPassword" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="6"/>
-								<CheckBox x:Name="cbDisableNAT" Content="CheckBox" Grid.Column="5" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="7" VerticalAlignment="Center" Width="18"/>
+                                <Label Content="Admin File Name:" HorizontalAlignment="Right" Height="36.263" Margin="0" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Server Port:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Server Is Public:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="2" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Server Name:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="3" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1" Padding="0,0,5,0" FontWeight="Bold"/>
+                                <Label Content="Server Password:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="4" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Server Max Player Count:" HorizontalAlignment="Right" Height="36.263" Grid.Row="5" Margin="0,14.482" VerticalAlignment="Center" Width="149.79" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Server Description:" HorizontalAlignment="Right" Height="36.263" Margin="0,14.482" Grid.Row="6" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Server Website URL:" HorizontalAlignment="Right" Height="36.264" Margin="0" Grid.Row="7" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="EAC Enabeld:" HorizontalAlignment="Right" Height="36.263" Margin="0" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4" FontWeight="Bold"/>
+                                <Label Content="Telnet Enabled:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4" FontWeight="Bold"/>
+                                <Label Content="Telnet Port:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="2" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4" FontWeight="Bold"/>
+                                <Label Content="Telnet Password:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="3" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4" FontWeight="Bold"/>
+                                <Label Content="Control Panel Enabled:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="4" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4" FontWeight="Bold"/>
+                                <Label Content="Control Panel Port:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="5" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4" FontWeight="Bold"/>
+                                <Label Content="Control Panel Password:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="6" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4" FontWeight="Bold"/>
+                                <Label Content="Disable NAT:" HorizontalAlignment="Right" Height="36.263" Margin="0" Grid.Row="7" VerticalAlignment="Center" Width="130.5" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4" FontWeight="Bold"/>
 
 
 
-							</Grid>
-						</TabItem>
-						<TabItem Header="Game">
-							<Grid Margin="0,0,0,-1">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="16*"/>
-									<ColumnDefinition Width="205*"/>
-									<ColumnDefinition Width="221*"/>
-									<ColumnDefinition Width="177*"/>
-									<ColumnDefinition Width="292*"/>
-									<ColumnDefinition Width="233*"/>
-									<ColumnDefinition Width="238*"/>
-								</Grid.ColumnDefinitions>
-								<Grid.RowDefinitions>
-									<RowDefinition Height="30*"/>
-									<RowDefinition Height="30*"/>
-									<RowDefinition Height="30*"/>
-									<RowDefinition Height="30*"/>
-									<RowDefinition Height="30*"/>
-									<RowDefinition Height="30*"/>
-									<RowDefinition Height="30*"/>
-									<RowDefinition Height="30*"/>
-									<RowDefinition Height="30*"/>
-									<RowDefinition Height="30*"/>
-									<RowDefinition Height="30*"/>
-								</Grid.RowDefinitions>
-								<Label Content="Game World:" Margin="0,0,5,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" HorizontalAlignment="Right" Height="18" Grid.Column="1"/>
-								<Label Content="Game Name:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="1" HorizontalAlignment="Right" Height="18" Grid.Column="1"/>
-								<Label Content="Game Difficulty:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="2" HorizontalAlignment="Right" Height="18" Grid.Column="1"/>
-								<Label Content="Game Mode:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="3" HorizontalAlignment="Right" Height="18" Grid.Column="1"/>
-								<Label Content="Build Mode:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="4" HorizontalAlignment="Right" Height="18" Grid.Column="1"/>
-								<Label Content="Day/Night Length:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="5" HorizontalAlignment="Right" Height="18" Grid.Column="1"/>
-								<Label Content="Friendly Fire:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="7" HorizontalAlignment="Right" Height="18" Grid.Column="1"/>
-								<Label Content="Persistant Player Profile:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="8" HorizontalAlignment="Right" Height="18" Grid.Column="1"/>
-								<Label Content="Player Safe Zone Level:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="9" HorizontalAlignment="Right" Height="18" Grid.Column="1"/>
-								<Label Content="Player Safe Zone Hours:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="10" HorizontalAlignment="Right" Height="15" Grid.Column="1"/>
-								<Label Content="Night Percent:" Margin="0,0,10,0" VerticalAlignment="Center" Width="120" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="6" HorizontalAlignment="Right" Height="18" Grid.Column="1"/>
-								<Label Content="Drop On Death:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" HorizontalAlignment="Right" Grid.Column="3" Height="18"/>
-								<Label Content="Drop On Quit:" Margin="0,17.095,10,17.094" VerticalAlignment="Center" Width="120" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="1" HorizontalAlignment="Right" Grid.Column="3" Height="18"/>
-								<Label Content="Craft Timer:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="2" HorizontalAlignment="Right" Grid.Column="3" Height="18"/>
-								<Label Content="Loot Timer:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="3" HorizontalAlignment="Right" Grid.Column="3" Height="18"/>
-								<Label Content="Enemey Senese Memory:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="4" HorizontalAlignment="Right" Grid.Column="3" Height="18"/>
-								<Label Content="Enemy Spawn Mode:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="5" HorizontalAlignment="Right" Grid.Column="3" Height="18"/>
-								<Label Content="Block Duribility Modifier:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="6" HorizontalAlignment="Right" Grid.Column="3" Height="18"/>
-								<Label Content="Loot Abundance:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="7" HorizontalAlignment="Right" Grid.Column="3" Height="18"/>
-								<Label Content="Loot Respawn Days:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="8" HorizontalAlignment="Right" Grid.Column="3" Height="18"/>
-								<Label Content="Max Zombies Spawned:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="9" HorizontalAlignment="Right" Grid.Column="3" Height="18"/>
-								<Label Content="Max Animals Spawned:" Margin="0,0,10,0" VerticalAlignment="Center" Width="120" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="10" HorizontalAlignment="Right" Grid.Column="3" Height="15"/>
-								<Label Content="Land Claim Size:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" HorizontalAlignment="Right" Grid.Column="5" Height="18"/>
-								<Label Content="Land Claim DeadZone:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="1" HorizontalAlignment="Right" Grid.Column="5" Height="18"/>
-								<Label Content="Land Claim Expiry(e) Time:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="2" HorizontalAlignment="Right" Grid.Column="5" Height="18"/>
-								<Label Content="Land Claim Decay Mode:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="3" HorizontalAlignment="Right" Grid.Column="5" Height="18"/>
-								<Label Content="Land Claim Online Durability Modifier:" Margin="0,0,10,0" VerticalAlignment="Center" Width="215" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="4" HorizontalAlignment="Right" Grid.Column="5" Height="18"/>
-								<Label Content="Land Claim Offline Durability Modifier:" Margin="0,0,10,0" VerticalAlignment="Center" Width="215" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="5" HorizontalAlignment="Right" Grid.Column="5" Height="18"/>
-								<Label Content="AirDrop Frequency:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="6" HorizontalAlignment="Right" Grid.Column="5" Height="18"/>
+                                <TextBox x:Name="txtAdminFileName" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180"/>
+                                <Button x:Name="btnBrowseConfigAdminFile" Content="Browse" Grid.Column="2" HorizontalAlignment="Left" Margin="195,0,0,0" VerticalAlignment="Center" Width="75" Height="20" Click="btnBrowseConfigAdminFile_Click"/>
+                                <Button x:Name="btnConfigCopyAdminFromPath" Content="Copy From Admin Path" Grid.Column="2" HorizontalAlignment="Left" Margin="275,0,0,0" VerticalAlignment="Center" Width="144.968" Height="20" Click="btnConfigCopyAdminFromPath_Click" Grid.ColumnSpan="3"/>
+                                <xctk:IntegerUpDown x:Name="iudServerPort" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" Width="80" Height="24" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="cbServerIsPublic" Content="CheckBox" Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="18"/>
+                                <TextBox x:Name="txtServerName" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="3"/>
+                                <TextBox x:Name="txtServerPassword" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="4"/>
+                                <xctk:IntegerUpDown x:Name="iudServerMaxPlayers" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" Width="50.304" Height="24" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtServerDescription" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="6"/>
+                                <TextBox x:Name="txtServerWebURL" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="7"/>
 
-								<ComboBox x:Name="cboGameWorld" Grid.Column="2" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" VerticalAlignment="Center" Width="205" ToolTip="Navezgane, MP Wasteland Horde, MP Wasteland Skirmish, MP Wasteland War, Random Gen" Grid.ColumnSpan="2"/>
-								<TextBox x:Name="txtGameName" Grid.Column="2" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="205" Grid.Row="1" ToolTip="Whatever you want the game name to be THIS CONTROLS THE RANDOM GENERATION SEED" Grid.ColumnSpan="2"/>
-								<xctk:IntegerUpDown x:Name="iudGameDifficulty" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="50" Maximum="4" Minimum="0" ToolTip="0 - 4, 0=easiest, 4=hardest" BorderThickness="1,0,1,1"/>
-								<ComboBox x:Name="cboGameMode" Grid.Column="2" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="205" ToolTip="GameModeSurvivalMP, GameModeSurvivalSP (MP has land protection)" Grid.ColumnSpan="2"/>
-								<CheckBox x:Name="cbBuildCreate" Content="CheckBox" Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="18" ToolTip="cheat mode on/off"/>
-								<xctk:IntegerUpDown x:Name="iudDayNightLength" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="5" VerticalAlignment="Center" Width="50" Maximum="1440" Minimum="0" ToolTip="40 minutes (*Use 'Night Percentage' for further adjustment. Setting to max would be one real time day. )"/>
-								<xctk:IntegerUpDown x:Name="iudNightPercentage" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="6" VerticalAlignment="Center" Width="50" Maximum="100" Minimum="0" ToolTip="percentage in whole numbers"/>
-								<CheckBox x:Name="cbFriendlyFire" Content="CheckBox" Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="7" VerticalAlignment="Center" Width="18" ToolTip="Can friendly players damage each other (PvP)"/>
-								<CheckBox x:Name="cbPersistentPlayerProfiles" Content="CheckBox" Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="8" VerticalAlignment="Center" Width="18" ToolTip="If disabled a player can join with any selected profile. If true they will join with the last profile they joined with."/>
-								<xctk:IntegerUpDown x:Name="iudPlayerSafeZoneLevel" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="9" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" ToolTip="If a player is less or equal this level he will create a safe zone (no enemies) when spawned"/>
-								<xctk:IntegerUpDown x:Name="iudPlayerSafeZoneHours" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="10" VerticalAlignment="Center" Width="50" Maximum="8736" Minimum="0" ToolTip="Hours in world time this safe zone exists (Max is about a year.)"/>
-								<ComboBox x:Name="cboDropOnDeath" Grid.Column="4" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" VerticalAlignment="Center" Width="205" ToolTip="0 = everything, 1 = toolbelt only, 2 = backpack only, 3 = delete all"/>
-								<ComboBox x:Name="cboDropOnQuit" Grid.Column="4" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="205" ToolTip="0 = nothing, 1 = everything, 2 = toolbelt only, 3 = backpack only"/>
-								<ComboBox x:Name="cboCraftTimer" Grid.Column="4" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="205" ToolTip="0 = None (instant), 1 = Normal, 2 = Fast (double speed)"/>
-								<ComboBox x:Name="cboLootTimer" Grid.Column="4" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="205" ToolTip="0 = None (instant), 1 = Normal, 2 = Fast (double speed)"/>
-								<xctk:IntegerUpDown x:Name="iudEnemySenseMemory" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="50" Maximum="604800" Minimum="0" ToolTip="Time, in seconds, that a zombie will pursue something that has been sensed.(*Note: Max is about a week)" Template="{DynamicResource IntegerUpDownControlTemplate}"/>
-								<ComboBox x:Name="cboEnemySpawnMode" Grid.Column="4" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Grid.Row="5" VerticalAlignment="Center" Width="205" ToolTip="0 = Disabled 0%, 1 = Very Low 50%, 2 = Low 75%, 3 = Medium 100%, 4 = High 125%, 5 = Very High 150%"/>
-								<xctk:IntegerUpDown x:Name="iudBlockDurabilityModifier" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="6" VerticalAlignment="Center" Width="50" Maximum="1000" Minimum="0" ToolTip="percentage in whole numbers" Increment="5"/>
-								<xctk:IntegerUpDown x:Name="iudLootAbundance" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="7" VerticalAlignment="Center" Width="50" Maximum="999" Minimum="0" ToolTip="percentage in whole numbers"/>
-								<xctk:IntegerUpDown x:Name="iudLootRespawnDays" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="8" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" ToolTip="days in whole numbers"/>
-								<xctk:IntegerUpDown x:Name="iudMaxSpawnedZombies" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="9" VerticalAlignment="Center" Width="50" Maximum="512" Minimum="0" ToolTip="Making this number too large (more than about 80) may cause servers to run at poor framerates which will effect lag and play quality for clients."/>
-								<xctk:IntegerUpDown x:Name="iudMaxSpawnedAnimals" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="10" VerticalAlignment="Center" Width="50" Maximum="1024" Minimum="0" ToolTip="If your server has a large number of players you can increase this limit to add more wildlife. Animals don't consume as much CPU as zombies. "/>
-								<xctk:IntegerUpDown x:Name="iudLandClaimSize" Grid.Column="6" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" ToolTip="Size in blocks that is protected by a keystone"/>
-								<xctk:IntegerUpDown x:Name="iudLandClaimDeadZone" Grid.Column="6" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" VerticalAlignment="Center" Width="50" Maximum="999" Minimum="0" Grid.Row="1" ToolTip="Keystones must be this many blocks apart (unless you are friends with the other player)"/>
-								<xctk:IntegerUpDown x:Name="iudLandClaimExpiryTime" Grid.Column="6" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" Grid.Row="2" ToolTip="The number of days a player can be offline before their claims expire and are no longer protected"/>
-								<ComboBox x:Name="cboLandClaimDecayMode" Grid.Column="6" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="205" ToolTip="Controls how offline players land claims decay. All claims have full protection for the first 24hrs. 0=Linear, 1=Exponential, 2=Full protection until claim is expired."/>
-								<xctk:IntegerUpDown x:Name="iudLandClaimOnlineDurabilityModifier" Grid.Column="6" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" Grid.Row="4" ToolTip="How much protected claim area block hardness is increased when a player is online. 0 means infinite (no damage will ever be taken)."/>
-								<xctk:IntegerUpDown x:Name="iudLandClaimOfflineDurabilityModifier" Grid.Column="6" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" Grid.Row="5" ToolTip="How much protected claim area block hardness is increased when a player is offline. 0 means infinite (no damage will ever be taken). Default is 32x"/>
-								<xctk:IntegerUpDown x:Name="iudAirDropFrequency" Grid.Column="6" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" Grid.Row="6" ToolTip="How often airdrop occur in game-hours, 0 == never"/>
-							</Grid>
-						</TabItem>
-					</TabControl>
-				</Grid>
-			</TabItem>
-			<TabItem Header="Administration" RenderTransformOrigin="0.5,0.5">
-				<Grid>
-					<TabControl>
-						<TabItem x:Name="tiPermissions" Header="Permissions">
-							<Grid Background="#FFE5E5E5">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="4*"/>
-									<ColumnDefinition Width="655*"/>
-									<ColumnDefinition Width="610*"/>
-									<ColumnDefinition Width="8*"/>
-								</Grid.ColumnDefinitions>
-								<Grid.RowDefinitions>
-									<RowDefinition Height="35*"/>
-									<RowDefinition Height="558*"/>
-								</Grid.RowDefinitions>
-								<ListBox HorizontalAlignment="Right" Margin="0,10,5,10" Grid.Row="1" Width="320" Grid.Column="1">
-									<ListBox.Effect>
-										<DropShadowEffect/>
-									</ListBox.Effect>
-								</ListBox>
-								<ListBox HorizontalAlignment="Left" Margin="5,10,0,10" Grid.Row="1" Width="320" Grid.Column="2">
-									<ListBox.Effect>
-										<DropShadowEffect/>
-									</ListBox.Effect>
-								</ListBox>
-								<Label Content="All Commands" HorizontalAlignment="Right" Margin="0,0,245,0" Width="80" Background="Black" Foreground="Black" Grid.Column="1" VerticalAlignment="Bottom"/>
-								<Label Content="Used Permissions" HorizontalAlignment="Left" Margin="5,0,0,0" Width="95" Background="Black" Foreground="Black" Grid.Column="2" Height="15.96" VerticalAlignment="Bottom"/>
-								<Button x:Name="btnAddCommand" Content="Add Command" Grid.Column="1" HorizontalAlignment="Left" Margin="550,15.084,0,0" VerticalAlignment="Top" Width="100"/>
-								<CheckBox x:Name="cbHideAssignedPermissions" Content="Hide Assigned" Grid.Column="1" HorizontalAlignment="Left" Margin="430,17.044,0,0" VerticalAlignment="Top" Foreground="Black"/>
-							</Grid>
-						</TabItem>
-						<TabItem x:Name="tiUsers" Header="Users" HorizontalAlignment="Right" Width="57.32" PreviewKeyUp="tiUsers_PreviewKeyUp">
-							<Grid Background="#FFE5E5E5" UseLayoutRounding="True">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="322*"/>
-									<ColumnDefinition Width="322*"/>
-									<ColumnDefinition Width="322*"/>
-									<ColumnDefinition Width="322*"/>
-								</Grid.ColumnDefinitions>
-								<Grid.RowDefinitions>
-									<RowDefinition Height="30*"/>
-									<RowDefinition Height="40*"/>
-									<RowDefinition Height="185*"/>
-									<RowDefinition Height="40*"/>
-									<RowDefinition Height="220*"/>
-									<RowDefinition Height="108*"/>
-								</Grid.RowDefinitions>
-								<Button Content="Add User" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="74" Grid.Row="5" Height="20"/>
-								<ListBox x:Name="lbAdmins" Margin="10,8.96,10,10" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Grid.RowSpan="4" Grid.Row="1" Grid.Column="1" AllowDrop="True" IsTextSearchEnabled="False" DragEnter="lbAdmin_DragEnter" Drop="lbAdmin_Drop" SelectionChanged="ListBoxSelectionChanged">
-									<ListBox.Effect>
-										<DropShadowEffect/>
-									</ListBox.Effect>
-									<ListBox.ItemTemplate>
-										<DataTemplate>
-											<Grid Width="288" Height="77">
-												<Grid.RowDefinitions>
-													<RowDefinition Height="16*"/>
-													<RowDefinition Height="18*"/>
-													<RowDefinition Height="26*"/>
-													<RowDefinition Height="17*"/>
-												</Grid.RowDefinitions>
-												<Grid.ColumnDefinitions>
-													<ColumnDefinition Width="77*"/>
-													<ColumnDefinition Width="212*"/>
-												</Grid.ColumnDefinitions>
-												<Image Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Source="{Binding AvatarUrl}" Grid.RowSpan="4" Stretch="Fill" />
-												<TextBlock Text="{Binding PersonaName}" Grid.Column="1" Height="16" VerticalAlignment="Bottom" Margin="5,0,0,0" />
-												<TextBlock Text="SteamID:" Grid.Column="1" Grid.Row="1" Margin="5,0,156,0" Height="17" VerticalAlignment="Bottom" />
-												<TextBlock Text="{Binding SteamID}" Grid.Column="1" Grid.Row="1" Margin="55,0,0,0" Height="17" VerticalAlignment="Bottom" />
+                                <CheckBox x:Name="cbEACEnabled" Content="CheckBox" Grid.Column="5" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" VerticalAlignment="Center" Width="18"/>
+                                <CheckBox x:Name="cbTelnetEnabled" Content="CheckBox" Grid.Column="5" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="18"/>
+                                <xctk:IntegerUpDown x:Name="iudTelnetPort" Grid.Column="5" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" Width="80" Height="24" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtTelnetPassword" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="3"/>
+                                <CheckBox x:Name="cbControlPanelEnabled" Content="CheckBox" Grid.Column="5" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="18"/>
+                                <xctk:IntegerUpDown x:Name="iudControlPanelPort" Grid.Column="5" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" Width="80" Height="24" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtControlPanelPassword" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="180" Grid.Row="6"/>
+                                <CheckBox x:Name="cbDisableNAT" Content="CheckBox" Grid.Column="5" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="7" VerticalAlignment="Center" Width="18"/>
 
-												<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,5" Grid.Row="2" TextWrapping="Wrap" Text="Permission Level:" VerticalAlignment="Center" Height="16" Width="97"/>
-												<xctk:IntegerUpDown Grid.Column="1" Margin="107,0,59,1" Grid.Row="2" Value="{Binding PermissionLevel}" />
-												<TextBlock Grid.Column="1" Margin="5,0,104,4" Grid.Row="3"><Hyperlink NavigateUri="{Binding ProfileUrl}" ><Run Text="View Steam Profile"/></Hyperlink></TextBlock>
 
-											</Grid>
-										</DataTemplate>
-									</ListBox.ItemTemplate>
-								</ListBox>
-								<ListBox x:Name="lbModerators" Margin="10,8.96,10,10" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Grid.RowSpan="4" Grid.Column="2" Grid.Row="1" AllowDrop="True" IsTextSearchEnabled="False" Drop="lbModerators_Drop" SelectionChanged="ListBoxSelectionChanged">
-									<ListBox.Effect>
-										<DropShadowEffect/>
-									</ListBox.Effect>
-									<ListBox.ItemTemplate>
-										<DataTemplate>
-											<Grid Width="288" Height="77">
-												<Grid.RowDefinitions>
-													<RowDefinition Height="16*"/>
-													<RowDefinition Height="18*"/>
-													<RowDefinition Height="26*"/>
-													<RowDefinition Height="17*"/>
-												</Grid.RowDefinitions>
-												<Grid.ColumnDefinitions>
-													<ColumnDefinition Width="77*"/>
-													<ColumnDefinition Width="212*"/>
-												</Grid.ColumnDefinitions>
-												<Image Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Source="{Binding AvatarUrl}" Grid.RowSpan="4" Stretch="Fill" />
-												<TextBlock Text="{Binding PersonaName}" Grid.Column="1" Height="16" VerticalAlignment="Bottom" Margin="5,0,0,0" />
-												<TextBlock Text="SteamID:" Grid.Column="1" Grid.Row="1" Margin="5,0,156,0" Height="17" VerticalAlignment="Bottom" />
-												<TextBlock Text="{Binding SteamID}" Grid.Column="1" Grid.Row="1" Margin="55,0,0,0" Height="17" VerticalAlignment="Bottom" />
 
-												<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,5" Grid.Row="2" TextWrapping="Wrap" Text="Permission Level:" VerticalAlignment="Center" Height="16" Width="97"/>
-												<xctk:IntegerUpDown Grid.Column="1" Margin="107,0,59,1" Grid.Row="2" Value="{Binding PermissionLevel}" />
-												<TextBlock Grid.Column="1" Margin="5,0,104,4" Grid.Row="3"><Hyperlink NavigateUri="{Binding ProfileUrl}" ><Run Text="View Steam Profile"/></Hyperlink></TextBlock>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Game">
+                            <Grid Margin="0,0,0,-1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="16*"/>
+                                    <ColumnDefinition Width="205*"/>
+                                    <ColumnDefinition Width="221*"/>
+                                    <ColumnDefinition Width="177*"/>
+                                    <ColumnDefinition Width="292*"/>
+                                    <ColumnDefinition Width="233*"/>
+                                    <ColumnDefinition Width="238*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="30*"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="Game World:" Margin="0,0,5,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" HorizontalAlignment="Right" Height="18" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Game Name:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="1" HorizontalAlignment="Right" Height="18" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Game Difficulty:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="2" HorizontalAlignment="Right" Height="18" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Game Mode:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="3" HorizontalAlignment="Right" Height="18" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Build Mode:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="4" HorizontalAlignment="Right" Height="18" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Day/Night Length:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="5" HorizontalAlignment="Right" Height="18" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Friendly Fire:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="7" HorizontalAlignment="Right" Height="18" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Persistant Player Profile:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="8" HorizontalAlignment="Right" Height="18" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Player Safe Zone Level:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="9" HorizontalAlignment="Right" Height="18" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Player Safe Zone Hours:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="10" HorizontalAlignment="Right" Height="15" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Night Percent:" Margin="0,0,10,0" VerticalAlignment="Center" Width="120" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="6" HorizontalAlignment="Right" Height="18" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Drop On Death:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" HorizontalAlignment="Right" Grid.Column="3" Height="18" FontWeight="Bold"/>
+                                <Label Content="Drop On Quit:" Margin="0,17.095,10,17.094" VerticalAlignment="Center" Width="120" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="1" HorizontalAlignment="Right" Grid.Column="3" Height="18" FontWeight="Bold"/>
+                                <Label Content="Craft Timer:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="2" HorizontalAlignment="Right" Grid.Column="3" Height="18" FontWeight="Bold"/>
+                                <Label Content="Loot Timer:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="3" HorizontalAlignment="Right" Grid.Column="3" Height="18" FontWeight="Bold"/>
+                                <Label Content="Enemey Senese Memory:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="4" HorizontalAlignment="Right" Grid.Column="3" Height="18" FontWeight="Bold"/>
+                                <Label Content="Enemy Spawn Mode:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="5" HorizontalAlignment="Right" Grid.Column="3" Height="18" FontWeight="Bold"/>
+                                <Label Content="Block Duribility Modifier:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="6" HorizontalAlignment="Right" Grid.Column="3" Height="18" FontWeight="Bold"/>
+                                <Label Content="Loot Abundance:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="7" HorizontalAlignment="Right" Grid.Column="3" Height="18" FontWeight="Bold"/>
+                                <Label Content="Loot Respawn Days:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="8" HorizontalAlignment="Right" Grid.Column="3" Height="18" FontWeight="Bold"/>
+                                <Label Content="Max Zombies Spawned:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="9" HorizontalAlignment="Right" Grid.Column="3" Height="18" FontWeight="Bold"/>
+                                <Label Content="Max Animals Spawned:" Margin="0,0,10,0" VerticalAlignment="Center" Width="120" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="10" HorizontalAlignment="Right" Grid.Column="3" Height="15" FontWeight="Bold"/>
+                                <Label Content="Land Claim Size:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" HorizontalAlignment="Right" Grid.Column="5" Height="18" FontWeight="Bold"/>
+                                <Label Content="Land Claim DeadZone:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="1" HorizontalAlignment="Right" Grid.Column="5" Height="18" FontWeight="Bold"/>
+                                <Label Content="Land Claim Expiry(e) Time:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="2" HorizontalAlignment="Right" Grid.Column="5" Height="18" FontWeight="Bold"/>
+                                <Label Content="Land Claim Decay Mode:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="3" HorizontalAlignment="Right" Grid.Column="5" Height="18" FontWeight="Bold"/>
+                                <Label Content="Land Claim Online Durability Modifier:" Margin="0,0,10,0" VerticalAlignment="Center" Width="215" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="4" HorizontalAlignment="Right" Grid.Column="5" Height="18" FontWeight="Bold"/>
+                                <Label Content="Land Claim Offline Durability Modifier:" Margin="0,0,10,0" VerticalAlignment="Center" Width="215" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="5" HorizontalAlignment="Right" Grid.Column="5" Height="18" FontWeight="Bold"/>
+                                <Label Content="AirDrop Frequency:" Margin="0,0,10,0" VerticalAlignment="Center" Width="142" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="Black" Grid.Row="6" HorizontalAlignment="Right" Grid.Column="5" Height="18" FontWeight="Bold"/>
 
-											</Grid>
-										</DataTemplate>
-									</ListBox.ItemTemplate>
-								</ListBox>
-								<ListBox x:Name="lbWhiteList" Margin="10,5,10,0" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Grid.Column="3" Grid.Row="2" AllowDrop="True" IsTextSearchEnabled="False" SelectionChanged="ListBoxSelectionChanged">
-									<ListBox.Effect>
-										<DropShadowEffect/>
-									</ListBox.Effect>
-									<ListBox.ItemTemplate>
-										<DataTemplate>
-											<Grid Width="288" Height="77">
-												<Grid.RowDefinitions>
-													<RowDefinition Height="16*"/>
-													<RowDefinition Height="18*"/>
-													<RowDefinition Height="26*"/>
-													<RowDefinition Height="17*"/>
-												</Grid.RowDefinitions>
-												<Grid.ColumnDefinitions>
-													<ColumnDefinition Width="77*"/>
-													<ColumnDefinition Width="212*"/>
-												</Grid.ColumnDefinitions>
-												<Image Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Source="{Binding AvatarUrl}" Grid.RowSpan="4" Stretch="Fill" />
-												<TextBlock Text="{Binding PersonaName}" Grid.Column="1" Height="16" VerticalAlignment="Bottom" Margin="5,0,0,0" />
-												<TextBlock Text="SteamID:" Grid.Column="1" Grid.Row="1" Margin="5,0,156,0" Height="17" VerticalAlignment="Bottom" />
-												<TextBlock Text="{Binding SteamID}" Grid.Column="1" Grid.Row="1" Margin="55,0,0,0" Height="17" VerticalAlignment="Bottom" />
+                                <ComboBox x:Name="cboGameWorld" Grid.Column="2" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" VerticalAlignment="Center" Width="205" ToolTip="Navezgane, MP Wasteland Horde, MP Wasteland Skirmish, MP Wasteland War, Random Gen" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="txtGameName" Grid.Column="2" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="205" Grid.Row="1" ToolTip="Whatever you want the game name to be THIS CONTROLS THE RANDOM GENERATION SEED" Grid.ColumnSpan="2"/>
+                                <xctk:IntegerUpDown x:Name="iudGameDifficulty" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="50" Maximum="4" Minimum="0" ToolTip="0 - 4, 0=easiest, 4=hardest" BorderThickness="1,0,1,1"/>
+                                <ComboBox x:Name="cboGameMode" Grid.Column="2" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="205" ToolTip="GameModeSurvivalMP, GameModeSurvivalSP (MP has land protection)" Grid.ColumnSpan="2"/>
+                                <CheckBox x:Name="cbBuildCreate" Content="CheckBox" Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="18" ToolTip="cheat mode on/off"/>
+                                <xctk:IntegerUpDown x:Name="iudDayNightLength" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="5" VerticalAlignment="Center" Width="50" Maximum="1440" Minimum="0" ToolTip="40 minutes (*Use 'Night Percentage' for further adjustment. Setting to max would be one real time day. )"/>
+                                <xctk:IntegerUpDown x:Name="iudNightPercentage" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="6" VerticalAlignment="Center" Width="50" Maximum="100" Minimum="0" ToolTip="percentage in whole numbers"/>
+                                <CheckBox x:Name="cbFriendlyFire" Content="CheckBox" Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="7" VerticalAlignment="Center" Width="18" ToolTip="Can friendly players damage each other (PvP)"/>
+                                <CheckBox x:Name="cbPersistentPlayerProfiles" Content="CheckBox" Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="10,0,0,0" Grid.Row="8" VerticalAlignment="Center" Width="18" ToolTip="If disabled a player can join with any selected profile. If true they will join with the last profile they joined with."/>
+                                <xctk:IntegerUpDown x:Name="iudPlayerSafeZoneLevel" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="9" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" ToolTip="If a player is less or equal this level he will create a safe zone (no enemies) when spawned"/>
+                                <xctk:IntegerUpDown x:Name="iudPlayerSafeZoneHours" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="10" VerticalAlignment="Center" Width="50" Maximum="8736" Minimum="0" ToolTip="Hours in world time this safe zone exists (Max is about a year.)"/>
+                                <ComboBox x:Name="cboDropOnDeath" Grid.Column="4" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" VerticalAlignment="Center" Width="205" ToolTip="0 = everything, 1 = toolbelt only, 2 = backpack only, 3 = delete all"/>
+                                <ComboBox x:Name="cboDropOnQuit" Grid.Column="4" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="205" ToolTip="0 = nothing, 1 = everything, 2 = toolbelt only, 3 = backpack only"/>
+                                <ComboBox x:Name="cboCraftTimer" Grid.Column="4" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="205" ToolTip="0 = None (instant), 1 = Normal, 2 = Fast (double speed)"/>
+                                <ComboBox x:Name="cboLootTimer" Grid.Column="4" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="205" ToolTip="0 = None (instant), 1 = Normal, 2 = Fast (double speed)"/>
+                                <xctk:IntegerUpDown x:Name="iudEnemySenseMemory" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="50" Maximum="604800" Minimum="0" ToolTip="Time, in seconds, that a zombie will pursue something that has been sensed.(*Note: Max is about a week)" Template="{DynamicResource IntegerUpDownControlTemplate}"/>
+                                <ComboBox x:Name="cboEnemySpawnMode" Grid.Column="4" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Grid.Row="5" VerticalAlignment="Center" Width="205" ToolTip="0 = Disabled 0%, 1 = Very Low 50%, 2 = Low 75%, 3 = Medium 100%, 4 = High 125%, 5 = Very High 150%"/>
+                                <xctk:IntegerUpDown x:Name="iudBlockDurabilityModifier" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="6" VerticalAlignment="Center" Width="50" Maximum="1000" Minimum="0" ToolTip="percentage in whole numbers" Increment="5"/>
+                                <xctk:IntegerUpDown x:Name="iudLootAbundance" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="7" VerticalAlignment="Center" Width="50" Maximum="999" Minimum="0" ToolTip="percentage in whole numbers"/>
+                                <xctk:IntegerUpDown x:Name="iudLootRespawnDays" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="8" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" ToolTip="days in whole numbers"/>
+                                <xctk:IntegerUpDown x:Name="iudMaxSpawnedZombies" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="9" VerticalAlignment="Center" Width="50" Maximum="512" Minimum="0" ToolTip="Making this number too large (more than about 80) may cause servers to run at poor framerates which will effect lag and play quality for clients."/>
+                                <xctk:IntegerUpDown x:Name="iudMaxSpawnedAnimals" Grid.Column="4" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" Grid.Row="10" VerticalAlignment="Center" Width="50" Maximum="1024" Minimum="0" ToolTip="If your server has a large number of players you can increase this limit to add more wildlife. Animals don't consume as much CPU as zombies. "/>
+                                <xctk:IntegerUpDown x:Name="iudLandClaimSize" Grid.Column="6" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" ToolTip="Size in blocks that is protected by a keystone"/>
+                                <xctk:IntegerUpDown x:Name="iudLandClaimDeadZone" Grid.Column="6" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" VerticalAlignment="Center" Width="50" Maximum="999" Minimum="0" Grid.Row="1" ToolTip="Keystones must be this many blocks apart (unless you are friends with the other player)"/>
+                                <xctk:IntegerUpDown x:Name="iudLandClaimExpiryTime" Grid.Column="6" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" Grid.Row="2" ToolTip="The number of days a player can be offline before their claims expire and are no longer protected"/>
+                                <ComboBox x:Name="cboLandClaimDecayMode" Grid.Column="6" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="205" ToolTip="Controls how offline players land claims decay. All claims have full protection for the first 24hrs. 0=Linear, 1=Exponential, 2=Full protection until claim is expired."/>
+                                <xctk:IntegerUpDown x:Name="iudLandClaimOnlineDurabilityModifier" Grid.Column="6" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" Grid.Row="4" ToolTip="How much protected claim area block hardness is increased when a player is online. 0 means infinite (no damage will ever be taken)."/>
+                                <xctk:IntegerUpDown x:Name="iudLandClaimOfflineDurabilityModifier" Grid.Column="6" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" Grid.Row="5" ToolTip="How much protected claim area block hardness is increased when a player is offline. 0 means infinite (no damage will ever be taken). Default is 32x"/>
+                                <xctk:IntegerUpDown x:Name="iudAirDropFrequency" Grid.Column="6" HorizontalAlignment="Left" Height="24" Margin="10,0,0,0" VerticalAlignment="Center" Width="50" Maximum="9999" Minimum="0" Grid.Row="6" ToolTip="How often airdrop occur in game-hours, 0 == never"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Administration" RenderTransformOrigin="0.5,0.5">
+                <Grid>
+                    <TabControl>
+                        <TabItem x:Name="tiPermissions" Header="Permissions">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="655*"/>
+                                    <ColumnDefinition Width="610*"/>
+                                    <ColumnDefinition Width="8*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="35*"/>
+                                    <RowDefinition Height="558*"/>
+                                </Grid.RowDefinitions>
+                                <ListBox HorizontalAlignment="Right" Margin="0,10,5,10" Grid.Row="1" Width="320" Grid.Column="1">
+                                    <ListBox.Effect>
+                                        <DropShadowEffect/>
+                                    </ListBox.Effect>
+                                </ListBox>
+                                <ListBox HorizontalAlignment="Left" Margin="5,10,0,10" Grid.Row="1" Width="320" Grid.Column="2">
+                                    <ListBox.Effect>
+                                        <DropShadowEffect/>
+                                    </ListBox.Effect>
+                                </ListBox>
+                                <Label Content="All Commands" HorizontalAlignment="Right" Margin="0,0,245,0" Width="80" Background="Black" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold"/>
+                                <Label Content="Used Permissions" HorizontalAlignment="Left" Margin="5,0,0,0" Width="95" Background="Black" Foreground="Black" Grid.Column="2" Height="15.96" VerticalAlignment="Center" FontWeight="Bold"/>
+                                <Button x:Name="btnAddCommand" Content="Add Command" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center" Width="100"/>
+                                <CheckBox x:Name="cbHideAssignedPermissions" Content="Hide Assigned" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,126,0" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tiUsers" Header="Users" HorizontalAlignment="Right" Width="57.32" PreviewKeyUp="tiUsers_PreviewKeyUp">
+                            <Grid Background="#FFE5E5E5" UseLayoutRounding="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="322*"/>
+                                    <ColumnDefinition Width="322*"/>
+                                    <ColumnDefinition Width="322*"/>
+                                    <ColumnDefinition Width="322*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="29*"/>
+                                    <RowDefinition Height="38*"/>
+                                    <RowDefinition Height="238*"/>
+                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="258*"/>
+                                    <RowDefinition Height="0*"/>
+                                </Grid.RowDefinitions>
+                                <ListBox x:Name="lbAdmins" Margin="10,9,10,2" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Grid.RowSpan="4" Grid.Row="1" Grid.Column="1" AllowDrop="True" IsTextSearchEnabled="False" DragEnter="lbAdmin_DragEnter" Drop="lb_Drop" SelectionChanged="ListBoxSelectionChanged">
+                                    <ListBox.Effect>
+                                        <DropShadowEffect/>
+                                    </ListBox.Effect>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="288" Height="77">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="16*"/>
+                                                    <RowDefinition Height="18*"/>
+                                                    <RowDefinition Height="26*"/>
+                                                    <RowDefinition Height="17*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="77*"/>
+                                                    <ColumnDefinition Width="212*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Source="{Binding AvatarUrl}" Grid.RowSpan="4" Stretch="Fill" />
+                                                <TextBlock Text="{Binding PersonaName}" Grid.Column="1" Height="16" VerticalAlignment="Bottom" Margin="5,0,0,0" />
+                                                <TextBlock Text="SteamID:" Grid.Column="1" Grid.Row="1" Margin="5,0,156,0" Height="17" VerticalAlignment="Bottom" />
+                                                <TextBlock Text="{Binding SteamID}" Grid.Column="1" Grid.Row="1" Margin="55,0,0,0" Height="17" VerticalAlignment="Bottom" />
 
-												<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,5" Grid.Row="2" TextWrapping="Wrap" Text="Permission Level:" VerticalAlignment="Center" Height="16" Width="97"/>
-												<xctk:IntegerUpDown Grid.Column="1" Margin="107,0,59,1" Grid.Row="2" Value="{Binding PermissionLevel}" />
-												<TextBlock Grid.Column="1" Margin="5,0,104,4" Grid.Row="3"><Hyperlink NavigateUri="{Binding ProfileUrl}" ><Run Text="View Steam Profile"/></Hyperlink></TextBlock>
+                                                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,5" Grid.Row="2" TextWrapping="Wrap" Text="Permission Level:" VerticalAlignment="Center" Height="16" Width="97"/>
+                                                <xctk:IntegerUpDown Grid.Column="1" Margin="107,0,59,1" Grid.Row="2" Value="{Binding PermissionLevel}" />
+                                                <TextBlock Grid.Column="1" Margin="5,0,104,4" Grid.Row="3"><Hyperlink NavigateUri="{Binding ProfileUrl}" ><Run Text="View Steam Profile"/></Hyperlink></TextBlock>
 
-											</Grid>
-										</DataTemplate>
-									</ListBox.ItemTemplate>
-								</ListBox>
-								<ListBox x:Name="lbBlackList" Margin="10,10,10,15" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Grid.Column="3" Grid.Row="4" AllowDrop="True" IsTextSearchEnabled="False" SelectionChanged="ListBoxSelectionChanged">
-									<ListBox.Effect>
-										<DropShadowEffect/>
-									</ListBox.Effect>                                    
-                                    <ListBox.ItemTemplate>                                        
-										<DataTemplate>                                            
-											<Grid Width="288" Height="77">
-												<Grid.RowDefinitions>
-													<RowDefinition Height="16*"/>
-													<RowDefinition Height="18*"/>
-													<RowDefinition Height="26*"/>
-													<RowDefinition Height="17*"/>
-												</Grid.RowDefinitions>
-												<Grid.ColumnDefinitions>
-													<ColumnDefinition Width="77*"/>
-													<ColumnDefinition Width="212*"/>
-												</Grid.ColumnDefinitions>
-												<Image Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Source="{Binding AvatarUrl}" Grid.RowSpan="4" Stretch="Fill" />
-												<TextBlock Text="{Binding PersonaName}" Grid.Column="1" Height="16" VerticalAlignment="Bottom" Margin="5,0,0,0" />
-												<TextBlock Text="SteamID:" Grid.Column="1" Grid.Row="1" Margin="5,0,156,0" Height="17" VerticalAlignment="Bottom" />
-												<TextBlock Text="{Binding SteamID}" Grid.Column="1" Grid.Row="1" Margin="55,0,0,0" Height="17" VerticalAlignment="Bottom" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox x:Name="lbModerators" Margin="10,9,10,2" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Grid.RowSpan="4" Grid.Column="2" Grid.Row="1" AllowDrop="True" IsTextSearchEnabled="False" Drop="lb_Drop" SelectionChanged="ListBoxSelectionChanged">
+                                    <ListBox.Effect>
+                                        <DropShadowEffect/>
+                                    </ListBox.Effect>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="288" Height="77">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="16*"/>
+                                                    <RowDefinition Height="18*"/>
+                                                    <RowDefinition Height="26*"/>
+                                                    <RowDefinition Height="17*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="77*"/>
+                                                    <ColumnDefinition Width="212*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Source="{Binding AvatarUrl}" Grid.RowSpan="4" Stretch="Fill" />
+                                                <TextBlock Text="{Binding PersonaName}" Grid.Column="1" Height="16" VerticalAlignment="Bottom" Margin="5,0,0,0" />
+                                                <TextBlock Text="SteamID:" Grid.Column="1" Grid.Row="1" Margin="5,0,156,0" Height="17" VerticalAlignment="Bottom" />
+                                                <TextBlock Text="{Binding SteamID}" Grid.Column="1" Grid.Row="1" Margin="55,0,0,0" Height="17" VerticalAlignment="Bottom" />
 
-												<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,5" Grid.Row="2" TextWrapping="Wrap" Text="Permission Level:" VerticalAlignment="Center" Height="16" Width="97"/>
-												<xctk:IntegerUpDown Grid.Column="1" Margin="107,0,59,1" Grid.Row="2" Value="{Binding PermissionLevel}" />
-												<TextBlock Grid.Column="1" Margin="5,0,104,4" Grid.Row="3"><Hyperlink NavigateUri="{Binding ProfileUrl}" ><Run Text="View Steam Profile"/></Hyperlink></TextBlock>
+                                                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,5" Grid.Row="2" TextWrapping="Wrap" Text="Permission Level:" VerticalAlignment="Center" Height="16" Width="97"/>
+                                                <xctk:IntegerUpDown Grid.Column="1" Margin="107,0,59,1" Grid.Row="2" Value="{Binding PermissionLevel}" />
+                                                <TextBlock Grid.Column="1" Margin="5,0,104,4" Grid.Row="3"><Hyperlink NavigateUri="{Binding ProfileUrl}" ><Run Text="View Steam Profile"/></Hyperlink></TextBlock>
 
-											</Grid>
-										</DataTemplate>
-									</ListBox.ItemTemplate>
-								</ListBox>
-								<ListBox x:Name="lbUsers" HorizontalAlignment="Left" Margin="10,10,0,10" Grid.RowSpan="4" Width="301.75" Grid.Row="1" PreviewMouseLeftButtonDown="lbUsers_PreviewMouseLeftButtonDown" MouseMove="lbUsers_MouseMove" SelectionChanged="ListBoxSelectionChanged">
-									<ListBox.Effect>
-										<DropShadowEffect/>
-									</ListBox.Effect>                                    
-									<ListBox.ItemTemplate>
-										<DataTemplate>
-											<Grid Width="288" Height="77">
-												<Grid.RowDefinitions>
-													<RowDefinition Height="16*"/>
-													<RowDefinition Height="18*"/>
-													<RowDefinition Height="26*"/>
-													<RowDefinition Height="17*"/>
-												</Grid.RowDefinitions>
-												<Grid.ColumnDefinitions>
-													<ColumnDefinition Width="77*"/>
-													<ColumnDefinition Width="212*"/>
-												</Grid.ColumnDefinitions>
-												<Image Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Source="{Binding AvatarUrl}" Grid.RowSpan="4" Stretch="Fill" />
-												<TextBlock Text="{Binding PersonaName}" Grid.Column="1" Height="16" VerticalAlignment="Bottom" Margin="5,0,0,0" />
-												<TextBlock Text="SteamID:" Grid.Column="1" Grid.Row="1" Margin="5,0,156,0" Height="17" VerticalAlignment="Bottom" />
-												<TextBlock Text="{Binding SteamID}" Grid.Column="1" Grid.Row="1" Margin="55,0,0,0" Height="17" VerticalAlignment="Bottom" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox x:Name="lbWhiteList" Margin="10,5,10,10" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Grid.Column="3" Grid.Row="2" AllowDrop="True" IsTextSearchEnabled="False" SelectionChanged="ListBoxSelectionChanged" Drop="lb_Drop">
+                                    <ListBox.Effect>
+                                        <DropShadowEffect/>
+                                    </ListBox.Effect>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="288" Height="77">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="16*"/>
+                                                    <RowDefinition Height="18*"/>
+                                                    <RowDefinition Height="26*"/>
+                                                    <RowDefinition Height="17*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="77*"/>
+                                                    <ColumnDefinition Width="212*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Source="{Binding AvatarUrl}" Grid.RowSpan="4" Stretch="Fill" />
+                                                <TextBlock Text="{Binding PersonaName}" Grid.Column="1" Height="16" VerticalAlignment="Bottom" Margin="5,0,0,0" />
+                                                <TextBlock Text="SteamID:" Grid.Column="1" Grid.Row="1" Margin="5,0,156,0" Height="17" VerticalAlignment="Bottom" />
+                                                <TextBlock Text="{Binding SteamID}" Grid.Column="1" Grid.Row="1" Margin="55,0,0,0" Height="17" VerticalAlignment="Bottom" />
 
-												<!--<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,5" Grid.Row="2" TextWrapping="Wrap" Text="Permission Level:" VerticalAlignment="Center" Height="16" Width="97"/>
+                                                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,5" Grid.Row="2" TextWrapping="Wrap" Text="Permission Level:" VerticalAlignment="Center" Height="16" Width="97"/>
+                                                <xctk:IntegerUpDown Grid.Column="1" Margin="107,0,59,1" Grid.Row="2" Value="{Binding PermissionLevel}" />
+                                                <TextBlock Grid.Column="1" Margin="5,0,104,4" Grid.Row="3"><Hyperlink NavigateUri="{Binding ProfileUrl}" ><Run Text="View Steam Profile"/></Hyperlink></TextBlock>
+
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox x:Name="lbBlackList" Margin="10,10,10,2" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Grid.Column="3" Grid.Row="4" AllowDrop="True" IsTextSearchEnabled="False" SelectionChanged="ListBoxSelectionChanged" Drop="lb_Drop">
+                                    <ListBox.Effect>
+                                        <DropShadowEffect/>
+                                    </ListBox.Effect>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="288" Height="77">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="16*"/>
+                                                    <RowDefinition Height="18*"/>
+                                                    <RowDefinition Height="26*"/>
+                                                    <RowDefinition Height="17*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="77*"/>
+                                                    <ColumnDefinition Width="212*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Source="{Binding AvatarUrl}" Grid.RowSpan="4" Stretch="Fill" />
+                                                <TextBlock Text="{Binding PersonaName}" Grid.Column="1" Height="16" VerticalAlignment="Bottom" Margin="5,0,0,0" />
+                                                <TextBlock Text="SteamID:" Grid.Column="1" Grid.Row="1" Margin="5,0,156,0" Height="17" VerticalAlignment="Bottom" />
+                                                <TextBlock Text="{Binding SteamID}" Grid.Column="1" Grid.Row="1" Margin="55,0,0,0" Height="17" VerticalAlignment="Bottom" />
+
+                                                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,5" Grid.Row="2" TextWrapping="Wrap" Text="Permission Level:" VerticalAlignment="Center" Height="16" Width="97"/>
+                                                <xctk:IntegerUpDown Grid.Column="1" Margin="107,0,59,1" Grid.Row="2" Value="{Binding PermissionLevel}" />
+                                                <TextBlock Grid.Column="1" Margin="5,0,104,4" Grid.Row="3"><Hyperlink NavigateUri="{Binding ProfileUrl}" ><Run Text="View Steam Profile"/></Hyperlink></TextBlock>
+
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox x:Name="lbUsers" Margin="10,10,7,2" Grid.RowSpan="4" Grid.Row="1" PreviewMouseLeftButtonDown="lbUsers_PreviewMouseLeftButtonDown" MouseMove="lbUsers_MouseMove" SelectionChanged="ListBoxSelectionChanged">
+                                    <ListBox.Effect>
+                                        <DropShadowEffect/>
+                                    </ListBox.Effect>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="288" Height="77">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="16*"/>
+                                                    <RowDefinition Height="18*"/>
+                                                    <RowDefinition Height="26*"/>
+                                                    <RowDefinition Height="17*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="77*"/>
+                                                    <ColumnDefinition Width="212*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Source="{Binding AvatarUrl}" Grid.RowSpan="4" Stretch="Fill" />
+                                                <TextBlock Text="{Binding PersonaName}" Grid.Column="1" Height="16" VerticalAlignment="Bottom" Margin="5,0,0,0" />
+                                                <TextBlock Text="SteamID:" Grid.Column="1" Grid.Row="1" Margin="5,0,156,0" Height="17" VerticalAlignment="Bottom" />
+                                                <TextBlock Text="{Binding SteamID}" Grid.Column="1" Grid.Row="1" Margin="55,0,0,0" Height="17" VerticalAlignment="Bottom" />
+
+                                                <!--<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,5" Grid.Row="2" TextWrapping="Wrap" Text="Permission Level:" VerticalAlignment="Center" Height="16" Width="97"/>
 												<xctk:IntegerUpDown Grid.Column="1" Margin="107,0,59,1" Grid.Row="2" Value="{Binding PermissionLevel}" />-->
-												<TextBlock Grid.Column="1" Margin="5,0,104,4" Grid.Row="3"><Hyperlink NavigateUri="{Binding ProfileUrl}" ><Run Text="View Steam Profile"/></Hyperlink></TextBlock>
+                                                <TextBlock Grid.Column="1" Margin="5,0,104,4" Grid.Row="3"><Hyperlink NavigateUri="{Binding ProfileUrl}" ><Run Text="View Steam Profile"/></Hyperlink></TextBlock>
 
-											</Grid>
-										</DataTemplate>
-									</ListBox.ItemTemplate>
-								</ListBox>
-								<Label Content="White List" Grid.Column="3" Margin="10,0" Grid.Row="1" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black"/>
-								<Label Content="Black List" Grid.Column="3" Margin="10,5,10,0" Grid.Row="3" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black"/>
-								<Label Content="Users" Margin="10,0,276,0" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black"/>
-								<Label Content="Administrators" Margin="10,0" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" Grid.Column="1"/>
-								<Label Content="Moderators" Margin="10,0" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" Grid.Column="2"/>
-								<Button x:Name="btnRefreshSteam" Content="Refresh All Steam Details" HorizontalAlignment="Left" Margin="48.75,6.021,0,0" VerticalAlignment="Top" Width="240" Click="btnRefreshSteam_Click" Height="20" Grid.Column="3"/>
-								<CheckBox x:Name="cbHideAssignedUsers" Content="Hide Assigned" HorizontalAlignment="Left" Margin="48,8,0,0" VerticalAlignment="Top" Foreground="Black" Click="cbHideAssignedUsers_Click"/>
-								<Button x:Name="btnAddUser" Content="Add User" HorizontalAlignment="Left" Margin="234,7,0,0" VerticalAlignment="Top" Width="75"/>
-							</Grid>
-						</TabItem>
-					</TabControl>
-				</Grid>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <Label Content="White List" Grid.Column="3" Margin="10,0" Grid.Row="1" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" FontWeight="Bold"/>
+                                <Label Content="Black List" Grid.Column="3" Margin="10,0" Grid.Row="3" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" FontWeight="Bold"/>
+                                <Label Content="All Users" Margin="13,0,0,0" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <Label Content="Administrators" Margin="10,0" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" Grid.Column="1" FontWeight="Bold"/>
+                                <Label Content="Moderators" Margin="10,0,0,0" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <Button x:Name="btnRefreshSteam" Content="Refresh All Steam Details" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Width="240" Click="btnRefreshSteam_Click" Height="20" Grid.Column="3"/>
+                                <CheckBox x:Name="cbHideAssignedUsers" Content="Hide Assigned" HorizontalAlignment="Right" Margin="0,0,110,0" VerticalAlignment="Center" Foreground="Black" Click="cbHideAssignedUsers_Click" Height="16" Width="102" FontWeight="Bold"/>
+                                <Button x:Name="btnAddUser" Content="Add User" Margin="0,6,10,5" VerticalAlignment="Center" Click="btnAddUser_Click" Height="18" HorizontalAlignment="Right" Width="70"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
 
-			</TabItem>
+            </TabItem>
 
-		</TabControl>
-	</Grid>
+        </TabControl>
+    </Grid>
 </Page>

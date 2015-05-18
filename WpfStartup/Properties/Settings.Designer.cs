@@ -79,5 +79,28 @@ namespace SevenDaysConfigUI.Properties {
                 this["Users"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool HideAssignedUsers {
+            get {
+                return ((bool)(this["HideAssignedUsers"]));
+            }
+            set {
+                this["HideAssignedUsers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Commands {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Commands"]));
+            }
+            set {
+                this["Commands"] = value;
+            }
+        }
     }
 }
