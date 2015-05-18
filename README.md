@@ -24,6 +24,34 @@ The UI controls are mostly self validating. In the case where free text is allow
 
 Any time a file is saved, it is then reloaded into the UI. The message in the status does not reflect the reload. This is intentional.
 
+Configuration:
+This set of tabs is pretty straight forward. The UI elements coorespond to a property of the selected configuration file. Direct binding of the elements to the ui ensures validation.
+
+The tab has two sub-tabs that group the configuration file properties into two sections. Those that apply to the server, and those that apply to the game.
+
+Administration:
+The operation of this section is a little less straight forward. The system is simple, but requires some knowledge of how the systems works.
+
+First, there is a finite list of commands that are allowed to be executed in the in-game console. These permissions can be assigned an integer value. If the player has a permission level value that is equal to or less that the value of the permission, the player may execute the command.
+
+Second, the system allow for groups. I am not sure if the permission levels are really any different. Placing a player in the Admin role, then giving them a permission level of 999 (basicaly nothing) would make them a poor admin, but is probably allowed.
+
+So, I think you will need to apply your own ranking system and set ranges according to how you think they will best apply.
+
+For example, you may allow admins to do everything, so they can havea narrow range. We will say they are level 0. Admins might have greater range. So you may have a chief moderator who can also do everything. You would want to give him a 1, and set all permissions to level 1. Then admins aand the chief are both covered. Then you can begin allowing less dangerous commands to be run by others who have a higher moderator rank(which is actually less permissive).
+
+The admin tab is divided again into two sub-tabs. 
+
+The Permissions tab holds two lists. 
+Default commands:
+The default commands offered in the admin file when the dedicated server is installed (by default), and the commands that are currently active in the loaded admin file. Items can be removed from and added to the default list. The default list will be persistant and new commands found in an admin file will be added automatically. The list will have a filter to hide items that are already in the current command list.
+
+Current Commands:
+In the list of current commands, you can assign their permssion level though an integer updown control.  Items not already in the current list can be placed there by drag/drop. 
+
+
+Users Tab:
+A list of default users is maintained by the system (user setting). It will be populated by any new users encountered in an admin file, or by adding a user through th UI. Users can also be removed. 
 
 
 
