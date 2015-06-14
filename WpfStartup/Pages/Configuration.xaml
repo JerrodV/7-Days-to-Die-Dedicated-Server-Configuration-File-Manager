@@ -58,7 +58,7 @@
             <Button x:Name="btnBrowseAdminPath" Content="Browse Path" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" HorizontalContentAlignment="Center" Grid.Row="1" Click="btnBrowseAdminPath_Click" Grid.Column="4" />
             <Button x:Name="btnLoadAll" Content="Load Selected Files" Grid.Column="1" Margin="0,0,10,0" Grid.Row="2" Height="33" HorizontalAlignment="Right" VerticalAlignment="Center" Width="317" Click="btnLoadAll_Click"/>
             <Button x:Name="btnLoadAdmin" Content="Load Admin" Grid.Column="5" HorizontalAlignment="Center" Margin="0" Width="75" Height="20" VerticalAlignment="Center" Grid.Row="1" Click="btnLoadAdmin_Click"/>
-            <Button x:Name="btnSaveAdmin" Content="Save Admin" Grid.Column="7" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" Click="btnSaveConfig_Click" Grid.Row="1"/>
+            <Button x:Name="btnSaveAdmin" Content="Save Admin" Grid.Column="7" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" Grid.Row="1" Click="btnSaveAdmin_Click"/>
             <Label x:Name="lblAdminPath" Content="n/a" Height="44" VerticalAlignment="Center" VerticalContentAlignment="Center" Foreground="Black" Grid.Column="1" Margin="10,0" Grid.Row="1" Grid.ColumnSpan="2"/>
             <Label x:Name="lblConfigPath" Content="n/a" Height="44" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,0" Foreground="Black" Grid.Column="1" Grid.ColumnSpan="2"/>
             <Button x:Name="btnClearConfigPath" Content="Clear Path" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Height="20" HorizontalContentAlignment="Center" Grid.Column="3" Click="btnClearConfigPath_Click" />
@@ -68,7 +68,7 @@
             <Button x:Name="btnSaveAll" Content="Save Selected Files" Grid.Column="2" Margin="10,0,0,0" Grid.Row="2" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Width="318" Click="btnLoadAll_Click" Grid.ColumnSpan="3"/>
         </Grid>
         <TabControl x:Name="tcFileSelect" Grid.ColumnSpan="5" Grid.Column="1" Margin="0" Grid.Row="3">
-            <TabItem Header="Configuration">
+            <TabItem x:Name="tabConfiguration" Header="Configuration">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="19*"/>
@@ -229,7 +229,7 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="Administration" RenderTransformOrigin="0.5,0.5">
+            <TabItem x:Name="tabAdministration" Header="Administration">
                 <Grid>
                     <TabControl>
                         <TabItem x:Name="tiPermissions" Header="Permissions">
@@ -242,22 +242,60 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="35*"/>
-                                    <RowDefinition Height="558*"/>
+                                    <RowDefinition Height="459*"/>
+                                    <RowDefinition Height="99*"/>
                                 </Grid.RowDefinitions>
-                                <ListBox HorizontalAlignment="Right" Margin="0,10,5,10" Grid.Row="1" Width="320" Grid.Column="1">
+                                <ListBox x:Name="lbDefaultPermissions" HorizontalAlignment="Right" Margin="0,10,5,10" Grid.Row="1" Width="320" Grid.Column="1" Grid.RowSpan="2" SelectionChanged="ListBoxSelectionChanged">
                                     <ListBox.Effect>
                                         <DropShadowEffect/>
                                     </ListBox.Effect>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="280" Height="Auto" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="4*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="4*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="Command:" Grid.Row="1" Margin="0" />
+                                                <TextBlock x:Name="tbCommand" Grid.Row="1" Margin="66,0,0,0" VerticalAlignment="Bottom" Text="{Binding Command}" />
+                                                <TextBlock x:Name="tbCommandDescription" Grid.Row="2" VerticalAlignment="Top" Text="{Binding PermissionDescription}" TextWrapping="Wrap" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
                                 </ListBox>
-                                <ListBox HorizontalAlignment="Left" Margin="5,10,0,10" Grid.Row="1" Width="320" Grid.Column="2">
+                                <ListBox x:Name="lbCurrentPermissions" HorizontalAlignment="Left" Margin="5,10,0,10" Grid.Row="1" Width="320" Grid.Column="2" Grid.RowSpan="2" SelectionChanged="ListBoxSelectionChanged">
                                     <ListBox.Effect>
                                         <DropShadowEffect/>
                                     </ListBox.Effect>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="280" Height="Auto" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="3*"/>
+                                                    <RowDefinition Height="3*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="3*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="Command:" Grid.Row="1" Margin="0" />
+                                                <TextBlock x:Name="tbCommand" Grid.Row="1" Margin="66,0,0,0" VerticalAlignment="Bottom" Text="{Binding Command}" />
+                                                <TextBlock Text="Permission Level:" Grid.Row="2" Margin="0" />
+                                                <xctk:IntegerUpDown x:Name="iudPermissionLevel" Grid.Row="2" Margin="92,0,140,0" Value="{Binding PermissionLevel}"/>
+                                                <TextBlock x:Name="tbCommandDescription" Grid.Row="3" VerticalAlignment="Top" Text="{Binding PermissionDescription}" TextWrapping="Wrap" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
                                 </ListBox>
-                                <Label Content="All Commands" HorizontalAlignment="Right" Margin="0,0,245,0" Width="80" Background="Black" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold"/>
-                                <Label Content="Used Permissions" HorizontalAlignment="Left" Margin="5,0,0,0" Width="95" Background="Black" Foreground="Black" Grid.Column="2" Height="15.96" VerticalAlignment="Center" FontWeight="Bold"/>
-                                <Button x:Name="btnAddCommand" Content="Add Command" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center" Width="100"/>
-                                <CheckBox x:Name="cbHideAssignedPermissions" Content="Hide Assigned" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,126,0" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold"/>
+                                <Label Content="All Commands" HorizontalAlignment="Right" Margin="0,10,245,9" Width="80" Background="Black" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold"/>
+                                <Label Content="Used Permissions" HorizontalAlignment="Left" Margin="5,10,0,10" Width="95" Background="Black" Foreground="Black" Grid.Column="2" Height="15" VerticalAlignment="Center" FontWeight="Bold"/>
+                                <Button x:Name="btnAddCommand" Content="Add Command" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,5,9" VerticalAlignment="Center" Width="100"/>
+                                <CheckBox x:Name="cbHideAssignedPermissions" Content="Hide Assigned" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,126,9" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold" />
                             </Grid>
                         </TabItem>
                         <TabItem x:Name="tiUsers" Header="Users" HorizontalAlignment="Right" Width="57.32" PreviewKeyUp="tiUsers_PreviewKeyUp">
@@ -269,11 +307,11 @@
                                     <ColumnDefinition Width="322*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="29*"/>
-                                    <RowDefinition Height="38*"/>
-                                    <RowDefinition Height="238*"/>
-                                    <RowDefinition Height="30*"/>
-                                    <RowDefinition Height="258*"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="17*"/>
+                                    <RowDefinition Height="119*"/>
+                                    <RowDefinition Height="15*"/>
+                                    <RowDefinition Height="129*"/>
                                     <RowDefinition Height="0*"/>
                                 </Grid.RowDefinitions>
                                 <ListBox x:Name="lbAdmins" Margin="10,9,10,2" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Grid.RowSpan="4" Grid.Row="1" Grid.Column="1" AllowDrop="True" IsTextSearchEnabled="False" DragEnter="lbAdmin_DragEnter" Drop="lb_Drop" SelectionChanged="ListBoxSelectionChanged">
@@ -389,7 +427,7 @@
                                                 <TextBlock Text="{Binding SteamID}" Grid.Column="1" Grid.Row="1" Margin="55,0,0,0" Height="17" VerticalAlignment="Bottom" />
 
                                                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,5" Grid.Row="2" TextWrapping="Wrap" Text="Permission Level:" VerticalAlignment="Center" Height="16" Width="97"/>
-                                                <xctk:IntegerUpDown Grid.Column="1" Margin="107,0,59,1" Grid.Row="2" Value="{Binding PermissionLevel}" />
+                                                <xctk:DateTimePicker Grid.Column="1" Margin="107,0,0,0" Grid.Row="2" Value="{Binding UnBanDate, BindsDirectlyToSource=True}" />
                                                 <TextBlock Grid.Column="1" Margin="5,0,104,4" Grid.Row="3"><Hyperlink NavigateUri="{Binding ProfileUrl}" ><Run Text="View Steam Profile"/></Hyperlink></TextBlock>
 
                                             </Grid>
@@ -428,12 +466,12 @@
                                 </ListBox>
                                 <Label Content="White List" Grid.Column="3" Margin="10,0" Grid.Row="1" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" FontWeight="Bold"/>
                                 <Label Content="Black List" Grid.Column="3" Margin="10,0" Grid.Row="3" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" FontWeight="Bold"/>
-                                <Label Content="All Users" Margin="13,0,0,0" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <Label Content="All Users" Margin="13,8,0,9" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Height="16" Width="49"/>
                                 <Label Content="Administrators" Margin="10,0" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" Grid.Column="1" FontWeight="Bold"/>
-                                <Label Content="Moderators" Margin="10,0,0,0" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                                <Button x:Name="btnRefreshSteam" Content="Refresh All Steam Details" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Width="240" Click="btnRefreshSteam_Click" Height="20" Grid.Column="3"/>
-                                <CheckBox x:Name="cbHideAssignedUsers" Content="Hide Assigned" HorizontalAlignment="Right" Margin="0,0,110,0" VerticalAlignment="Center" Foreground="Black" Click="cbHideAssignedUsers_Click" Height="16" Width="102" FontWeight="Bold"/>
-                                <Button x:Name="btnAddUser" Content="Add User" Margin="0,6,10,5" VerticalAlignment="Center" Click="btnAddUser_Click" Height="18" HorizontalAlignment="Right" Width="70"/>
+                                <Label Content="Moderators" Margin="10,8,0,9" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="Black" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Height="16" Width="66"/>
+                                <Button x:Name="btnRefreshSteam" Content="Refresh All Steam Details" HorizontalAlignment="Right" Margin="0,6,10,7" VerticalAlignment="Center" Width="240" Click="btnRefreshSteam_Click" Height="20" Grid.Column="3"/>
+                                <CheckBox x:Name="cbHideAssignedUsers" Content="Hide Assigned" HorizontalAlignment="Right" Margin="0,8,110,9" VerticalAlignment="Center" Foreground="Black" Click="cbHideAssignedUsers_Click" Height="16" Width="102" FontWeight="Bold"/>
+                                <Button x:Name="btnAddUser" Content="Add User" Margin="0,8,10,7" VerticalAlignment="Center" Click="btnAddUser_Click" Height="18" HorizontalAlignment="Right" Width="70"/>
                             </Grid>
                         </TabItem>
                     </TabControl>

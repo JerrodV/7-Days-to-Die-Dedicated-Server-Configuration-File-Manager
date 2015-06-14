@@ -1106,8 +1106,7 @@ namespace SevenDaysConfigUI.Models
         {
             errors = new List<Exception>();
             try
-            {
-                ServerConfig retVal = new ServerConfig();
+            {               
                 XmlDocument doc = this.Document;
                 doc.PreserveWhitespace = true;
                 XmlNode baseNode = doc.SelectSingleNode("ServerSettings");

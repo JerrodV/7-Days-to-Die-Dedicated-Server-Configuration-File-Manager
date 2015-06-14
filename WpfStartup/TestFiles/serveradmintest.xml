@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
 This file holds the settings for who is banned, whitelisted,
 admins, moderators, and server command permissions.
@@ -21,46 +21,41 @@ COMMAND PERMISSIONS INSTRUCTIONS:
 cmd : This is the command name, any command not in this list will not be usable by anyone but the server.
 permission level : 0-1000, a user may run any command equal to or above their permission level.
 -->
-
 <adminTools>
-<admins>
-<admin steamID="76561197971242003" permission_level="1" />
-<admin steamID="76561198025636904" permission_level="0" />
-</admins>
-
-<moderators>
-<!-- <moderator steamID="" permission_level="1" /> -->
-</moderators>
-
-<permissions>
-<!-- <permission cmd="dm" permission_level="0" /> -->
-<!-- <permission cmd="kick" permission_level="1" /> -->
-<!-- <permission cmd="ban" permission_level="1" /> -->
-<permission cmd="dm" permission_level="0" />
-<permission cmd="se" permission_level="0" />
-<permission cmd="mem" permission_level="0" />
-<permission cmd="admin" permission_level="0" />
-<permission cmd="mod" permission_level="0" />
-<permission cmd="cp" permission_level="0" />
-<permission cmd="say" permission_level="0" />
-<permission cmd="shutdown" permission_level="0" />
-<permission cmd="st" permission_level="0" />
-<permission cmd="le" permission_level="0" />
-<permission cmd="cc" permission_level="0" />
-<permission cmd="kick" permission_level="1" />
-<permission cmd="ban" permission_level="1" />
-<permission cmd="lp" permission_level="1" />
-</permissions>
-
-<!-- ONLY PUT ITEMS IN WHITELIST IF YOU WANT WHITELIST ONLY ENABLED!!! -->
-<!-- If there are any items in the whitelist, the whitelist only mode is enabled -->
-<!-- Nobody can join that ISN'T in the whitelist once whitelist only mode is enabled -->
-
-<whitelist>
-<!-- <whitelisted steamID="" permission_level="" /> -->
-</whitelist>
-
-<blacklist>
-<!-- <blacklisted steamID="" unbandate="" /> -->
-</blacklist>
+  <admins>
+		<admin steamID="76561197971242003" permission_level="1" />
+	</admins>
+  <moderators>
+    <!-- <moderator steamID="" permission_level="1" /> -->
+		<moderator steamID="76561198025636904" permission_level="0" />
+	</moderators>
+  <permissions>
+    <!-- <permission cmd="dm" permission_level="0" /> -->
+    <!-- <permission cmd="kick" permission_level="1" /> -->
+    <!-- <permission cmd="ban" permission_level="1" /> -->
+		<permission cmd="dm" permission_level="0" />
+		<permission cmd="se" permission_level="0" />
+		<permission cmd="mem" permission_level="0" />
+		<permission cmd="admin" permission_level="0" />
+		<permission cmd="mod" permission_level="0" />
+		<permission cmd="cp" permission_level="0" />
+		<permission cmd="say" permission_level="0" />
+		<permission cmd="shutdown" permission_level="0" />
+		<permission cmd="st" permission_level="0" />
+		<permission cmd="le" permission_level="0" />
+		<permission cmd="cc" permission_level="0" />
+		<permission cmd="kick" permission_level="1" />
+		<permission cmd="ban" permission_level="1" />
+		<permission cmd="lp" permission_level="1" />
+	</permissions>
+  <!-- ONLY PUT ITEMS IN WHITELIST IF YOU WANT WHITELIST ONLY ENABLED!!! -->
+  <!-- If there are any items in the whitelist, the whitelist only mode is enabled -->
+  <!-- Nobody can join that ISN'T in the whitelist once whitelist only mode is enabled -->
+  <whitelist>
+    <!-- <whitelisted steamID="" permission_level="" /> -->
+		</whitelist>
+  <blacklist>
+    <!-- <blacklisted steamID="" unbandate="" /> -->
+		<blacklisted steamID="76561197986376432" unbandate="11/26/2015 12:00 PM" />
+	</blacklist>
 </adminTools>

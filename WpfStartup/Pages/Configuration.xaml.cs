@@ -152,10 +152,12 @@ namespace SevenDaysConfigUI.Pages
         Boolean hideAssignedUsers;
         #endregion
 
-
+        List<UserPermission> defaultPermissions;
        
         #endregion
-
+        /// <summary>
+        /// 
+        /// </summary>
         public Configuration()
         {
             InitializeComponent();
@@ -233,6 +235,7 @@ namespace SevenDaysConfigUI.Pages
             Helpers.Bindings.BindCheckbox(cbHideAssignedUsers, "Value", Properties.Settings.Default.HideAssignedUsers);
             cbHideAssignedUsers.IsChecked = Properties.Settings.Default.HideAssignedUsers;
             ConfigureListUsers();
+            LoadDefaultPermissions();
         }
 
         #region FilePaths
@@ -564,28 +567,48 @@ namespace SevenDaysConfigUI.Pages
             admin.Moderators.ForEach(x => checkAddDefaultUser(x));
             admin.WhiteList.ForEach(x => checkAddDefaultUser(x));
             admin.BlackList.ForEach(x => checkAddDefaultUser(x));
-
+            SaveDefaultUsers();
             bindAdminLists();
         }
 
         private void bindAdminLists()
         {
             //Now, bind all of the list boxes to their respective collections.
+            lbUsers.ItemsSource = null;
             lbUsers.ItemsSource = defaultUsers;
             lbUsers.IsSynchronizedWithCurrentItem = true;
             ConfigureListUsers();
 
+            lbAdmins.ItemsSource = null;
             lbAdmins.ItemsSource = admin.Administration;
             lbAdmins.IsSynchronizedWithCurrentItem = true;
 
+            lbModerators.ItemsSource = null;
             lbModerators.ItemsSource = admin.Moderators;
             lbModerators.IsSynchronizedWithCurrentItem = true;
 
+            lbWhiteList.ItemsSource = null;
             lbWhiteList.ItemsSource = admin.WhiteList;
             lbWhiteList.IsSynchronizedWithCurrentItem = true;
 
+            lbBlackList.ItemsSource = null;
             lbBlackList.ItemsSource = admin.BlackList;
             lbBlackList.IsSynchronizedWithCurrentItem = true;
+
+            foreach (UserPermission perm in admin.Permissions)
+            {
+                foreach (UserPermission def in defaultPermissions)
+                {
+                    if (perm.Command == def.Command)
+                    {
+                        perm.PermissionDescription = def.PermissionDescription;
+                        break;
+                    }
+                }
+            }
+            lbCurrentPermissions.ItemsSource = null;
+            lbCurrentPermissions.ItemsSource = admin.Permissions;
+            lbCurrentPermissions.IsSynchronizedWithCurrentItem = true;
         }
 
         private void checkAddDefaultUser(SteamUser user)
@@ -598,8 +621,7 @@ namespace SevenDaysConfigUI.Pages
                 }
             }
 
-            defaultUsers.Add(user);
-            SaveDefaultUsers();
+            defaultUsers.Add(user);            
         }
 
         private void cbHideAssignedUsers_Click(object sender, RoutedEventArgs e)
@@ -712,7 +734,7 @@ namespace SevenDaysConfigUI.Pages
         {
             if (!SaveConfigBW.IsBusy)
             {
-                if (Validator.IsValid(this))
+                if (Validator.IsValid(this.tabConfiguration))
                 {
                     manageProgress(true, "Saving Configuration");
                     SaveConfigBW = new BackgroundWorker();
@@ -736,6 +758,7 @@ namespace SevenDaysConfigUI.Pages
             DateTime sT = DateTime.Now;
             configuration.Save(this.ConfigPath, out errors);
             TimeSpan ts = DateTime.Now - sT;
+            //Make sure the progress bar stays up at least 1 second
             int timeout = (1000 - ((int)ts.TotalMilliseconds));
             if (timeout > 0)
             {
@@ -762,6 +785,56 @@ namespace SevenDaysConfigUI.Pages
                 
 
         #region Administration
+        private void btnSaveAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            if (!SaveAdminBW.IsBusy)
+            {
+                if (Validator.IsValid(this.tabAdministration))
+                {
+                    manageProgress(true, "Saving Administration");
+                    SaveAdminBW = new BackgroundWorker();
+                    SaveAdminBW.RunWorkerCompleted += SaveAdminBW_RunWorkerCompleted;
+                    SaveAdminBW.DoWork += SaveAdminBW_DoWork;
+                    SaveAdminBW.RunWorkerAsync();
+                }
+                else
+                {
+                    Helpers.MainWindow.ShowModal(new Helpers.Validation.ValidationError("Please correct the configuration errors before attempting to save."));
+                }
+            }
+            else
+            {
+                Helpers.MainWindow.ShowModal(new Helpers.Validation.ValidationError("Saving...Please wait."));
+            }
+        }
+
+        void SaveAdminBW_DoWork(object sender, DoWorkEventArgs e)
+        {
+            DateTime sT = DateTime.Now;
+            admin.Save(this.AdminPath, out errors);
+            TimeSpan ts = DateTime.Now - sT;
+            //Make sure the progress bar stays up at least 1 second
+            int timeout = (1000 - ((int)ts.TotalMilliseconds));
+            if (timeout > 0)
+            {
+                Thread.Sleep(timeout);
+            }
+        }
+
+        void SaveAdminBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            manageProgress(false);
+            if (this.errors.Count > 0)
+            {
+                Helpers.MainWindow.ShowModal(new ErrorViewer(errors));
+                this.errors.Clear();
+            }
+            else
+            {
+                Helpers.MainWindow.SetStatus("Administration Saved", 5000);
+                LoadAdminAsync();
+            }
+        }
         #endregion
         #endregion
 
@@ -893,6 +966,12 @@ namespace SevenDaysConfigUI.Pages
                 case "lbBlackList":
                     lbBlackList.SelectedIndex = selectedIndex;
                     break;
+                case "lbDefaultPermissions":
+                    lbDefaultPermissions.SelectedIndex = selectedIndex;
+                    break;
+                case "lbCurrentPermissions":
+                    lbCurrentPermissions.SelectedIndex = selectedIndex;
+                    break;
             }
             lb.SelectionChanged += ListBoxSelectionChanged;
         }
@@ -903,6 +982,14 @@ namespace SevenDaysConfigUI.Pages
             lbModerators.SelectedIndex = -1;
             lbWhiteList.SelectedIndex = -1;
             lbBlackList.SelectedIndex = -1;
+            lbDefaultPermissions.SelectedIndex = -1;
+            lbCurrentPermissions.SelectedIndex = -1;
+        }
+
+        private void LoadDefaultPermissions()
+        { 
+            defaultPermissions = UserPermission.DefaultPermissions;
+            lbDefaultPermissions.ItemsSource = defaultPermissions;
         }
 
         #endregion;
@@ -990,16 +1077,47 @@ namespace SevenDaysConfigUI.Pages
                     case "lbWhiteList":
                         if (admin.WhiteList.IndexOf(user) > 0)
                         { return; }
-                        admin.WhiteList.Add(user);
+
+                        if (admin.WhiteList.Count == 0)
+                        {
+                            System.Windows.Forms.DialogResult dr =
+                            System.Windows.Forms.MessageBox.Show("By adding a player to the Whitelist, only Whitelist players will be allowed to join. Are you sure you wish to continue?",
+                            "Confirm Use of Whitelist",
+                            System.Windows.Forms.MessageBoxButtons.OKCancel);
+
+                            if (dr == System.Windows.Forms.DialogResult.OK)
+                            {
+                                admin.WhiteList.Add(user);
+
+                                if (admin.Administration.Count > 0 || admin.Moderators.Count > 0)
+                                {
+                                    System.Windows.Forms.DialogResult dr2 =
+                                    System.Windows.Forms.MessageBox.Show("Would you like to clear the Admin and Moderators lists?",
+                                    "Clear existing lists?",
+                                    System.Windows.Forms.MessageBoxButtons.YesNo);
+                                    if (dr2 == System.Windows.Forms.DialogResult.Yes)
+                                    {
+                                        admin.Administration.Clear();
+                                        admin.Moderators.Clear();
+                                        bindAdminLists();
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            admin.WhiteList.Add(user);
+                        }
                         break;
                     case "lbBlackList":
                         if (admin.BlackList.IndexOf(user) > 0)
-                        { return; }
-                        admin.BlackList.Add(user);
+                        { return; }                        
+                        admin.BlackList.Add(user);                        
                         break;
                 }                
                 lb.Items.Refresh();                
                 ConfigureListUsers();
+                
             }
         }
         #endregion
@@ -1037,13 +1155,13 @@ namespace SevenDaysConfigUI.Pages
                     admin.Moderators.Remove(su);
                     lbModerators.Items.Refresh();
                 }
-                else if (lbWhiteList.SelectedIndex > 0)
+                else if (lbWhiteList.SelectedIndex >= 0)
                 {
                     su = lbWhiteList.SelectedItem as SteamUser;
                     admin.WhiteList.Remove(su);
                     lbWhiteList.Items.Refresh();
                 }
-                else if (lbBlackList.SelectedIndex > 0)
+                else if (lbBlackList.SelectedIndex >= 0)
                 {
                     su = lbBlackList.SelectedItem as SteamUser;
                     admin.BlackList.Remove(su);
@@ -1065,6 +1183,8 @@ namespace SevenDaysConfigUI.Pages
                 ConfigureListUsers();
             }
         }
+
+        
                        
     }   
 }
