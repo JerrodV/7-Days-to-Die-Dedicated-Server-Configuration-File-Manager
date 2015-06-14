@@ -43,4 +43,12 @@ namespace SevenDaysConfigUI
 				 SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
 		}
 	}
+
+    public static class MyExtensions
+    { 
+        public static Boolean IsEmpty(this String str)
+        {
+            return String.IsNullOrWhiteSpace(str);
+        }
+    }
 }

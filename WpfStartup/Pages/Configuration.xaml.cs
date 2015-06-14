@@ -595,14 +595,20 @@ namespace SevenDaysConfigUI.Pages
             lbBlackList.ItemsSource = admin.BlackList;
             lbBlackList.IsSynchronizedWithCurrentItem = true;
 
+            //The XML does not store the a description of the command.
+            //We are doing that in a user setting and they will be availible on our
+            //default permission items. So, before we bind, lets grab them.
             foreach (UserPermission perm in admin.Permissions)
             {
-                foreach (UserPermission def in defaultPermissions)
+                if (perm.PermissionDescription.IsEmpty())//Fun with Extension Methods. See Helpers/Window.Extensions.cs MyExtensions class.
                 {
-                    if (perm.Command == def.Command)
+                    foreach (UserPermission def in defaultPermissions)
                     {
-                        perm.PermissionDescription = def.PermissionDescription;
-                        break;
+                        if (perm.Command == def.Command)
+                        {
+                            perm.PermissionDescription = def.PermissionDescription;
+                            break;
+                        }
                     }
                 }
             }
@@ -1139,8 +1145,16 @@ namespace SevenDaysConfigUI.Pages
                     {
                         su = lbUsers.SelectedItem as SteamUser;
                         defaultUsers.Remove(su);
-                        SaveDefaultUsers();
                         lbUsers.Items.Refresh();
+                        admin.Administration.Remove(su);
+                        lbAdmins.Items.Refresh();
+                        admin.Moderators.Remove(su);
+                        lbModerators.Items.Refresh();
+                        admin.WhiteList.Remove(su);
+                        lbWhiteList.Items.Refresh();
+                        admin.BlackList.Remove(su);   
+                        lbBlackList.Items.Refresh();
+                        SaveDefaultUsers();
                     }
                 }
                 else if (lbAdmins.SelectedIndex >= 0)

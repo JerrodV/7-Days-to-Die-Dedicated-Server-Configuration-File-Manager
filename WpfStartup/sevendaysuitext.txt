@@ -12,14 +12,23 @@
 Instructions:
 
 Using Seven Days Configuration UI is meant to be simple. The idea is that you load up your configuration file and edit your settings through an informative UI, then save when it is all correct. The XML write is done in such a way that any regrouping or reordering you might have done should be fine and preserved when the file is rewritten.
+*Note after further development, I have not been able to control the items within the admin user lists to preserve grouping (at least for the time being). In this case it was more efficient to remove the existing users and replace them with the data in memory. Unfortunately, this also means that any comments entered between nodes will be pushed to the top. However, if you order the users, they should rerender in that order, which is also currently reflected in the UI list item order. Reordering of the items in the list is not yet offered, but will be added.
 
-If at any time you have questions on what an item does, hover your mouse over the it. A tool tip will show with the original developer text as well as any (mostly) helpful information I had to offer. Note that some of the tool tip descriptions may describe settings that I have improved upon for the UI. For instance, you may see something like 0 = easy, but also see 'Easy' in the drop down list and not '0'. This is because I am doing the interpretation behind the scenes, but wanted to stay true to the idea of showing the original developer text.
+If at any time you have questions on what an item does, hover your mouse over it. A tool tip will show with the original developer text as well as any (mostly) helpful information I had to offer. Note that some of the tool tip descriptions may describe settings that I have improved upon for the UI. For instance, you may see something like 0 = easy, but then see 'Easy' in the drop down list and not '0'. This is because I am doing the interpretation behind the scenes, but wanted to stay true to the idea of showing the original developer text.
 
 Note that the application will automatically remember the last files you've looked up. If 'n/a' appears, no file path has yet been set. If a message other than the file path or 'n/a' appears, the application was not able to resolve the file path you are saving, or the one you have saved.
 
 The UI controls are mostly self validating. In the case where free text is allowed, and the value is required, a dialog is shown warning you, the field will be highlighted in red, and you will not be able to save until the error is corrected.
 
-Any time a file is saved, it is then reloaded into the UI. The message in the status does not reflect the reload. This is intentional.
+Any time a file is saved, it is then reloaded into the UI. The message in the status does not reflect the reload. This is intentional so as not to immediatley overwrite the save message.
+
+Users:
+I made an attempt but found that the steam API does not allow developers to look up a list of users based on a user name. This means you will still need to obtain the steam IDs from another source like server logs. I personally get mine from 7DaysToDieServerManagerV2.
+Once you have obtained a steam ID, on the Admin/Users tab, click Add User and enter the ID and save. An item will be added to the default users list. This item can then be assigned to the appropriate permission group. 
+To remove an item, select it and press delete. Note that you will be prompted to confirm a delete from the default user list as this, once saved, cannot be undone. Otherwise, if deleting from a list other than the default user list, the user is removed from that collection only. 
+I have offered the ability to hide users from the default list who are already assigned to a permission list, which should make the default user list act as something of a 'to-do' list. This gives a whole different perspective to the ui giving the impression a 'move' has occured, when in fact it was a 'copy to' or 'removal from', the pretaining list. 
+With that aside, currently users can only be assigned from the default list. You cannot drag from one permission list, such as Administration, to another, such as Moderators. You would need to delete it from Administration, the drag from the default list to Moderators instead. I do plan to add handlers for for this abilitly later though.
+
 
 
 
