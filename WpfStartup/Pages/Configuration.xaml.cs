@@ -467,7 +467,7 @@ namespace SevenDaysConfigUI.Pages
             b.BindTexbox(txtTelnetPassword, "TelnetPassword", configuration);
             b.BindIntegerUpDown(iudControlPanelPort, "ControlPanelPort", configuration);
             b.BindTexbox(txtControlPanelPassword, "ControlPanelPassword", configuration);
-            b.BindCheckbox(cbDisableNAT, "DisableNat", configuration);
+            //b.BindCheckbox(cbDisableNAT, "DisableNat", configuration);
             #endregion
 
             #region Game Tab
@@ -481,7 +481,7 @@ namespace SevenDaysConfigUI.Pages
             b.BindCheckbox(cbPersistentPlayerProfiles, "PersistentPlayerProfiles", configuration);
             b.BindIntegerUpDown(iudPlayerSafeZoneLevel, "PlayerSafeZoneLevel", configuration);
             b.BindIntegerUpDown(iudPlayerSafeZoneHours, "PlayerSafeZoneHours", configuration);
-            b.BindIntegerUpDown(iudNightPercentage, "NightPercentage", configuration);
+            //b.BindIntegerUpDown(iudNightPercentage, "NightPercentage", configuration);
             b.BindComboBox(cboDropOnDeath, "DropOnDeathValue", configuration);
             b.BindComboBox(cboDropOnQuit, "DropOnQuitValue", configuration);
             b.BindComboBox(cboCraftTimer, "CraftTimerValue", configuration);

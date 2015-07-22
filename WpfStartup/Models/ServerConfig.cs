@@ -492,19 +492,19 @@ namespace SevenDaysConfigUI.Models
             }
         }
 
-        private Boolean _DisableNAT;
-        public Boolean DisableNAT 
-        {
-            get
-            {
-                return _DisableNAT;
-            }
-            set
-            {
-                _DisableNAT = value;
-                NotifyPropertyChanged();
-            }
-        }
+        //private Boolean _DisableNAT;
+        //public Boolean DisableNAT
+        //{
+        //    get
+        //    {
+        //        return _DisableNAT;
+        //    }
+        //    set
+        //    {
+        //        _DisableNAT = value;
+        //        NotifyPropertyChanged();
+        //    }
+        //}
 
         private String _AdminFileName;
         public String AdminFileName 
@@ -679,19 +679,20 @@ namespace SevenDaysConfigUI.Models
                 NotifyPropertyChanged();
             }
         }
-        private Int32 _NightPercentage;
-        public Int32 NightPercentage 
-        {
-            get
-            {
-                return _NightPercentage;
-            }
-            set
-            {
-                _NightPercentage = value;
-                NotifyPropertyChanged();
-            }
-        }
+        
+        //private Int32 _NightPercentage;
+        //public Int32 NightPercentage 
+        //{
+        //    get
+        //    {
+        //        return _NightPercentage;
+        //    }
+        //    set
+        //    {
+        //        _NightPercentage = value;
+        //        NotifyPropertyChanged();
+        //    }
+        //}
 
         private Int32 _BlockDurabilityModifier;
         public Int32 BlockDurabilityModifier 
@@ -1023,9 +1024,9 @@ namespace SevenDaysConfigUI.Models
                             case "TelnetPassword":
                                 config.TelnetPassword = d.Value.ToString();
                                 break;
-                            case "DisableNAT":
-                                config.DisableNAT = Convert.ToBoolean(d.Value);
-                                break;
+                            //case "DisableNAT":
+                            //    config.DisableNAT = Convert.ToBoolean(d.Value);
+                            //    break;
                             case "AdminFileName":
                                 config.AdminFileName = d.Value.ToString();
                                 break;
@@ -1050,9 +1051,9 @@ namespace SevenDaysConfigUI.Models
                             case "EnemyDifficulty":
                                 config.EnemyDifficulty = ((EnemyDifficultyOption)Convert.ToInt32(d.Value));
                                 break;
-                            case "NightPercentage":
-                                config.NightPercentage = Convert.ToInt32(d.Value);
-                                break;
+                            //case "NightPercentage":
+                            //    config.NightPercentage = Convert.ToInt32(d.Value);
+                            //    break;
                             case "BlockDurabilityModifier":
                                 config.BlockDurabilityModifier = Convert.ToInt32(d.Value);
                                 break;
@@ -1197,8 +1198,8 @@ namespace SevenDaysConfigUI.Models
                         case "TelnetPassword":
                             return this.TelnetPassword.ToString();
                             
-                        case "DisableNAT":
-                            return this.DisableNAT.ToString().ToLower();
+                        //case "DisableNAT":
+                        //    return this.DisableNAT.ToString().ToLower();
                             
                         case "AdminFileName":
                             return this.AdminFileName.ToString();
@@ -1224,8 +1225,8 @@ namespace SevenDaysConfigUI.Models
                         case "EnemyDifficulty":
                             return ((Int32)this.EnemyDifficulty).ToString();
                             
-                        case "NightPercentage":
-                            return this.NightPercentage.ToString();
+                        //case "NightPercentage":
+                        //    return this.NightPercentage.ToString();
                             
                         case "BlockDurabilityModifier":
                             return this.BlockDurabilityModifier.ToString();
